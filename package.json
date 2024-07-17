@@ -1,0 +1,29 @@
+{
+    "name": "com.boshphelm",
+    "version": "1.0.0",
+    "displayName": "Boshphelm Packages",
+    "description": "This is an example package created by bosh",
+    "unity": "2022.3",
+    "documentationUrl": "https://example.com/",
+    "changelogUrl": "https://example.com/changelog.html",
+    "licensesUrl": "https://example.com/licensing.html",
+    "keywords": [
+      "1stPackage"
+    ],
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/boshphelm/com.boshphelm.git"
+    },
+    "samples": [
+      {
+        "displayName": "Sample_01",
+        "description": "Contains nothing but folders",
+        "path": "Samples~/Sample_1"
+      }
+    ],
+    "author": {
+      "name": "Boshphelm",
+      "email": "admin@boshphelmstudio.com",
+      "url": "https://www.boshphelmstudios.com"
+    }
+  }
