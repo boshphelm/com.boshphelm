@@ -1,0 +1,18 @@
+{
+    "name": "boshphelm.Commands.Editor",
+    "rootNamespace": "boshphelm.Commands.Editor",
+    "references": [
+        "GUID:ab331996bb1e6bf4eb3389d29a9d90a2"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

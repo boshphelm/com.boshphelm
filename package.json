@@ -7,6 +7,10 @@
     "documentationUrl": "https://example.com/",
     "changelogUrl": "https://example.com/changelog.html",
     "licensesUrl": "https://example.com/licensing.html",
+    "dependencies": {
+        "com.unity.textmeshpro": "3.0.9",
+        "com.unity.addressables": "1.21.21"
+    },
     "keywords": [
         "1stPackage"
     ],

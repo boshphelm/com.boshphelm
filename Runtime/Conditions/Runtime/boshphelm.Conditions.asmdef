@@ -1,0 +1,14 @@
+{
+    "name": "boshphelm.Conditions",
+    "rootNamespace": "boshphelm.Conditions",
+    "references": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
