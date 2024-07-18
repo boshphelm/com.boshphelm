@@ -1,28 +1,15 @@
 using System;
 using System.Collections.Generic;
-using boshphelm.Conditions;
-// using Boshphelm.Saveable;
-using boshphelm.Utility;
-using UnityEngine.Serialization;
+using boshphelm.Conditions; 
+using boshphelm.Utility; 
 
 namespace boshphelm.Tutorial
-{
+{  
     [Serializable]
-    public class TutorialSaveDataListEvent : IEvent
-    {
-        public TutorialSaveDataList TutorialSaveDataList;
-
-        public TutorialSaveDataListEvent(TutorialSaveDataList tutorialSaveDataList)
-        {
-            TutorialSaveDataList = tutorialSaveDataList;
-        }
-    }
-
-    [Serializable]
-    public class TutorialSaveDataList //: ISaveable
+    public class TutorialSaveDataList
     {
         public SerializableGuid Id { get; set; }
-        public List<TutorialSaveData> TutorialSaveDatas;
+        public List<TutorialSaveData> TutorialSaveDatas = new List<TutorialSaveData>();
     }
 
     [Serializable]

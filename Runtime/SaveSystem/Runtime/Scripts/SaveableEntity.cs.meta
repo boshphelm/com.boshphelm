@@ -1,11 +1,10 @@
 fileFormatVersion: 2
-guid: 7b34206f8da312048a58853475f62c93
+guid: 16fc0023312302549a941f9f099630b5
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
-  - _tutorialFadeManager: {instanceID: 0}
-  - _onSave: {fileID: 11400000, guid: 956ffc41c4406e140b6bd01727e4a2b8, type: 2}
+  - _onSaveablesRequested: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

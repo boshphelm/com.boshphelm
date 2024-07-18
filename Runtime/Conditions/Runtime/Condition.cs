@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace boshphelm.Conditions
 {
-    public abstract class Condition : MonoBehaviour
+    public abstract class Condition : MonoBehaviour  
     {
         public bool Active { get; protected set; }
 

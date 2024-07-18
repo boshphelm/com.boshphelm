@@ -1,7 +1,6 @@
 using System.Collections.Generic;
-using boshphelm.Conditions;
-// using Boshphelm.Saveable;
-// using boshphelm.Utility;
+using boshphelm.Conditions; 
+using Boshphelm.BHUtility; 
 using UnityEngine;
 
 namespace boshphelm.Tutorial
@@ -12,11 +11,13 @@ namespace boshphelm.Tutorial
         [SerializeField] private List<TutorialCondition> _conditionsByOrder;
         [SerializeField] protected TutorialFadeManager _tutorialFadeManager;
 
-        private TutorialSaveData _tutorialSaveData;
+        private TutorialSaveData _tutorialSaveData = new TutorialSaveData();
         public bool Completed => _tutorialSaveData.IsCompleted;
 
         public System.Action<Tutorial> OnTutorialCompleted = _ => { };
-
+        [Header("Broadcasting")]
+        [SerializeField] private VoidEventChannelSO _onSave;       
+        
         public virtual void Bind(TutorialSaveData tutorialSaveData)
         {
             if (tutorialSaveData.ConditionSaveDatas == null)
@@ -143,7 +144,7 @@ namespace boshphelm.Tutorial
         {
             _tutorialSaveData.IsCompleted = true;
             OnTutorialCompleted.Invoke(this);
-            //EventBus<GameSaveEvent>.Raise(new GameSaveEvent());
+            _onSave.RaiseEvent();
         }
     }
 }

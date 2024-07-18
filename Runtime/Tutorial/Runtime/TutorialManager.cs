@@ -1,59 +1,36 @@
 using System.Collections.Generic;
-// using Boshphelm.Saveable;
-// using boshphelm.Utility;
+using boshphelm.Save; 
 using UnityEngine;
 
 namespace boshphelm.Tutorial
 {
-    public class TutorialManager : MonoBehaviour //, IBind<TutorialSaveDataList>
-    {
-        //public SerializableGuid Id { get; set; }
+    public class TutorialManager : MonoBehaviour , ISaveable
+    { 
+        private TutorialSaveDataList _tutorialSaveDataList; 
 
-        private TutorialSaveDataList _tutorialSaveDataList;
-        //private EventBinding<TutorialSaveDataListEvent> _tutorialSaveDataListEvent;
-
-        [SerializeField] private List<Tutorial> _tutorials;
-
+        [SerializeField] private List<Tutorial> _tutorials; 
         public void Init()
         {
             TriggerNotCompletedTutorials();
+        }    
+
+        public object CaptureState()
+        {
+            return _tutorialSaveDataList;
         }
 
-        private void OnEnable()
-        {
-            // _tutorialSaveDataListEvent = new EventBinding<TutorialSaveDataListEvent>(HandleBuildingControllerData);
-            // EventBus<TutorialSaveDataListEvent>.Register(_tutorialSaveDataListEvent);
-        }
-
-        private void OnDisable()
-        {
-            // EventBus<TutorialSaveDataListEvent>.Deregister(_tutorialSaveDataListEvent);
-        }
-
-        private void HandleBuildingControllerData(TutorialSaveDataListEvent tutorialSaveDataListEvent)
-        {
-            Bind(tutorialSaveDataListEvent.TutorialSaveDataList);
-        }
-
-        public void Bind(TutorialSaveDataList tutorialSaveDataList)
-        {
-            _tutorialSaveDataList = tutorialSaveDataList;
-            if (_tutorialSaveDataList.TutorialSaveDatas == null)
-            {
-                _tutorialSaveDataList.TutorialSaveDatas = new List<TutorialSaveData>();
-            }
+        public void RestoreState(object state)
+        {   
+            if(state == null) _tutorialSaveDataList = new TutorialSaveDataList(); 
+            else _tutorialSaveDataList = (TutorialSaveDataList)state; 
 
             for (int i = 0; i < _tutorials.Count; i++)
             {
-                Tutorial tutorial = _tutorials[i];
-
+                Tutorial tutorial = _tutorials[i];  
                 if (_tutorialSaveDataList.TutorialSaveDatas.Count <= i)
-                {
                     _tutorialSaveDataList.TutorialSaveDatas.Add(new TutorialSaveData());
-                }
-
                 tutorial.Bind(_tutorialSaveDataList.TutorialSaveDatas[i]);
-            }
+            }  
         }
 
         private void TriggerNotCompletedTutorials()

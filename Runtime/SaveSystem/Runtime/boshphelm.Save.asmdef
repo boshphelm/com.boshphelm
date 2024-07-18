@@ -1,0 +1,16 @@
+{
+    "name": "boshphelm.Save",
+    "rootNamespace": "boshphelm.Save",
+    "references": [
+        "GUID:c79e69da5bcc7be46a5b5c298343bd4c"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
