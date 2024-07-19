@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/boshphelm/com.boshphelm/compare/v1.0.0...v1.0.1) (2024-07-19)
+
+
+### Bug Fixes
+
+* Oluşturulmamış metalar oluşturuldu. ([7a9f94f](https://github.com/boshphelm/com.boshphelm/commit/7a9f94f0e28a99d5821fcc430b9c403dbbe3e4b1))
+
 # 1.0.0 (2024-07-17)
 
 
