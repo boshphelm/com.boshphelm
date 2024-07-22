@@ -1,3 +1,10 @@
+## [1.3.1](https://github.com/boshphelm/com.boshphelm/compare/v1.3.0...v1.3.1) (2024-07-22)
+
+
+### Bug Fixes
+
+* Start func removed on Wallet script. ([fc6bf79](https://github.com/boshphelm/com.boshphelm/commit/fc6bf7984b8f7337be2f258ad411e737a3c7ee37))
+
 # [1.3.0](https://github.com/boshphelm/com.boshphelm/compare/v1.2.0...v1.3.0) (2024-07-22)
 
 
