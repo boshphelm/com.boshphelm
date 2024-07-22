@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/boshphelm/com.boshphelm/compare/v1.0.1...v1.1.0) (2024-07-22)
+
+
+### Features
+
+* AudioSystem added. ([b0138ac](https://github.com/boshphelm/com.boshphelm/commit/b0138ace1783972a7df05a8893751777ff124f57))
+
 ## [1.0.1](https://github.com/boshphelm/com.boshphelm/compare/v1.0.0...v1.0.1) (2024-07-19)
 
 
