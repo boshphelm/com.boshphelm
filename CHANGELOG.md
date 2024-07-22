@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/boshphelm/com.boshphelm/compare/v1.1.0...v1.2.0) (2024-07-22)
+
+
+### Features
+
+* Wallet added. ([3d0bdfe](https://github.com/boshphelm/com.boshphelm/commit/3d0bdfe9c1491059b9e6d93dbc170676b9bca16b))
+
 # [1.1.0](https://github.com/boshphelm/com.boshphelm/compare/v1.0.1...v1.1.0) (2024-07-22)
 
 
