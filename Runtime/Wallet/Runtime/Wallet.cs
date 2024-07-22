@@ -15,9 +15,7 @@ namespace boshphelm.Wallets
         private WalletController _controller; 
         private WalletData _walletData = new WalletData();
 
-        public Action<CurrencyDetail, int> OnCurrencyChanged; 
-
-        [SerializeField] Price price1;  
+        public Action<CurrencyDetail, int> OnCurrencyChanged;  
 
         public object CaptureState()
         { 
@@ -38,19 +36,6 @@ namespace boshphelm.Wallets
                 .Build();  
                 
             Bind(_walletData);      
-        }
-
-        private void Update() 
-        { 
-            if (Input.GetKeyDown(KeyCode.A))
-            {
-                Add(price1);            
-            }
-            // Press A Key to Update Player Event
-            if (Input.GetKeyDown(KeyCode.C))
-            {
-                _walletData.Capacity = Random.Range(0, 10);
-            } 
         } 
  
         private void OnCurrencyUpdated(CurrencyDetail currencyDetail, int quantity)
