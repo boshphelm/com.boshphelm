@@ -1,0 +1,18 @@
+{
+    "name": "Boshphelm.AudioSystem.Editor",
+    "rootNamespace": "Boshphelm.AudioSystem.Editor",
+    "references": [
+        "GUID:94323150c35fe8949969a8b2cc9b6b10"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

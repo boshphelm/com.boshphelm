@@ -67,7 +67,7 @@ namespace boshphelm.Utility
         public override void MoveToPreviousIndex()
         {
             base.MoveToPreviousIndex();
-            
+
             SetNextPreviousButtonStatus();
             _isDragging = false;
             _active = true;
@@ -109,7 +109,7 @@ namespace boshphelm.Utility
         #endregion
 
         private void SetNextPreviousButtonStatus()
-        { 
+        {
             if (SnappedIndex == 0)
             {
                 _nextButtonGO?.SetActive(true);

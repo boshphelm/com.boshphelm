@@ -4,15 +4,17 @@ namespace boshphelm.Utility
 {
     public class Oscillator : MonoBehaviour
     {
-        [Tooltip("Oyun başladığı anda çalışsın mı.")] [SerializeField] private bool _playOnAwake = true;
+        [Tooltip("Oyun başladığı anda çalışsın mı.")][SerializeField] private bool _playOnAwake = true;
 
-        [Header("Movement Variables..")] [Tooltip("Objenin belirlenen periyod içerisinde hareketini yapacağı yön.")] [SerializeField]
+        [Header("Movement Variables..")]
+        [Tooltip("Objenin belirlenen periyod içerisinde hareketini yapacağı yön.")]
+        [SerializeField]
         private Vector3 _movementVector;
 
-        [Header("Rotation Variables..")] [SerializeField] private bool _willRotate;
-        [Tooltip("Objenin belirlenen periyod içerisinde hareketini yapacağı rotasyon.")] [SerializeField] private Vector3 _rotationVector;
-        [Tooltip("Objenin pozitif yönde bir tur hareketini tamamlayacağı süre.")] [SerializeField] private float _positivePeriod = 1f;
-        [Tooltip("Objenin negatif yönde bir tur hareketini tamamlayacağı süre.")] [SerializeField] private float _negativePeriod = 1f;
+        [Header("Rotation Variables..")][SerializeField] private bool _willRotate;
+        [Tooltip("Objenin belirlenen periyod içerisinde hareketini yapacağı rotasyon.")][SerializeField] private Vector3 _rotationVector;
+        [Tooltip("Objenin pozitif yönde bir tur hareketini tamamlayacağı süre.")][SerializeField] private float _positivePeriod = 1f;
+        [Tooltip("Objenin negatif yönde bir tur hareketini tamamlayacağı süre.")][SerializeField] private float _negativePeriod = 1f;
 
         private Vector3 _startPos;
         private Quaternion _startRot;
