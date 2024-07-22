@@ -6,9 +6,7 @@ namespace boshphelm.Save
     public class SavingWrapper : MonoBehaviour
     {
         [SerializeField] string defaultSaveFile = "Xsave";
-        private void Awake() {
-            Load();
-        }
+        
         public void Load()
         {
             GetComponent<SavingSystem>().Load(defaultSaveFile);
