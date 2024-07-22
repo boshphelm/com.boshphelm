@@ -1,3 +1,10 @@
+## [1.3.3](https://github.com/boshphelm/com.boshphelm/compare/v1.3.2...v1.3.3) (2024-07-22)
+
+
+### Bug Fixes
+
+* Awake func remove from SavingWrapper. ([398b8a5](https://github.com/boshphelm/com.boshphelm/commit/398b8a5dfa4914ace1cd029bc1880362f259fc13))
+
 ## [1.3.2](https://github.com/boshphelm/com.boshphelm/compare/v1.3.1...v1.3.2) (2024-07-22)
 
 
