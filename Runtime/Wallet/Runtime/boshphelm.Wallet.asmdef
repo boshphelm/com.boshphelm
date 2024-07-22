@@ -1,0 +1,19 @@
+{
+    "name": "boshphelm.Wallets",
+    "rootNamespace": "boshphelm.Wallets",
+    "references": [
+        "GUID:c79e69da5bcc7be46a5b5c298343bd4c",
+        "GUID:d59ec819b549a3642b8a3e1d6be2b40f",
+        "GUID:ab331996bb1e6bf4eb3389d29a9d90a2",
+        "GUID:070a4c37a35032046a68ba95d7af5c0e"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
