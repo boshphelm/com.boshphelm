@@ -1,0 +1,18 @@
+{
+    "name": "boshphelm.Currencies.Editor",
+    "rootNamespace": "boshphelm.Currencies.Editor",
+    "references": [
+        "GUID:d59ec819b549a3642b8a3e1d6be2b40f"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
