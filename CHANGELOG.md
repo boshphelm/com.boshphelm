@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/boshphelm/com.boshphelm/compare/v1.2.0...v1.3.0) (2024-07-22)
+
+
+### Features
+
+* Currency added. ([350c0ec](https://github.com/boshphelm/com.boshphelm/commit/350c0ec96ccb39be87ba3646732f0e774516f913))
+
 # [1.2.0](https://github.com/boshphelm/com.boshphelm/compare/v1.1.0...v1.2.0) (2024-07-22)
 
 
