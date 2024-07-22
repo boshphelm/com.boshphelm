@@ -17,12 +17,7 @@ namespace boshphelm.Wallets
 
         public Action<CurrencyDetail, int> OnCurrencyChanged; 
 
-        [SerializeField] Price price1; 
-
-        private void Start() 
-        {
-            Init();
-        } 
+        [SerializeField] Price price1;  
 
         public object CaptureState()
         { 
