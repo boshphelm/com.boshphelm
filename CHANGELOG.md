@@ -1,3 +1,10 @@
+## [1.3.2](https://github.com/boshphelm/com.boshphelm/compare/v1.3.1...v1.3.2) (2024-07-22)
+
+
+### Bug Fixes
+
+* Test codes remove from Wallet script. ([676f933](https://github.com/boshphelm/com.boshphelm/commit/676f933a809ec015db5b263c82a6e32b1d456640))
+
 ## [1.3.1](https://github.com/boshphelm/com.boshphelm/compare/v1.3.0...v1.3.1) (2024-07-22)
 
 
