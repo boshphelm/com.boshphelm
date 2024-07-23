@@ -9,7 +9,8 @@
     "licensesUrl": "https://example.com/licensing.html",
     "dependencies": {
         "com.unity.textmeshpro": "3.0.9",
-        "com.unity.addressables": "1.21.21"
+        "com.unity.addressables": "1.21.21",
+        "com.unity.cinemachine": "2.10.1" 
     },
     "keywords": [
         "1stPackage"

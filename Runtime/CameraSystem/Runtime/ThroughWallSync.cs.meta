@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 83060b5c3df8ed54d86597a8661290c9
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - _wallMat: {fileID: 2100000, guid: a8e9bd9e64ecd954eb8b4f022da8734c, type: 2}
+  - _camera: {instanceID: 0}
+  - _player: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
