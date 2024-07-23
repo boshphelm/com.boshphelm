@@ -3,7 +3,8 @@
     "rootNamespace": "Boshphelm.Inventories",
     "references": [
         "GUID:b2e25c7ed7beff144bf62d9e18d9744e",
-        "GUID:c79e69da5bcc7be46a5b5c298343bd4c"
+        "GUID:c79e69da5bcc7be46a5b5c298343bd4c",
+        "GUID:070a4c37a35032046a68ba95d7af5c0e"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

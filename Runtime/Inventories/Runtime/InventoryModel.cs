@@ -30,6 +30,8 @@ namespace Boshphelm.Inventories
             }
         }
 
+        public Item GetItemByItemDetail(ItemDetail itemDetail) => FindItemByItemDetailId(itemDetail.Id);
+        public Item GetItemByItemDetailId(SerializableGuid itemDetailSerializableGuid) => FindItemByItemDetailId(itemDetailSerializableGuid);
         private Item FindItemByItemDetailId(SerializableGuid itemDetailId) => _items.FirstOrDefault(item => item.ItemDetailId == itemDetailId);
 
         public bool RemoveItem(Item item)
@@ -77,5 +79,20 @@ namespace Boshphelm.Inventories
         public int GetItemCountByItemDetail(ItemDetail itemDetail) => GetItemCountByItemDetailId(itemDetail.Id);
         private int GetItemCountByItemDetailId(SerializableGuid itemDetailId) => FindItemsByItemDetailId(itemDetailId).Sum(item => item.Quantity);
         private List<Item> FindItemsByItemDetailId(SerializableGuid itemDetailId) => _items.FindAll(item => item.ItemDetailId == itemDetailId);
+
+        public List<ItemSaveData> GenerateSaveData()
+        {
+            var itemSaveDatas = new List<ItemSaveData>();
+            foreach (Item item in _items)
+            {
+                ItemSaveData itemSaveData = new ItemSaveData
+                {
+                    Quantity = item.Quantity,
+                    ItemDetailIdHex = item.ItemDetailId.ToHexString()
+                };
+            }
+
+            return itemSaveDatas;
+        }
     }
 }
