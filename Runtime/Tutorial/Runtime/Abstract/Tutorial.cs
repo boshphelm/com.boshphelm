@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using Boshphelm.Conditions; 
-using Boshphelm.BHUtility; 
+using Boshphelm.Utility; 
 using UnityEngine;
 
 namespace Boshphelm.Tutorial

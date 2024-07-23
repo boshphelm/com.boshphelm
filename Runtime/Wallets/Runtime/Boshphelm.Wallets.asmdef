@@ -1,6 +1,6 @@
 {
-    "name": "Boshphelm.Wallet",
-    "rootNamespace": "Boshphelm.Wallet",
+    "name": "Boshphelm.Wallets",
+    "rootNamespace": "Boshphelm.Wallets",
     "references": [
         "GUID:c79e69da5bcc7be46a5b5c298343bd4c",
         "GUID:d59ec819b549a3642b8a3e1d6be2b40f",

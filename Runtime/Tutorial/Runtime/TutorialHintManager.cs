@@ -17,12 +17,12 @@ namespace Boshphelm.Tutorial
         {
             _hintText.text = "";
 
-            _hintTextTween = _hintText.DOText(hintText, 1f)
+            /* _hintTextTween = _hintText.DOText(hintText, 1f)
                 .OnStart(() => onHintTextAnimationStart?.Invoke())
                 .SetDelay(1)
                 .SetUpdate(true)
                 .SetEase(Ease.Linear)
-                .OnComplete(() => onHintTextAnimationComplete?.Invoke());
+                .OnComplete(() => onHintTextAnimationComplete?.Invoke()); */
         }
 
         public void SkipHintAnimation()

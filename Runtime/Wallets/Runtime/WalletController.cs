@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Boshphelm.Currencies;
 using UnityEngine;
 
-namespace Boshphelm.Wallet
+namespace Boshphelm.Wallets
 {
     public class WalletController
     {

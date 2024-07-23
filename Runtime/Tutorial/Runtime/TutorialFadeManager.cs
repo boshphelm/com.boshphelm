@@ -36,7 +36,7 @@ namespace Boshphelm.Tutorial
             Color _color = _fadeImage.color;
             Color _newColor = new Color(_color.a, _color.g, _color.b, alpha);
 
-            _fadeImage.DOColor(_newColor, duration);
+            //_fadeImage.DOColor(_newColor, duration);
         }
 
         public void TransferObjectToFade(RectTransform obj)

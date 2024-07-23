@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
-namespace Boshphelm.BHUtility
+namespace Boshphelm.Utility
 {
     [CreateAssetMenu(menuName = "Boshphelm/Events/Channels/Void Event Channel")]
     public class VoidEventChannelSO : ScriptableObject

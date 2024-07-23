@@ -1,5 +1,5 @@
 {
-    "name": "Boshphelm.Wallet.Editor",
+    "name": "Boshphelm.Wallets.Editor",
     "rootNamespace": "",
     "references": [
         "GUID:4c090ae3e51ff6741aed5c09600d6f83"

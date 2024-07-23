@@ -3,7 +3,7 @@ using Boshphelm.Currencies;
 using Boshphelm.Utility;
 using UnityEngine;
 
-namespace Boshphelm.Wallet
+namespace Boshphelm.Wallets
 {
     public class WalletModel
     {

@@ -6,7 +6,7 @@ using Boshphelm.Utility;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace Boshphelm.Wallet
+namespace Boshphelm.Wallets
 {
     public class Wallet : MonoBehaviour , ISaveable
     {  
