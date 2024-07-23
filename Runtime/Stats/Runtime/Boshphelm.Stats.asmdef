@@ -1,0 +1,16 @@
+{
+    "name": "Boshphelm.Stats",
+    "rootNamespace": "Boshphelm.Stats",
+    "references": [
+        "GUID:070a4c37a35032046a68ba95d7af5c0e"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

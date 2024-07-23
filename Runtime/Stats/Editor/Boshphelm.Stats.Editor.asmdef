@@ -1,0 +1,18 @@
+{
+    "name": "Boshphelm.Stats.Editor",
+    "rootNamespace": "Boshphelm.Stats.Editor",
+    "references": [
+        "GUID:d03e81134262af84a92b4d6f315df68b"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
