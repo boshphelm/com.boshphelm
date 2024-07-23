@@ -7,17 +7,16 @@ namespace Boshphelm.Save
     {
         [SerializeField] private SavingWrapper _savingWrapper;
 
-        [Header("Listening To...")]
-        [SerializeField] private VoidEventChannelSO _onSave;
+        [Header("Listening To...")] [SerializeField] private VoidEventChannel _onSave;
 
         private void OnEnable()
         {
-            _onSave.onEventRaised += OnSave;
+            _onSave.OnEventRaise += OnSave;
         }
 
         private void OnDisable()
         {
-            _onSave.onEventRaised -= OnSave;
+            _onSave.OnEventRaise -= OnSave;
         }
 
         private void OnSave()

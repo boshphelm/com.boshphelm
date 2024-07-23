@@ -1,6 +1,6 @@
 using System.Collections.Generic;
-using Boshphelm.Conditions; 
-using Boshphelm.Utility; 
+using Boshphelm.Conditions;
+using Boshphelm.Utility;
 using UnityEngine;
 
 namespace Boshphelm.Tutorial
@@ -15,9 +15,8 @@ namespace Boshphelm.Tutorial
         public bool Completed => _tutorialSaveData.IsCompleted;
 
         public System.Action<Tutorial> OnTutorialCompleted = _ => { };
-        [Header("Broadcasting")]
-        [SerializeField] private VoidEventChannelSO _onSave;       
-        
+        [Header("Broadcasting")] [SerializeField] private VoidEventChannel _onSave;
+
         public virtual void Bind(TutorialSaveData tutorialSaveData)
         {
             if (tutorialSaveData.ConditionSaveDatas == null)

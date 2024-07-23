@@ -5,7 +5,7 @@ namespace Boshphelm.Items
 {
     public delegate Item ItemReturnSerializableGuidDelegate(SerializableGuid serializableGuid);
 
-    [CreateAssetMenu(fileName = "Boshphelm/EventChannels/Items/ItemReturnSerializableGuidEventChannel")]
+    [CreateAssetMenu(menuName = "Boshphelm/EventChannels/Items/ItemReturnSerializableGuidEventChannel")]
     public class ItemReturnSerializableGuidEventChannel : ScriptableObject
     {
         public ItemReturnSerializableGuidDelegate OnRaiseEvent;

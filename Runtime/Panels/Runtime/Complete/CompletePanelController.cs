@@ -1,11 +1,9 @@
-
-
 using System.Collections;
 using Boshphelm.Currencies;
 using Boshphelm.Utility;
 using Boshphelm.Wallets;
 using TMPro;
-using UnityEngine; 
+using UnityEngine;
 
 namespace Boshphelm.Panel
 {
@@ -13,14 +11,15 @@ namespace Boshphelm.Panel
     {
         [SerializeField] private float _delayComplete;
         [Header("Currency Data")] [SerializeField] private CurrencyData _currencyData;
+
         [Header("Scripts")] [SerializeField] private Wallet _wallet;
+
         // [SerializeField] private LevelFlowOrganizer _levelFlowOrganizer; TODO: Level System
         // [SerializeField] private LevelController _levelController;
-        [SerializeField] private CompleteCommandHandler _completeCommandHandler; 
+        [SerializeField] private CompleteCommandHandler _completeCommandHandler;
         [Header("Components")] [SerializeField] private TextMeshProUGUI _levelText;
 
-        [Header("Broadcasting")] 
-        [SerializeField] private VoidEventChannelSO _onSave;
+        [Header("Broadcasting")] [SerializeField] private VoidEventChannel _onSave;
 
         public override void Open()
         {
@@ -39,7 +38,7 @@ namespace Boshphelm.Panel
         {
             // Price levelTotalLoot = _levelFlowOrganizer.GetLevelTotalLoot(_currencyDetails);
             // _wallet.Add(levelTotalLoot);
-            _onSave.RaiseEvent();  
+            _onSave.RaiseEvent();
         }
     }
 }

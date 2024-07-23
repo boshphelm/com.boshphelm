@@ -3,7 +3,7 @@ using UnityEngine.Events;
 
 namespace Boshphelm.Items
 {
-    [CreateAssetMenu(fileName = "Boshphelm/EventChannels/Items/ItemDetailIntEventChannel")]
+    [CreateAssetMenu(menuName = "Boshphelm/EventChannels/Items/ItemDetailIntEventChannel")]
     public class ItemDetailIntEventChannel : ScriptableObject
     {
         public UnityAction<ItemDetail, int> OnEventRaise = (_, _) => { };

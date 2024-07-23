@@ -4,7 +4,7 @@ namespace Boshphelm.Items
 {
     public delegate bool BoolReturnItemDetailDelegate(ItemDetail itemDetail, int quantity);
 
-    [CreateAssetMenu(fileName = "Boshphelm/EventChannels/Items/BoolReturnItemDetailIntEventChannel")]
+    [CreateAssetMenu(menuName = "Boshphelm/EventChannels/Items/BoolReturnItemDetailIntEventChannel")]
     public class BoolReturnItemDetailIntEventChannel : ScriptableObject
     {
         public BoolReturnItemDetailDelegate OnRaiseEvent;

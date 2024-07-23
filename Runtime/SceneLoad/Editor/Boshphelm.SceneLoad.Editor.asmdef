@@ -1,0 +1,18 @@
+{
+    "name": "Boshphelm.SceneLoad.Editor",
+    "rootNamespace": "Boshphelm.SceneLoad.Editor",
+    "references": [
+        "GUID:e751ef01755f77042822d46f1bf56d82"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

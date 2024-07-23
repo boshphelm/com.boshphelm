@@ -1,0 +1,19 @@
+{
+    "name": "Boshphelm.InitialLoad",
+    "rootNamespace": "Boshphelm.InitialLoad",
+    "references": [
+        "GUID:070a4c37a35032046a68ba95d7af5c0e",
+        "GUID:c79e69da5bcc7be46a5b5c298343bd4c",
+        "GUID:ab331996bb1e6bf4eb3389d29a9d90a2",
+        "GUID:e751ef01755f77042822d46f1bf56d82"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
