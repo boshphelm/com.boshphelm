@@ -1,8 +1,8 @@
 using System.Collections.Generic;
-using boshphelm.Save; 
+using Boshphelm.Save; 
 using UnityEngine;
 
-namespace boshphelm.Tutorial
+namespace Boshphelm.Tutorial
 {
     public class TutorialManager : MonoBehaviour , ISaveable
     { 

@@ -1,7 +1,7 @@
-using boshphelm.Commands;
+using Boshphelm.Commands;
 using UnityEngine;
 
-namespace boshphelm.Wallets
+namespace Boshphelm.Wallet
 {
     [RequireComponent(typeof(Wallet))]
     public class WalletInitiateCommand : Command

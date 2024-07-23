@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace boshphelm.Save
+namespace Boshphelm.Save
 {
     [System.Serializable]
     public struct SerializableVector3

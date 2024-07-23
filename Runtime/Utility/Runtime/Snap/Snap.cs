@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace boshphelm.Utility
+namespace Boshphelm.Utility
 {
     public abstract class Snap : MonoBehaviour
     {

@@ -1,6 +1,6 @@
 {
-    "name": "boshphelm.Commands.Editor",
-    "rootNamespace": "boshphelm.Commands.Editor",
+    "name": "Boshphelm.Commands.Editor",
+    "rootNamespace": "Boshphelm.Commands.Editor",
     "references": [
         "GUID:ab331996bb1e6bf4eb3389d29a9d90a2"
     ],

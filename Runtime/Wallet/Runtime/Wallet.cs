@@ -1,12 +1,12 @@
 using System;
 using System.Collections.Generic;
-using boshphelm.Currencies;
-using boshphelm.Save;
-using boshphelm.Utility;
+using Boshphelm.Currencies;
+using Boshphelm.Save;
+using Boshphelm.Utility;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace boshphelm.Wallets
+namespace Boshphelm.Wallet
 {
     public class Wallet : MonoBehaviour , ISaveable
     {  

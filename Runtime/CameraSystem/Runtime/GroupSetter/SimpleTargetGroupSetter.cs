@@ -1,5 +1,5 @@
 
-namespace boshphelm.CameraSystem
+namespace Boshphelm.CameraSystem
 {
     public class SimpleTargetGroupSetter : TargetGroupSetter
     { 

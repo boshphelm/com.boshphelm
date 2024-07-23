@@ -1,6 +1,6 @@
 using System;
 
-namespace boshphelm.Utility
+namespace Boshphelm.Utility
 {
     public static class GuidExtensions
     {

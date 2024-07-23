@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 
-namespace boshphelm.Utility
+namespace Boshphelm.Utility
 {
     public class Healthbar : MonoBehaviour
     {

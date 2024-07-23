@@ -4,7 +4,7 @@ using System.Reflection;
 using UnityEditor;
 using UnityEngine;
 
-namespace boshphelm.Utility
+namespace Boshphelm.Utility
 {
     public static class EventBusUtil
     {

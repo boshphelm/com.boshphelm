@@ -1,6 +1,6 @@
 using Cinemachine;
 using UnityEngine;
-namespace boshphelm.CameraSystem
+namespace Boshphelm.CameraSystem
 {
     public abstract class TargetGroupSetter : MonoBehaviour
     {  

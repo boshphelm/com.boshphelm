@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace boshphelm.Save
+namespace Boshphelm.Save
 {
     [ExecuteInEditMode]
     public class SaveableEntity : MonoBehaviour

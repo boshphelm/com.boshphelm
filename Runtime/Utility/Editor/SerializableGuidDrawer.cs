@@ -2,7 +2,7 @@ using System.Text;
 using UnityEditor;
 using UnityEngine;
 
-namespace boshphelm.Utility.Editor
+namespace Boshphelm.Utility.Editor
 {
     [CustomPropertyDrawer(typeof(SerializableGuid))]
     public class SerializableGuidDrawer : PropertyDrawer

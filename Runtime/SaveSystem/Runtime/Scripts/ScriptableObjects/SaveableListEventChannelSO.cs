@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace boshphelm.Save
+namespace Boshphelm.Save
 {
     [CreateAssetMenu(menuName = "Boshphelm/SaveSystem/EventChannels/Saveable List Event Channel")]
     public class SaveableListEventChannelSO : ScriptableObject

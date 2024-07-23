@@ -3,7 +3,7 @@ using System;
 using System.Linq;
 using UnityEngine;
 
-namespace boshphelm.Utility
+namespace Boshphelm.Utility
 {
     public interface IObservableArray<T>
     {

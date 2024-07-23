@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
-using boshphelm.Conditions; 
-using boshphelm.Utility; 
+using Boshphelm.Conditions; 
+using Boshphelm.Utility; 
 
-namespace boshphelm.Tutorial
+namespace Boshphelm.Tutorial
 {  
     [Serializable]
     public class TutorialSaveDataList

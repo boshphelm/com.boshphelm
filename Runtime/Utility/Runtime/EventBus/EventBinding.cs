@@ -1,7 +1,7 @@
 using System;
 
 
-namespace boshphelm.Utility
+namespace Boshphelm.Utility
 {
     public interface IEventBinding<T>
     {

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace boshphelm.Utility
+namespace Boshphelm.Utility
 {
     public class AutoSnap : Snap
     {

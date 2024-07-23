@@ -1,6 +1,6 @@
 {
-    "name": "boshphelm.Currencies.Editor",
-    "rootNamespace": "boshphelm.Currencies.Editor",
+    "name": "Boshphelm.Currencies.Editor",
+    "rootNamespace": "Boshphelm.Currencies.Editor",
     "references": [
         "GUID:d59ec819b549a3642b8a3e1d6be2b40f"
     ],

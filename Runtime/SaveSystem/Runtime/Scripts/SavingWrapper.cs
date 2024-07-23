@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-namespace boshphelm.Save
+namespace Boshphelm.Save
 {
     public class SavingWrapper : MonoBehaviour
     {

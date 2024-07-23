@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace boshphelm.Utility
+namespace Boshphelm.Utility
 {
     public class TransformLooker : MonoBehaviour
     {

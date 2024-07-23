@@ -1,7 +1,7 @@
 using Boshphelm.BHUtility;
 using UnityEngine;
 
-namespace boshphelm.Save
+namespace Boshphelm.Save
 {
     public class SaveTrigger : MonoBehaviour
     {

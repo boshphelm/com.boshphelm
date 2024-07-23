@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace boshphelm.Commands
+namespace Boshphelm.Commands
 {
     public abstract class Command : MonoBehaviour
     {

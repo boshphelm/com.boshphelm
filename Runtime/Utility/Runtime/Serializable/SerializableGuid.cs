@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace boshphelm.Utility
+namespace Boshphelm.Utility
 {
     [Serializable]
     public struct SerializableGuid : IEquatable<SerializableGuid>

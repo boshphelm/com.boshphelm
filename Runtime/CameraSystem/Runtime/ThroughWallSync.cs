@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.TestTools;
 
-namespace boshphelm.CameraSystem
+namespace Boshphelm.CameraSystem
 {
     public class ThroughWallSync : MonoBehaviour
     {

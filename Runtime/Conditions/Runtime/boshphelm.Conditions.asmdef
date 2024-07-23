@@ -1,6 +1,6 @@
 {
-    "name": "boshphelm.Conditions",
-    "rootNamespace": "boshphelm.Conditions",
+    "name": "Boshphelm.Conditions",
+    "rootNamespace": "Boshphelm.Conditions",
     "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],

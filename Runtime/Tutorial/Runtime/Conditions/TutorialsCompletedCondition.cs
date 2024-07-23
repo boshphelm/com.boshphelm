@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace boshphelm.Tutorial
+namespace Boshphelm.Tutorial
 {
     public class TutorialsCompletedCondition : TutorialCondition
     {

@@ -1,7 +1,7 @@
 using DG.Tweening;
 using TMPro;
 
-namespace boshphelm.Utility
+namespace Boshphelm.Utility
 {
     public static class TextMeshProExtensions
     {

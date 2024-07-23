@@ -2,7 +2,7 @@
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace boshphelm.Utility
+namespace Boshphelm.Utility
 {
     public class ScrollSnap : Snap, IEndDragHandler, IBeginDragHandler
     {

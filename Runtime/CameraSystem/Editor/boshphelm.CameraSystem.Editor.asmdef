@@ -1,6 +1,6 @@
 {
-    "name": "boshphelm.CameraSystem.Editor",
-    "rootNamespace": "boshphelm.CameraSystem.Editor",
+    "name": "Boshphelm.CameraSystem.Editor",
+    "rootNamespace": "Boshphelm.CameraSystem.Editor",
     "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],

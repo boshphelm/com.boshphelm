@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace boshphelm.Currencies
+namespace Boshphelm.Currencies
 {
     public class PriceView : MonoBehaviour
     {

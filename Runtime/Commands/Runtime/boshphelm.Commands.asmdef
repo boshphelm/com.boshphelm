@@ -1,6 +1,6 @@
 {
-    "name": "boshphelm.Commands",
-    "rootNamespace": "boshphelm.Commands",
+    "name": "Boshphelm.Commands",
+    "rootNamespace": "Boshphelm.Commands",
     "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],

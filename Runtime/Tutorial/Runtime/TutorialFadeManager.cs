@@ -3,7 +3,7 @@ using System;
 using UnityEngine.UI;
 using DG.Tweening;
 
-namespace boshphelm.Tutorial
+namespace Boshphelm.Tutorial
 {
     public class TutorialFadeManager : MonoBehaviour
     {

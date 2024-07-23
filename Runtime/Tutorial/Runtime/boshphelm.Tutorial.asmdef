@@ -1,13 +1,11 @@
 {
-    "name": "boshphelm.Tutorial",
-    "rootNamespace": "boshphelm.Tutorial",
+    "name": "Boshphelm.Tutorial",
+    "rootNamespace": "Boshphelm.Tutorial",
     "references": [
         "GUID:9b7bedee7ec9b8245822a5efe249c73c",
         "GUID:ab331996bb1e6bf4eb3389d29a9d90a2",
         "GUID:c79e69da5bcc7be46a5b5c298343bd4c",
         "GUID:6055be8ebefd69e48b49212b09b47b2f",
-        "GUID:f3477055d24acaa4db654498772156fa",
-        "GUID:66d847d40e22ccd40a94b54fa8075371",
         "GUID:070a4c37a35032046a68ba95d7af5c0e"
     ],
     "includePlatforms": [],

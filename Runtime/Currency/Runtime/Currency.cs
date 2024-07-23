@@ -1,7 +1,7 @@
-using boshphelm.Utility;
+using Boshphelm.Utility;
 using UnityEngine;
 
-namespace boshphelm.Currencies
+namespace Boshphelm.Currencies
 {
     [System.Serializable]
     public class Currency

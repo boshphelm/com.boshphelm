@@ -1,4 +1,4 @@
-namespace boshphelm.Utility
+namespace Boshphelm.Utility
 {
     using UnityEngine;
 

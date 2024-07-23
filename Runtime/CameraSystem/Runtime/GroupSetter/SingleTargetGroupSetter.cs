@@ -2,7 +2,7 @@ using System.Collections;
 using Cinemachine;
 using UnityEngine;
 
-namespace boshphelm.CameraSystem
+namespace Boshphelm.CameraSystem
 {
     public class SingleTargetGroupSetter : TargetGroupSetter
     {  

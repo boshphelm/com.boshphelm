@@ -1,9 +1,9 @@
 using System;
-using boshphelm.Currencies;
-using boshphelm.Utility;
+using Boshphelm.Currencies;
+using Boshphelm.Utility;
 using UnityEngine;
 
-namespace boshphelm.Wallets
+namespace Boshphelm.Wallet
 {
     public class WalletModel
     {

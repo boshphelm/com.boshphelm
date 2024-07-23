@@ -1,7 +1,7 @@
-using boshphelm.Utility;
+using Boshphelm.Utility;
 using UnityEngine;
 
-namespace boshphelm.Currencies
+namespace Boshphelm.Currencies
 { 
     [CreateAssetMenu(fileName = "New Currency Detail", menuName = "Currency/CurrencyData"), System.Serializable]
     public class CurrencyData : ScriptableObject

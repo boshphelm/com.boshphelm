@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace boshphelm.Tutorial
+namespace Boshphelm.Tutorial
 {
     public class FadeCanvasClickListener : MonoBehaviour, IPointerDownHandler
     {

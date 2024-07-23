@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace boshphelm.Commands
+namespace Boshphelm.Commands
 {
     public abstract class CommandExecuteHandler : MonoBehaviour
     {

@@ -2,7 +2,7 @@ using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace boshphelm.Utility
+namespace Boshphelm.Utility
 {
     public static class ImageExtensions
     {

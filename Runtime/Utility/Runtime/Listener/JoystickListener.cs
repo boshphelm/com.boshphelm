@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace boshphelm.Utility
+namespace Boshphelm.Utility
 {
     public class JoystickListener : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     {

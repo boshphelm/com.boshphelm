@@ -2,7 +2,7 @@
 using UnityEditor;
 using UnityEditor.SceneManagement;
 
-namespace boshphelm.Utility.Editor
+namespace Boshphelm.Utility.Editor
 {
     public static class GameStartHelper
     {

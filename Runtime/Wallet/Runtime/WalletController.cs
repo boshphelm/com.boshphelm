@@ -1,10 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using boshphelm.Currencies;
+using Boshphelm.Currencies;
 using UnityEngine;
 
-namespace boshphelm.Wallets
+namespace Boshphelm.Wallet
 {
     public class WalletController
     {

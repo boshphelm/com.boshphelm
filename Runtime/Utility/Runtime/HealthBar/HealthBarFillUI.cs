@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace boshphelm.Utility
+namespace Boshphelm.Utility
 {
     public class HealthBarFillUI : MonoBehaviour
     {

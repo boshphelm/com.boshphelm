@@ -1,7 +1,7 @@
-using boshphelm.Commands;
+using Boshphelm.Commands;
 using UnityEngine;
 
-namespace boshphelm.Tutorial
+namespace Boshphelm.Tutorial
 {
     public class TutorialInitiateCommand : Command
     {

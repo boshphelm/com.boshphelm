@@ -1,9 +1,9 @@
 using System.Collections.Generic;
-using boshphelm.Conditions; 
+using Boshphelm.Conditions; 
 using Boshphelm.BHUtility; 
 using UnityEngine;
 
-namespace boshphelm.Tutorial
+namespace Boshphelm.Tutorial
 {
     public abstract class Tutorial : MonoBehaviour
     {

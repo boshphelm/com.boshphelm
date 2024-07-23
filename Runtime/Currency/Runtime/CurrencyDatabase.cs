@@ -1,8 +1,8 @@
 using System.Collections.Generic;
-using boshphelm.Utility;
+using Boshphelm.Utility;
 using UnityEngine;
 
-namespace boshphelm.Currencies
+namespace Boshphelm.Currencies
 {
     public static class CurrencyDatabase
     {

@@ -3,7 +3,7 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 
-namespace boshphelm.Save
+namespace Boshphelm.Save
 {
     public class SavingSystem : MonoBehaviour
     {

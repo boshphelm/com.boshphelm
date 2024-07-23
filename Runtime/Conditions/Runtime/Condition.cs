@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace boshphelm.Conditions
+namespace Boshphelm.Conditions
 {
     public abstract class Condition : MonoBehaviour  
     {

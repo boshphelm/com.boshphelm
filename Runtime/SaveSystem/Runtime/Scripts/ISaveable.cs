@@ -1,4 +1,4 @@
-namespace boshphelm.Save
+namespace Boshphelm.Save
 {
     public interface ISaveable
     {

@@ -1,8 +1,8 @@
 {
-    "name": "boshphelm.Save.Editor",
-    "rootNamespace": "boshphelm.Save.Editor",
+    "name": "Boshphelm.Save.Editor",
+    "rootNamespace": "Boshphelm.Save.Editor",
     "references": [
-        "boshphelm.Save"
+        "Boshphelm.Save"
     ],
     "includePlatforms": [
         "Editor"

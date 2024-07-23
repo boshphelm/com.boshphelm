@@ -1,4 +1,4 @@
-namespace boshphelm.Currencies
+namespace Boshphelm.Currencies
 {
     [System.Serializable]
     public class Price

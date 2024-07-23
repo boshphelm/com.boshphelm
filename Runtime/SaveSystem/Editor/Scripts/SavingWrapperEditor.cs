@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEditor;
 
-namespace boshphelm.Save.Editor
+namespace Boshphelm.Save.Editor
 {
     [CustomEditor(typeof(SavingWrapper))]
     public class SavingWrapperEditor : UnityEditor.Editor

@@ -1,6 +1,6 @@
 {
-    "name": "boshphelm.Conditions.Editor",
-    "rootNamespace": "boshphelm.Conditions.Editor",
+    "name": "Boshphelm.Conditions.Editor",
+    "rootNamespace": "Boshphelm.Conditions.Editor",
     "references": [
         "GUID:9b7bedee7ec9b8245822a5efe249c73c"
     ],

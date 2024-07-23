@@ -1,6 +1,6 @@
 {
-    "name": "boshphelm.Tutorial.Editor",
-    "rootNamespace": "boshphelm.Tutorial.Editor",
+    "name": "Boshphelm.Tutorial.Editor",
+    "rootNamespace": "Boshphelm.Tutorial.Editor",
     "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],

@@ -1,6 +1,6 @@
-using boshphelm.Conditions;
+using Boshphelm.Conditions;
 
-namespace boshphelm.Tutorial
+namespace Boshphelm.Tutorial
 {
     public abstract class TutorialCondition : Condition
     {
