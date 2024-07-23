@@ -1,11 +1,12 @@
 {
-    "name": "Boshphelm.Currencies",
-    "rootNamespace": "Boshphelm.Currencies",
+    "name": "Boshphelm.Items.Editor",
+    "rootNamespace": "Boshphelm.Items.Editor",
     "references": [
-        "GUID:6055be8ebefd69e48b49212b09b47b2f",
-        "GUID:c79e69da5bcc7be46a5b5c298343bd4c"
+        "GUID:b2e25c7ed7beff144bf62d9e18d9744e"
     ],
-    "includePlatforms": [],
+    "includePlatforms": [
+        "Editor"
+    ],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,

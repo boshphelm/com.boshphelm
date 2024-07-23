@@ -58,6 +58,7 @@ namespace Boshphelm.Tutorial
         {
             fadeCanvasClickListener.onPointerDown -= _action;
         }
+
         public void SetGuiderStatus(bool status)
         {
             _guider.SetActive(status);

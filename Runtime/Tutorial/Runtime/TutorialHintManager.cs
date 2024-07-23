@@ -3,7 +3,7 @@ using DG.Tweening;
 using TMPro;
 using UnityEngine;
 
-namespace boshphelm.Tutorial
+namespace Boshphelm.Tutorial
 {
     public class TutorialHintManager : MonoBehaviour
     {
