@@ -1,3 +1,10 @@
+## [1.3.4](https://github.com/boshphelm/com.boshphelm/compare/v1.3.3...v1.3.4) (2024-07-23)
+
+
+### Bug Fixes
+
+* The names of the assemblies have changed ([506ad58](https://github.com/boshphelm/com.boshphelm/commit/506ad5833f12cae176a12dfa7b60c7148a94fd8b))
+
 ## [1.3.3](https://github.com/boshphelm/com.boshphelm/compare/v1.3.2...v1.3.3) (2024-07-22)
 
 
