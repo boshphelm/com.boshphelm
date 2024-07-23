@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/boshphelm/com.boshphelm/compare/v1.3.4...v1.4.0) (2024-07-23)
+
+
+### Features
+
+* Base Panel System added. ([be55dc7](https://github.com/boshphelm/com.boshphelm/commit/be55dc727ad0ff8a5f51346152aaa5b24c0ffd42))
+
 ## [1.3.4](https://github.com/boshphelm/com.boshphelm/compare/v1.3.3...v1.3.4) (2024-07-23)
 
 
