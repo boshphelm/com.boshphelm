@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/boshphelm/com.boshphelm/compare/v1.4.0...v1.5.0) (2024-07-24)
+
+
+### Features
+
+* PurchaseableInteraciton system added. ([6f10ce7](https://github.com/boshphelm/com.boshphelm/commit/6f10ce7a70bac8fa2f92f39a11b472b4079e4cac))
+
 # [1.4.0](https://github.com/boshphelm/com.boshphelm/compare/v1.3.4...v1.4.0) (2024-07-23)
 
 
