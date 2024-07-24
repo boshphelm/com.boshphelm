@@ -1,7 +1,9 @@
 {
-    "name": "Boshphelm.StateMachines",
-    "rootNamespace": "Boshphelm.StateMachines",
-    "references": [],
+    "name": "Boshphelm.Player",
+    "rootNamespace": "Boshphelm.Player",
+    "references": [
+        "GUID:fdac0d44585c58b43949dd0921a090a1"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

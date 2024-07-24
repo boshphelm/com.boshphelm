@@ -1,8 +1,12 @@
 {
-    "name": "Boshphelm.StateMachines",
-    "rootNamespace": "Boshphelm.StateMachines",
-    "references": [],
-    "includePlatforms": [],
+    "name": "Boshphelm.Enemy.Editor",
+    "rootNamespace": "Boshphelm.Enemy.Editor",
+    "references": [
+        "GUID:25e92d22576313346bcc4338715d324c"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,

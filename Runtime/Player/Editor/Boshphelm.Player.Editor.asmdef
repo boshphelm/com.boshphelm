@@ -1,8 +1,12 @@
 {
-    "name": "Boshphelm.StateMachines",
-    "rootNamespace": "Boshphelm.StateMachines",
-    "references": [],
-    "includePlatforms": [],
+    "name": "Boshphelm.Player.Editor",
+    "rootNamespace": "Boshphelm.Player.Editor",
+    "references": [
+        "GUID:5533929e9cc97ba4bb005847cde057c7"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,
