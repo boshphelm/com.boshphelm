@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Boshphelm.Utility;
 using UnityEngine;
 
 namespace Boshphelm.Stats
@@ -6,10 +7,10 @@ namespace Boshphelm.Stats
     public abstract class StatContainer<T> : MonoBehaviour, IStatContainer<T> where T : StatType
     {
         [SerializeField] protected BaseStatContainer<T> baseStatContainer;
-        private Dictionary<T, Stat<T>> _stats;
+        private Dictionary<SerializableGuid, Stat<T>> _stats;
         public int Level { get; private set; }
 
-        protected virtual void Awake()
+        public void Initialize()
         {
             GenerateOrUpdateAllStats();
         }
@@ -21,14 +22,14 @@ namespace Boshphelm.Stats
                 var stat = GetStatByStatType(baseStat.StatType);
                 if (stat == null) continue;
 
-                StatModifier modifier = new StatModifier(baseStat.Value, StatModifierType.Flat, source);
+                var modifier = new StatModifier(baseStat.Value, StatModifierType.Flat, source);
                 stat.AddModifier(modifier);
             }
         }
 
         public Stat<T> GetStatByStatType(T statType)
         {
-            if (_stats != null && _stats.TryGetValue(statType, out var stat)) return stat;
+            if (_stats != null && _stats.TryGetValue(statType.Id, out var stat)) return stat;
 
             return null;
         }
@@ -53,7 +54,7 @@ namespace Boshphelm.Stats
 
             var levelBaseStat = baseStatContainer.GetBaseStatsByLevel(Level);
 
-            if (_stats == null) _stats = new Dictionary<T, Stat<T>>();
+            if (_stats == null) _stats = new Dictionary<SerializableGuid, Stat<T>>();
 
             foreach (var baseStat in levelBaseStat.BaseStats)
             {
@@ -65,13 +66,13 @@ namespace Boshphelm.Stats
         {
             if (baseStat == null) return;
 
-            if (_stats.ContainsKey(baseStat.StatType))
+            if (_stats.ContainsKey(baseStat.StatType.Id))
             {
-                _stats[baseStat.StatType].UpdateBaseValue(baseStat.Value);
+                _stats[baseStat.StatType.Id].UpdateBaseValue(baseStat.Value);
             }
             else
             {
-                _stats.Add(baseStat.StatType, new Stat<T>(baseStat.Value, baseStat.StatType));
+                _stats.Add(baseStat.StatType.Id, new Stat<T>(baseStat.Value, baseStat.StatType));
             }
         }
 

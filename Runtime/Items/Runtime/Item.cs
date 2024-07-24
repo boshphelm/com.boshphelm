@@ -10,11 +10,11 @@ namespace Boshphelm.Items
         public ItemDetail ItemDetail;
         public int Quantity;
 
-        public Item(ItemDetail ıtemDetail, int quantity = 1)
+        public Item(ItemDetail itemDetail, int quantity = 1)
         {
             Id = SerializableGuid.NewGuid();
 
-            ItemDetail = ıtemDetail;
+            ItemDetail = itemDetail;
             ItemDetailId = ItemDetail.Id;
 
             Quantity = quantity;

@@ -43,7 +43,7 @@ namespace Boshphelm.Stats
         {
             _baseValue = newBaseValue;
             _isDirty = true;
-            BroadcastBaseValue();
+            // BroadcastBaseValue();
             BroadcastTotalValue();
         }
 
@@ -53,7 +53,7 @@ namespace Boshphelm.Stats
             _valueChangeListeners.Add(statListener);
 
             statListener.OnTotalValueChanged(statType, TotalValue);
-            statListener.OnBaseValueChanged(statType, _baseValue);
+            //statListener.OnBaseValueChanged(statType, _baseValue);
         }
 
         public void UnregisterValueListener(IStatListener statListener)
@@ -62,17 +62,17 @@ namespace Boshphelm.Stats
             _valueChangeListeners.Remove(statListener);
         }
 
-        private void BroadcastBaseValue()
+        /*private void BroadcastBaseValue()
         {
             foreach (IStatListener statListener in _valueChangeListeners)
             {
                 statListener.OnBaseValueChanged(statType, _baseValue);
             }
-        }
+        }*/
 
         private void BroadcastTotalValue()
         {
-            foreach (IStatListener statListener in _valueChangeListeners)
+            foreach (var statListener in _valueChangeListeners)
             {
                 statListener.OnTotalValueChanged(statType, TotalValue);
             }
@@ -124,9 +124,9 @@ namespace Boshphelm.Stats
             float finalValue = _baseValue;
             float percentageSum = 0;
 
-            foreach (StatModifier statModifier in _modifiers)
+            foreach (var statModifier in _modifiers)
             {
-                StatModifierType modType = statModifier.StatModifierType;
+                var modType = statModifier.StatModifierType;
                 if (modType == StatModifierType.Flat)
                 {
                     finalValue += statModifier.Value;

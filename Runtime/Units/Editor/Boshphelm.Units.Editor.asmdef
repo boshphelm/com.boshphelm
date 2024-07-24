@@ -1,12 +1,12 @@
 {
-    "name": "Boshphelm.Stats",
-    "rootNamespace": "Boshphelm.Stats",
+    "name": "Boshphelm.Units.Editor",
+    "rootNamespace": "Boshphelm.Units.Editor",
     "references": [
-        "GUID:070a4c37a35032046a68ba95d7af5c0e",
-        "GUID:c79e69da5bcc7be46a5b5c298343bd4c",
-        "GUID:3b4d8e09c665bfa47849130d8695171e"
+        "GUID:535e39d5f99b3e9478e2878e4add847b"
     ],
-    "includePlatforms": [],
+    "includePlatforms": [
+        "Editor"
+    ],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,
