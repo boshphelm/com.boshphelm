@@ -1,3 +1,4 @@
+using System;
 using Boshphelm.Utility;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -10,11 +11,11 @@ namespace Boshphelm.Items
         public SerializableGuid Id = SerializableGuid.NewGuid();
         public string DisplayName;
         public bool Stackable;
-
-        public Sprite Icon;
-        [TextArea] public string Description;
-
+        public ShopUI ShopUI; 
+        [TextArea] public string Description; 
         public ItemType ItemType;
+        public ItemStat[] ItemStats;
+        public int MaxItemLevel => ItemStats[0].Values.Length;
 
         [Button(ButtonSizes.Large)]
         [GUIColor(0.4f, 0.8f, 1)]
@@ -24,5 +25,19 @@ namespace Boshphelm.Items
         }
 
         public Item Create(int quantity) => new Item(this, quantity);
+    }
+    [Serializable]
+    public class ItemStat
+    { 
+        public ItemStatSO itemStatSO;
+        public float[] Values;
+    }
+    
+    [Serializable]
+    public class ShopUI
+    {
+        public Vector3 size;
+        public Quaternion rotation;
+        public Sprite Icon;
     }
 }

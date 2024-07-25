@@ -3,8 +3,8 @@ using UnityEngine;
 
 namespace Boshphelm.Currencies
 { 
-    [CreateAssetMenu(fileName = "New Currency Detail", menuName = "Currency/CurrencyData"), System.Serializable]
-    public class CurrencyData : ScriptableObject
+    [CreateAssetMenu(fileName = "New Currency Detail", menuName = "Boshphelm/Currency/CurrencyData"), System.Serializable]
+    public class CurrencyDataSO : ScriptableObject
     {
         public SerializableGuid Id => detail.Id;
         

@@ -20,11 +20,11 @@ namespace Boshphelm.Wallets
             remove => Currencies.AnyValueChanged -= value;
         }
 
-        public WalletModel(CurrencyData[] currencyDetails, int capacity, Action<CurrencyDetail, int> onCurrencyUpdated)
+        public WalletModel(CurrencyDataSO[] currencyDetails, int capacity, Action<CurrencyDetail, int> onCurrencyUpdated)
         {
             _capacity = capacity;
             Currencies = new ObservableArray<Currency>(_capacity);
-            foreach (CurrencyData currencyDetail in currencyDetails)
+            foreach (CurrencyDataSO currencyDetail in currencyDetails)
             {
                 Currencies.TryAdd(currencyDetail.Create(0));
             }

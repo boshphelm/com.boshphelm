@@ -6,8 +6,8 @@ namespace Boshphelm.Panel
 {
     public class CurrencyUI : MonoBehaviour
     {
-        [SerializeField] private CurrencyData _currencyData;
-        public CurrencyData CurrencyData { get => _currencyData; }
+        [SerializeField] private CurrencyDataSO _currencyData;
+        public CurrencyDataSO CurrencyData { get => _currencyData; }
         [SerializeField] private TextMeshProUGUI _currencyAmountText;
         private int _currentAmount = 0;
         public void SetAmount(int amount)

@@ -158,7 +158,7 @@ MonoBehaviour:
   _wallet: {fileID: 0}
   _completeCommandHandler: {fileID: 2892456090262447602}
   _levelText: {fileID: 4867474614917787436}
-  _onSave: {fileID: 11400000, guid: 956ffc41c4406e140b6bd01727e4a2b8, type: 2}
+  _onSave: {fileID: 11400000, guid: f7d565f72bef0a34d8195361c3c14247, type: 2}
 --- !u!114 &2892456090262447602
 MonoBehaviour:
   m_ObjectHideFlags: 0

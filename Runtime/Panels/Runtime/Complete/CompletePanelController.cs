@@ -10,7 +10,7 @@ namespace Boshphelm.Panel
     public class CompletePanelController : PanelControllerABS
     {
         [SerializeField] private float _delayComplete;
-        [Header("Currency Data")] [SerializeField] private CurrencyData _currencyData;
+        [Header("Currency Data")] [SerializeField] private CurrencyDataSO _currencyData;
 
         [Header("Scripts")] [SerializeField] private Wallet _wallet;
 

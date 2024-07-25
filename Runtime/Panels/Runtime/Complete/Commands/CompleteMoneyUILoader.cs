@@ -9,7 +9,7 @@ namespace Boshphelm.Panel
     public class CompleteMoneyUILoader : Command
     {
         [SerializeField] private GameObject _rewardGO;
-        [SerializeField] private CurrencyData _currencyData;
+        [SerializeField] private CurrencyDataSO _currencyData;
         //[SerializeField] private LevelFlowOrganizer _levelFlowOrganizer;
         [SerializeField] private TextMeshProUGUI _moneyText; 
 

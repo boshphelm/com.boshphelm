@@ -51,6 +51,7 @@ namespace Boshphelm.Inventories
         private Item OnItemRequestedByItemDetailId(SerializableGuid itemDetailId) => _inventoryController.GetItemByItemDetailId(itemDetailId);
         private bool HasEnoughItem(ItemDetail itemDetail, int quantity) => _inventoryController.HasEnoughItem(itemDetail, quantity);
         private int ItemCountRequested(ItemDetail itemDetail) => _inventoryController.GetItemCountByItemDetail(itemDetail);
+ 
 
 
         private void OnNewGameStarted()
@@ -96,6 +97,7 @@ namespace Boshphelm.Inventories
 
             Initialize(loadedItems);
         }
+
     }
 
     [Serializable]

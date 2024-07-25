@@ -10,7 +10,7 @@ namespace Boshphelm.Wallets
 {
     public class Wallet : MonoBehaviour , ISaveable
     {  
-        [SerializeField] private CurrencyData[] _startingCurrencies;
+        [SerializeField] private CurrencyDataSO[] _startingCurrencies;
 
         private WalletController _controller; 
         private WalletData _walletData = new WalletData();

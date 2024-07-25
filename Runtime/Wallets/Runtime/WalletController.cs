@@ -67,11 +67,11 @@ namespace Boshphelm.Wallets
 
         public class Builder
         {
-            private CurrencyData[] _currencyDetails;
+            private CurrencyDataSO[] _currencyDetails;
             private int _capacity;
             private Action<CurrencyDetail, int> _onCurrencyUpdated;
 
-            public Builder WithStartingCurrencies(CurrencyData[] currencyDetails)
+            public Builder WithStartingCurrencies(CurrencyDataSO[] currencyDetails)
             {
                 _currencyDetails = currencyDetails;
                 return this;
