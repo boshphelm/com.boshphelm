@@ -39,5 +39,8 @@ namespace Boshphelm.AreaInteractionSystem
         public override void Reset()
         {
         }
+
+        public override string GetName() => "Interacting";
+
     }
 }

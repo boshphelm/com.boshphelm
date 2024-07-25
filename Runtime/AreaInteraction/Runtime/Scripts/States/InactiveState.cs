@@ -21,5 +21,6 @@ namespace Boshphelm.AreaInteractionSystem
         public override void Tick()
         {
         }
+        public override string GetName() => "Inactive";
     }
 }

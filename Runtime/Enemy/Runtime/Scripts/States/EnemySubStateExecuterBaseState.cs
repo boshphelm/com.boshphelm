@@ -12,5 +12,8 @@ namespace Boshphelm.Enemy
         {
 
         }
+
+        public override string GetName() => "";
+
     }
 }

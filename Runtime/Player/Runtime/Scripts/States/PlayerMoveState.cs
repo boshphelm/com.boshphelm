@@ -1,16 +1,18 @@
+using System.Collections;
+using System.Collections.Generic;
 using Boshphelm.Utility;
 using UnityEngine;
 using UnityEngine.AI;
 
-namespace Boshphelm.Enemy
+namespace Boshphelm.Player
 {
-    public class EnemyMoveState : EnemyBaseState
+    public class PlayerMoveState : PlayerBaseState
     {
         private readonly NavMeshMover _navMeshMover;
 
         private System.Action OnReachedToDestination = () => { };
 
-        public EnemyMoveState(EnemyStateMachine enemyStateMachine, NavMeshAgent navMeshAgent, Animator animator, Vector3 destination, float movementSpeed, System.Action onReachedToDestination) : base(enemyStateMachine)
+        public PlayerMoveState(PlayerStateMachine playerStateMachine, NavMeshAgent navMeshAgent, Animator animator, Vector3 destination, float movementSpeed, System.Action onReachedToDestination) : base(playerStateMachine)
         {
             _navMeshMover = new NavMeshMover(navMeshAgent, animator, destination, movementSpeed, OnNavMeshMoverReachedToDestination);
             OnReachedToDestination += onReachedToDestination;
@@ -34,8 +36,7 @@ namespace Boshphelm.Enemy
         {
             _navMeshMover.Tick();
         }
-
-        public override string GetName() => "EnemyMove";
+        public override string GetName() => "Move";
 
     }
 }
