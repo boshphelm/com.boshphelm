@@ -1,3 +1,10 @@
+# [1.6.0](https://github.com/boshphelm/com.boshphelm/compare/v1.5.0...v1.6.0) (2024-07-25)
+
+
+### Features
+
+* VibrationSystem added. ([65ca18e](https://github.com/boshphelm/com.boshphelm/commit/65ca18e0d395037ea7bf3e2f5f412035808721d2))
+
 # [1.5.0](https://github.com/boshphelm/com.boshphelm/compare/v1.4.0...v1.5.0) (2024-07-24)
 
 
