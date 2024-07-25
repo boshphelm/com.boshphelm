@@ -1,0 +1,17 @@
+{
+    "name": "Boshphelm.VibrationSystem",
+    "rootNamespace": "Boshphelm.VibrationSystem",
+    "references": [
+        "GUID:57a0b9bc628ab4740af4b6f1f0b2e134",
+        "GUID:c79e69da5bcc7be46a5b5c298343bd4c"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
