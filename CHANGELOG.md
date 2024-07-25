@@ -1,3 +1,10 @@
+# [1.7.0](https://github.com/boshphelm/com.boshphelm/compare/v1.6.0...v1.7.0) (2024-07-25)
+
+
+### Features
+
+* Shop added. Item ChannelSO created. ([e9b15d3](https://github.com/boshphelm/com.boshphelm/commit/e9b15d30646ba82499e69226545caf07df66b1f9))
+
 # [1.6.0](https://github.com/boshphelm/com.boshphelm/compare/v1.5.0...v1.6.0) (2024-07-25)
 
 
