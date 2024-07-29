@@ -1,0 +1,14 @@
+{
+    "name": "Boshphelm.ProjectileSystem",
+    "rootNamespace": "Boshphelm.ProjectileSystem",
+    "references": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
