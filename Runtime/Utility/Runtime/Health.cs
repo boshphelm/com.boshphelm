@@ -85,7 +85,6 @@ namespace Boshphelm.Utility
         {
             float healthPercentageBeforeMaxHealthUpdate = HealthPercentage;
             maxHealth = newMaxHealth;
-
             if (float.IsNaN(healthPercentageBeforeMaxHealthUpdate))
             {
                 CurrentHealth = maxHealth;
