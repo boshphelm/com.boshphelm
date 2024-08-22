@@ -85,7 +85,15 @@ namespace Boshphelm.Utility
         {
             float healthPercentageBeforeMaxHealthUpdate = HealthPercentage;
             maxHealth = newMaxHealth;
-            CurrentHealth = maxHealth * healthPercentageBeforeMaxHealthUpdate;
+
+            if (float.IsNaN(healthPercentageBeforeMaxHealthUpdate))
+            {
+                CurrentHealth = maxHealth;
+            }
+            else
+            {
+                CurrentHealth = maxHealth * healthPercentageBeforeMaxHealthUpdate;
+            }
         }
 
         public void KillMe(GameObject source)
