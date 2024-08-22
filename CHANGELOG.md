@@ -1,3 +1,10 @@
+## [1.7.1](https://github.com/boshphelm/com.boshphelm/compare/v1.7.0...v1.7.1) (2024-08-22)
+
+
+### Bug Fixes
+
+* Health NaN Fix ([be69175](https://github.com/boshphelm/com.boshphelm/commit/be69175a96846438785eec05aeba58cf8f61bc19))
+
 # [1.7.0](https://github.com/boshphelm/com.boshphelm/compare/v1.6.0...v1.7.0) (2024-07-25)
 
 
