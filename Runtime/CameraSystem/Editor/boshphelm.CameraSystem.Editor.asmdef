@@ -1,8 +1,12 @@
 {
     "name": "Boshphelm.CameraSystem.Editor",
     "rootNamespace": "Boshphelm.CameraSystem.Editor",
-    "references": [],
-    "includePlatforms": [],
+    "references": [
+        "GUID:da7e7b0b983da4e4f8fa708c22c41e07"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,

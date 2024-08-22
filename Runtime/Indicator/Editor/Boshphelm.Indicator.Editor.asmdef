@@ -1,7 +1,9 @@
 {
     "name": "Boshphelm.Indicator.Editor",
     "rootNamespace": "Boshphelm.Indicator.Editor",
-    "references": [],
+    "references": [
+        "GUID:878a77e7e450e11479992d0c4d86ed0b"
+    ],
     "includePlatforms": [
         "Editor"
     ],
