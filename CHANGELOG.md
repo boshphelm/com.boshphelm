@@ -1,3 +1,10 @@
+## [1.7.4](https://github.com/boshphelm/com.boshphelm/compare/v1.7.3...v1.7.4) (2024-08-28)
+
+
+### Bug Fixes
+
+*  revert State GetName Removed ([e6ef450](https://github.com/boshphelm/com.boshphelm/commit/e6ef450b70f1374da929c03885cc06f0adcb7a3c))
+
 ## [1.7.3](https://github.com/boshphelm/com.boshphelm/compare/v1.7.2...v1.7.3) (2024-08-28)
 
 
