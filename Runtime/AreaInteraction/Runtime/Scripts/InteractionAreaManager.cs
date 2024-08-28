@@ -1,6 +1,5 @@
 using System;
 using Boshphelm.StateMachines;
-using Lofelt.NiceVibrations;
 using UnityEngine;
 
 namespace Boshphelm.AreaInteractionSystem
