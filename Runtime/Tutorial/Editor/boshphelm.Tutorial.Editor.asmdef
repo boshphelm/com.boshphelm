@@ -1,8 +1,12 @@
 {
     "name": "Boshphelm.Tutorial.Editor",
     "rootNamespace": "Boshphelm.Tutorial.Editor",
-    "references": [],
-    "includePlatforms": [],
+    "references": [
+        "GUID:ea282c6a06248634c8dcb640a8f59ec5"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,

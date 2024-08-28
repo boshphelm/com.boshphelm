@@ -1,8 +1,8 @@
 {
-    "name": "Boshphelm.Save.Editor",
-    "rootNamespace": "Boshphelm.Save.Editor",
+    "name": "Boshphelm.Levels.Editor",
+    "rootNamespace": "Boshphelm.Levels.Editor",
     "references": [
-        "GUID:070a4c37a35032046a68ba95d7af5c0e"
+        "GUID:0521262825179a24ea65385581216a47"
     ],
     "includePlatforms": [
         "Editor"
