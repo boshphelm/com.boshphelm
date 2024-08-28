@@ -5,6 +5,6 @@ namespace Boshphelm.StateMachines
         public abstract void Enter();
         public abstract void Exit();
         public abstract void Tick();
-        public abstract string GetName();
+        //public abstract string GetName();
     }
 }
