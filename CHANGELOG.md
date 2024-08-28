@@ -1,3 +1,10 @@
+## [1.7.2](https://github.com/boshphelm/com.boshphelm/compare/v1.7.1...v1.7.2) (2024-08-28)
+
+
+### Bug Fixes
+
+* Package Update ([5f93219](https://github.com/boshphelm/com.boshphelm/commit/5f932198eaad70c573b1825a596e355fbc72eedb))
+
 ## [1.7.1](https://github.com/boshphelm/com.boshphelm/compare/v1.7.0...v1.7.1) (2024-08-22)
 
 
