@@ -1,3 +1,10 @@
+## [1.7.7](https://github.com/boshphelm/com.boshphelm/compare/v1.7.6...v1.7.7) (2024-08-28)
+
+
+### Bug Fixes
+
+* Unknown namespaces removed ([b9e4be4](https://github.com/boshphelm/com.boshphelm/commit/b9e4be480a96112a22b06e38558c699da3d67c80))
+
 ## [1.7.6](https://github.com/boshphelm/com.boshphelm/compare/v1.7.5...v1.7.6) (2024-08-28)
 
 
