@@ -44,6 +44,7 @@ namespace Boshphelm.Utility
             if (CurrentHealth <= damageValue)
             {
                 CurrentHealth = 0;
+                AmIDead = true;
                 OnDead.Invoke(this, LastHitter);
             }
             else
