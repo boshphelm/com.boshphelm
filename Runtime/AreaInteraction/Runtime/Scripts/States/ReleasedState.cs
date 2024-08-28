@@ -40,7 +40,7 @@ namespace Boshphelm.AreaInteractionSystem
         public override void Reset()
         {
         }
-        public override string GetName() => "Released";
+        //public override string GetName() => "Released";
 
         public void SwitchSubState(BaseInteractionSubState newSubState)
         {

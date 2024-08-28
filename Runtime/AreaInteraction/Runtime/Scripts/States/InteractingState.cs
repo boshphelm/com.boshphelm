@@ -40,7 +40,7 @@ namespace Boshphelm.AreaInteractionSystem
         {
         }
 
-        public override string GetName() => "Interacting";
+        //public override string GetName() => "Interacting";
 
     }
 }

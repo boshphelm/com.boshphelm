@@ -13,11 +13,6 @@ namespace Boshphelm.Player
         [SerializeField] private NavMeshAgent _navMeshAgent;
 
 
-        protected override void Awake()
-        {
-            base.Awake();
-        }
-
         private void MoveState(Vector3 destination, float movementSpeed, Action onReachedToDestination)
         {
             PlayerMoveState moveState = new PlayerMoveState(this, _navMeshAgent, _animator, destination, movementSpeed, onReachedToDestination);

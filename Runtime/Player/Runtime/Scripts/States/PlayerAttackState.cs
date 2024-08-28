@@ -24,6 +24,6 @@ namespace Boshphelm.Player
         {
 
         }
-        public override string GetName() => "Attack";
+        //public override string GetName() => "Attack";
     }
 }

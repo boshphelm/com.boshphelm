@@ -17,7 +17,5 @@ namespace Boshphelm.Player
             throw new System.NotImplementedException();
         }
 
-        public override string GetName() => "";
-
     }
 }

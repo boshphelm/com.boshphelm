@@ -36,7 +36,7 @@ namespace Boshphelm.Player
         {
             _navMeshMover.Tick();
         }
-        public override string GetName() => "Move";
+        //public override string GetName() => "Move";
 
     }
 }
