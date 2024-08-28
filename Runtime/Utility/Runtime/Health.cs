@@ -63,7 +63,6 @@ namespace Boshphelm.Utility
             }
 
             CurrentHealth += healAmount;
-
             OnHeal.Invoke(CurrentHealth, healAmount, source);
         }
 
