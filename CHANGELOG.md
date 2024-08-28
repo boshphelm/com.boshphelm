@@ -1,3 +1,10 @@
+## [1.7.6](https://github.com/boshphelm/com.boshphelm/compare/v1.7.5...v1.7.6) (2024-08-28)
+
+
+### Bug Fixes
+
+* State History Removed ([38ccff9](https://github.com/boshphelm/com.boshphelm/commit/38ccff9243beee198293404fa25e1708b9cd83f0))
+
 ## [1.7.5](https://github.com/boshphelm/com.boshphelm/compare/v1.7.4...v1.7.5) (2024-08-28)
 
 
