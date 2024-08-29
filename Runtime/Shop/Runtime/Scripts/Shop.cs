@@ -11,26 +11,14 @@ namespace Boshphelm.Shops
         [SerializeField] private ShopView _view;
         [SerializeField] private List<ShopItemDetails> _shopItemDetails;
         [SerializeField] private ScrollSnap _scrollSnap;
-        [SerializeField] private ShopBuyView _shopBuyView; 
-        [SerializeField] private GameObject _shopGO;  
+        [SerializeField] private ShopBuyView _shopBuyView;
+        [SerializeField] private GameObject _shopGO;
 
         private ShopController _controller;
 
-        private EventBinding<ShopOpenEvent> _shopEventBinding;
         [Header("Broadcasting")]
         [SerializeField] private ItemReturnItemDetailEventChannel _onItemRequestedByItemDetail;
 
-
-        private void OnEnable()
-        {
-            _shopEventBinding = new EventBinding<ShopOpenEvent>(OpenShop);
-            EventBus<ShopOpenEvent>.Register(_shopEventBinding);
-        }
-
-        private void OnDisable()
-        {
-            EventBus<ShopOpenEvent>.Deregister(_shopEventBinding);
-        }
 
         public void Init()
         {
@@ -47,11 +35,11 @@ namespace Boshphelm.Shops
         private List<ShopItem> GenerateShopItems()
         {
             var shopItems = new List<ShopItem>();
-            foreach (ShopItemDetails shopItemDetail in _shopItemDetails)
+            foreach (var shopItemDetail in _shopItemDetails)
             {
                 if (shopItemDetail == null) continue;
 
-                ShopItem generatedShopItem = GenerateShopItem(shopItemDetail);
+                var generatedShopItem = GenerateShopItem(shopItemDetail);
                 generatedShopItem.OnEquipRequested += OnShopItemEquipRequested;
                 shopItems.Add(generatedShopItem);
             }
@@ -70,7 +58,7 @@ namespace Boshphelm.Shops
             int itemLevel = 0;
             /*  int itemLevel =bought
                 ? _playerItemLevel.GetItemLevel(shopItemDetail.itemDetails) //TODO
-                : 0; 
+                : 0;
             */
             bool equipped = false;
             /* _playerMainItem.IsItemDetailIdMain(shopItemDetail.itemDetails.Id); */ //TODO
@@ -88,7 +76,10 @@ namespace Boshphelm.Shops
 
         private void UpdateAllShopItems(ShopItem[] shopItems)
         {
-            foreach (ShopItem shopItem in shopItems) UpdateShopItem(shopItem);
+            foreach (var shopItem in shopItems)
+            {
+                UpdateShopItem(shopItem);
+            }
         }
 
         private void UpdateShopItem(ShopItem shopItem)
@@ -113,9 +104,5 @@ namespace Boshphelm.Shops
         {
             _shopGO.SetActive(false);
         }
-    }
-
-    public struct ShopOpenEvent : IEvent
-    {
     }
 }
