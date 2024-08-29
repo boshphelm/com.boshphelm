@@ -30,13 +30,13 @@ namespace Boshphelm.Units
             OnDead.Invoke(this, killer);
         }
 
-        protected virtual void TakeDamage(float damage, GameObject attacker)
+        public virtual void TakeDamage(float damage, GameObject attacker)
         {
             unitHealth.TakeDamage(damage, attacker);
             OnTakeDamage.Invoke(this, damage);
         }
 
-        protected virtual void Heal(float heal, GameObject healer)
+        public virtual void Heal(float heal, GameObject healer)
         {
             unitHealth.Heal(heal, healer);
             OnHeal.Invoke(this, heal);
