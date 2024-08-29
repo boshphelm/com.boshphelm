@@ -1,3 +1,10 @@
+## [1.7.9](https://github.com/boshphelm/com.boshphelm/compare/v1.7.8...v1.7.9) (2024-08-29)
+
+
+### Bug Fixes
+
+* EventBus Removed ([7516d71](https://github.com/boshphelm/com.boshphelm/commit/7516d7141399cac491a97ae3c08b28552e1c9394))
+
 ## [1.7.8](https://github.com/boshphelm/com.boshphelm/compare/v1.7.7...v1.7.8) (2024-08-29)
 
 
