@@ -1,3 +1,10 @@
+## [1.7.8](https://github.com/boshphelm/com.boshphelm/compare/v1.7.7...v1.7.8) (2024-08-29)
+
+
+### Bug Fixes
+
+* Unit Damage Take public ([acd412a](https://github.com/boshphelm/com.boshphelm/commit/acd412a673b1dd50b64f9df4f78556f5b2bff090))
+
 ## [1.7.7](https://github.com/boshphelm/com.boshphelm/compare/v1.7.6...v1.7.7) (2024-08-28)
 
 
