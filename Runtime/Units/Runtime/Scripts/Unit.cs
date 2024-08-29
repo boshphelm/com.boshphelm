@@ -10,12 +10,15 @@ namespace Boshphelm.Units
         [SerializeField] protected UnitStatContainer unitStatContainer;
         [SerializeField] private TeamType _teamType;
 
+        public UnitHealth UnitHealth => unitHealth;
         public TeamType TeamType => _teamType;
 
         public System.Action<Unit, GameObject> OnDead = (_, _) => { };
         public System.Action<Unit, float> OnTakeDamage = (_, _) => { };
         public System.Action<Unit, float> OnHeal = (_, _) => { };
         public System.Action<Unit> OnRevive = _ => { };
+
+
 
         public virtual void Initialize()
         {
