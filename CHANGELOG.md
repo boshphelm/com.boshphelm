@@ -1,3 +1,10 @@
+## [1.7.10](https://github.com/boshphelm/com.boshphelm/compare/v1.7.9...v1.7.10) (2024-08-29)
+
+
+### Bug Fixes
+
+* Unit's UnitHealth public ([d0e810c](https://github.com/boshphelm/com.boshphelm/commit/d0e810c35b2d82f7c73bbe8e6b3643b8628949c9))
+
 ## [1.7.9](https://github.com/boshphelm/com.boshphelm/compare/v1.7.8...v1.7.9) (2024-08-29)
 
 
