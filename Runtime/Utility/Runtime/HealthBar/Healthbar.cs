@@ -1,69 +1,67 @@
+using System;
 using UnityEngine;
-using UnityEngine.UI;
-using DG.Tweening;
 
-namespace Boshphelm.Utility
+namespace Boshphelm.HealthBars
 {
-    public class Healthbar : MonoBehaviour
+    public class HealthBar : MonoBehaviour
     {
         [SerializeField] private GameObject _healthBar;
-        [SerializeField] private Image _healthBarImage;
-        [SerializeField] private Image _animatedHealthBarImage;
-
         [SerializeField] private HealthBarFillUI _healthBarFillUI;
-        //        [SerializeField] private Color _minHealthColor = Color.red;
-        //    [SerializeField] private Color _maxHealthColor = Color.green;
+        [SerializeField] private CameraTrackProps _cameraTrackProps;
+        [SerializeField] private bool _trackingTheCamera;
+        [SerializeField] private bool _dontHide;
 
         private float _maxHealth;
-        private float _healthBarShowTimer;
-        private Camera _camera;
-        public bool _active;
+        private HealthBarProjector _projector;
+
+        private const float _healthBarProjectionTime = 1f;
 
         public void Setup(float maxHealth)
         {
+            _projector = new HealthBarProjector(_healthBar, _dontHide, _cameraTrackProps, _trackingTheCamera);
+            if (_dontHide)
+            {
+                _projector.Show(0f);
+            }
+            else
+            {
+                _projector.Hide();
+            }
+
             _maxHealth = maxHealth;
 
-            _healthBarImage.fillAmount = 1;
-            _animatedHealthBarImage.fillAmount = 1;
-
-            _healthBar.SetActive(false);
-
-            _camera = Camera.main;
+            _healthBarFillUI.FillDirectly();
+            _healthBarFillUI.UpdateHealthText(_maxHealth);
         }
 
         public void OnHealthChange(float currentHealth)
         {
-            _active = true;
-            _healthBar.SetActive(true);
-            _healthBarShowTimer = 1;
-
             UpdateHealthBar(currentHealth);
-            if (currentHealth <= 0) _healthBar.SetActive(false);
+            if (currentHealth <= 0)
+            {
+                _projector.Hide();
+            }
+            else
+            {
+                _projector.Show(_healthBarProjectionTime);
+            }
         }
 
         private void UpdateHealthBar(float currentHealth)
         {
             float healthPercentage = currentHealth / _maxHealth;
-            _healthBarFillUI.UpdateFillAmount(healthPercentage);
-            //_healthBarImage.fillAmount = _healthPercentage;
-            //_animatedHealthBarImage.FillAmountAnimation(_healthPercentage, .5f, DG.Tweening.Ease.OutSine);
 
-            //   Color targetColor = Color.Lerp(_minHealthColor, _maxHealthColor, _healthPercentage);
+            _healthBarFillUI.UpdateFillAmount(healthPercentage);
+            _healthBarFillUI.UpdateHealthText(currentHealth);
         }
 
         private void Update()
         {
-            if (!_active) return;
+            if (_projector == null) return;
 
-            _healthBar.transform.LookAt(_camera.transform);
-
-            _healthBarShowTimer -= Time.deltaTime;
-
-            if (_healthBarShowTimer <= 0)
+            if (_projector.Showing)
             {
-                _healthBar.SetActive(false);
-                _active = false;
-                _healthBarShowTimer = 0;
+                _projector.Tick();
             }
         }
     }
