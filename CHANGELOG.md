@@ -1,3 +1,10 @@
+# [1.8.0](https://github.com/boshphelm/com.boshphelm/compare/v1.7.10...v1.8.0) (2024-09-14)
+
+
+### Features
+
+* HealthBarUpdated ([231bdca](https://github.com/boshphelm/com.boshphelm/commit/231bdca3813066548fc7da7d31701b5179974b72))
+
 ## [1.7.10](https://github.com/boshphelm/com.boshphelm/compare/v1.7.9...v1.7.10) (2024-08-29)
 
 
