@@ -24,7 +24,7 @@ namespace Boshphelm.Items
             Id = SerializableGuid.NewGuid();
         }
 
-        public Item Create(int quantity) => new Item(this, quantity);
+        public virtual Item Create(int quantity) => new Item(this, quantity);
     }
     [Serializable]
     public class ItemStat
