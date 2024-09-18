@@ -1,3 +1,10 @@
+## [1.8.1](https://github.com/boshphelm/com.boshphelm/compare/v1.8.0...v1.8.1) (2024-09-18)
+
+
+### Bug Fixes
+
+* ItemDetail refactor ([938c333](https://github.com/boshphelm/com.boshphelm/commit/938c333411a3fb28f558e1d7108dfc1d407ca34f))
+
 # [1.8.0](https://github.com/boshphelm/com.boshphelm/compare/v1.7.10...v1.8.0) (2024-09-14)
 
 
