@@ -1,37 +1,24 @@
+using System.Collections.Generic;
 using Boshphelm.Currencies;
 using UnityEngine;
 
 namespace Boshphelm.Wallets
 {
-    public class WalletUIManager : MonoBehaviour
+    public abstract class WalletUIManager : MonoBehaviour
     {
-        [SerializeField] private Wallet _wallet;
-        [SerializeField] private CurrencyUI[] _currencyUI;
+        [SerializeField] protected Wallet wallet;
+        [SerializeField] protected List<CurrencyUI> currencyUIs;
 
-        public void Initialize()
+        protected virtual void OnEnable()
         {
-            foreach (var currencyUI in _currencyUI)
-            {
-                var currency = _wallet.GetCurrency(currencyUI.CurrencyData);
-                if (currency != null) currencyUI.SetAmount(currency.quantity);
-            }
+            wallet.OnCurrencyChanged += HandleCurrencyChange;
         }
-        private void OnEnable()
+        protected virtual void OnDisable()
         {
-            _wallet.OnCurrencyChanged += UpdateCurrencyView;
-        }
-        private void OnDisable()
-        {
-            _wallet.OnCurrencyChanged -= UpdateCurrencyView;
+            wallet.OnCurrencyChanged -= HandleCurrencyChange;
         }
 
-        private void UpdateCurrencyView(CurrencyDataSO currencyDetail, Currency currency)
-        {
-            foreach (var currencyUI in _currencyUI)
-            {
-                if (currencyUI.CurrencyData.Id != currencyDetail.Id) continue;
-                currencyUI.SetAmount(currency.quantity);
-            }
-        }
+        public abstract void Initialize();
+        protected abstract void HandleCurrencyChange(CurrencyDataSO currencyData, Currency currency);
     }
 }

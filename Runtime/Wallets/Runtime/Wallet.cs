@@ -13,6 +13,8 @@ namespace Boshphelm.Wallets
 
         public abstract void Initialize();
 
+        public void AddCurrency(Price price) => AddCurrency(price.CurrencyDetails, price.Amount);
+
         public virtual void AddCurrency(CurrencyDataSO currencyData, int quantity)
         {
             earnedCurrencies.TryAdd(currencyData.Id, currencyData.Create(0));

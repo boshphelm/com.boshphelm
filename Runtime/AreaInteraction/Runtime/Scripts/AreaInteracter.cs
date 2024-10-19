@@ -17,7 +17,7 @@ namespace Boshphelm.AreaInteractionSystem
         }
         public bool AddPrice(Price price)
         {
-            _wallet.AddCurrency(price.CurrencyDetails, price.Amount);
+            _wallet.AddCurrency(price);
             return true;
         }
         public bool RemovePrice(Price price)

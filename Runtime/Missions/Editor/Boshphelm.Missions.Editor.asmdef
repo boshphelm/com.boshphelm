@@ -1,0 +1,18 @@
+{
+    "name": "Boshphelm.Missions.Editor",
+    "rootNamespace": "Boshphelm.Missions.Editor",
+    "references": [
+        "GUID:b3e455ce9fbedf440b636eabb3d2dbf7"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

@@ -12,7 +12,7 @@ namespace Boshphelm.Wallets
         {
             Refresh();
 
-            AddCurrency(initialCurrency.CurrencyDetails, initialCurrency.Amount);
+            AddCurrency(initialCurrency);
         }
 
         public void EndLevel()

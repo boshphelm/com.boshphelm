@@ -26,7 +26,7 @@ namespace Boshphelm.Wallets
 
             foreach (var startInitialCurrency in _initialCurrencies)
             {
-                AddCurrency(startInitialCurrency.CurrencyDetails, startInitialCurrency.Amount);
+                AddCurrency(startInitialCurrency);
             }
         }
 

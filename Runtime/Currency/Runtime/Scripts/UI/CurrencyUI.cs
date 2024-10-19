@@ -10,6 +10,7 @@ namespace Boshphelm.Currencies
         [SerializeField] private TextMeshProUGUI _currencyAmountText;
 
         public CurrencyDataSO CurrencyData => _currencyData;
+        public TextMeshProUGUI CurrencyAmountText => _currencyAmountText;
         private int _currentAmount;
 
         public void SetAmount(int amount)
