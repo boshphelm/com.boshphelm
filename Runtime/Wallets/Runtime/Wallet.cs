@@ -1,65 +1,40 @@
-using System;
 using System.Collections.Generic;
 using Boshphelm.Currencies;
-using Boshphelm.Save;
 using Boshphelm.Utility;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace Boshphelm.Wallets
 {
-    public class Wallet : MonoBehaviour , ISaveable
-    {  
-        [SerializeField] private CurrencyDataSO[] _startingCurrencies;
+    public abstract class Wallet : MonoBehaviour
+    {
+        protected readonly Dictionary<SerializableGuid, Currency> earnedCurrencies = new Dictionary<SerializableGuid, Currency>();
 
-        private WalletController _controller; 
-        private WalletData _walletData = new WalletData();
+        public System.Action<CurrencyDataSO, Currency> OnCurrencyChanged = (_, _) => { };
 
-        public Action<CurrencyDetail, int> OnCurrencyChanged;  
+        public abstract void Initialize();
 
-        public object CaptureState()
-        { 
-            return _walletData;
+        public virtual void AddCurrency(CurrencyDataSO currencyData, int quantity)
+        {
+            earnedCurrencies.TryAdd(currencyData.Id, currencyData.Create(0));
+
+            var currency = earnedCurrencies[currencyData.Id];
+            currency.quantity += quantity;
+
+            OnCurrencyChanged.Invoke(currencyData, currency);
         }
 
-        public void RestoreState(object state)
-        { 
-            if(state != null) _walletData = (WalletData)state;   
+        public virtual bool RemoveCurrency(CurrencyDataSO currencyData, int quantity)
+        {
+            if (HaveEnoughCurrency(currencyData, quantity))
+            {
+                earnedCurrencies[currencyData.Id].quantity -= quantity;
+                OnCurrencyChanged.Invoke(currencyData, earnedCurrencies[currencyData.Id]);
+                return true;
+            }
+            return false;
         }
 
-        public void Init()
-        { 
-            _controller = new WalletController.Builder()
-                .WithCapacity(_walletData.Capacity)
-                .WithStartingCurrencies(_startingCurrencies)
-                .WithListeningCurrencyUpdate(OnCurrencyUpdated)
-                .Build();  
-                
-            Bind(_walletData);      
-        } 
- 
-        private void OnCurrencyUpdated(CurrencyDetail currencyDetail, int quantity)
-        {
-            OnCurrencyChanged?.Invoke(currencyDetail, quantity);
-            Debug.Log("CHANGED CURRENCY : " + currencyDetail + ", NEW QUANTITY : " + quantity);
-        }  
-
-        public void Bind(WalletData data)
-        {
-            _controller.Bind(data);
-        } 
-
-        public bool CanPayThePrice(Price price) => _controller.CanPayThePrice(price);
-        public void Pay(Price price) => _controller.Pay(price);
-        public Currency GetCurrencyByDetail(CurrencyDetail currencyDetails) => _controller.GetCurrency(currencyDetails);
-        public void Add(Currency currency) => _controller.Add(currency);
-        public void Add(Price price) => _controller.Add(price);
+        public bool HaveEnoughCurrency(CurrencyDataSO currencyData, int quantity) => earnedCurrencies.TryGetValue(currencyData.Id, out var currency) && currency.quantity >= quantity;
+        public Currency GetCurrency(CurrencyDataSO currencyData) => earnedCurrencies.TryGetValue(currencyData.Id, out var currency) ? currency : currencyData.Create(0);
     }
-
-    [Serializable]
-    public class WalletData
-    { 
-        public Currency[] Currencies;
-        public int Capacity = 1;
-    }  
 }

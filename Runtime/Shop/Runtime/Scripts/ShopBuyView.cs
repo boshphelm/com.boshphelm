@@ -1,6 +1,6 @@
 using Boshphelm.Currencies;
 using Boshphelm.Inventories;
-using Boshphelm.Items; 
+using Boshphelm.Items;
 using Boshphelm.Utility;
 using Boshphelm.Wallets;
 using UnityEngine;
@@ -9,7 +9,7 @@ namespace Boshphelm.Shops
 {
     public class ShopBuyView : MonoBehaviour
     {
-        [SerializeField] private Wallet _playerWallet; 
+        [SerializeField] private Wallet _playerWallet;
 
         [Header("Payment & Price")]
         [SerializeField] private GameObject _buyGO;
@@ -22,12 +22,12 @@ namespace Boshphelm.Shops
 
         public System.Action<ShopItem> OnRefreshRequired = _ => { };
         public System.Action OnCurrentWeaponUpgraded;
-        
+
         [Header("Broadcasting")]
         [SerializeField] private VoidEventChannel _onSave;
         [SerializeField] private ItemReturnItemDetailEventChannel _onItemRequestedByItemDetail;
         [SerializeField] private ItemDetailIntEventChannel _onItemAdd;
- 
+
         public void RefreshView(ShopItem shopItem)
         {
             //Debug.Log("REFRESHING VIEW FOR SHOP ITEM : " + shopItem.itemLevel, shopItem.shopItemDetails);
@@ -54,7 +54,7 @@ namespace Boshphelm.Shops
 
         private bool IsItemDetailsAlreadyInInventory(ItemDetail itemDetail)
         {
-            Item item = _onItemRequestedByItemDetail.RaiseEvent(itemDetail);
+            var item = _onItemRequestedByItemDetail.RaiseEvent(itemDetail);
             bool isItemAlreadyInInventory = item != null;
 
             return isItemAlreadyInInventory;
@@ -64,25 +64,25 @@ namespace Boshphelm.Shops
         {
             if (!IsPricePayable(price)) return false;
 
-            _playerWallet.Pay(price);
+            _playerWallet.RemoveCurrency(price.CurrencyDetails, price.Amount);
             return true;
         }
 
         private void CreateAnItemAndAddInventory(ItemDetail itemDetail)
         {
-            Item newBoughtItem = itemDetail.Create(1);
+            var newBoughtItem = itemDetail.Create(1);
             _onItemAdd.RaiseEvent(itemDetail, newBoughtItem.Quantity);
         }
 
         private void SetPlayerMainItem(ShopItem shopItem)
         {
-           /*
-            _playerItemLevel.UpgradeItemLevel(shopItem.shopItemDetails.itemDetails);
-            _playerMainItem.SetMainItem(shopItem.shopItemDetails.itemDetails);
-            */
+            /*
+             _playerItemLevel.UpgradeItemLevel(shopItem.shopItemDetails.itemDetails);
+             _playerMainItem.SetMainItem(shopItem.shopItemDetails.itemDetails);
+             */
         }
 
-        private bool IsPricePayable(Price price) => _playerWallet.CanPayThePrice(price);
+        private bool IsPricePayable(Price price) => _playerWallet.HaveEnoughCurrency(price.CurrencyDetails, price.Amount);
 
         // TRIGGER BY UI -> ShopCanvas - ShopBuyUpgradeButtons - UpgradeButton
         public void HandleItemUpgrade()

@@ -6,25 +6,25 @@ namespace Boshphelm.Currencies
 {
     public static class CurrencyDatabase
     {
-        private static Dictionary<SerializableGuid, CurrencyDetail> currencyDetailsDictionary;
+        private static Dictionary<SerializableGuid, CurrencyDataSO> _currencyDetailsDictionary;
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterAssembliesLoaded)]
         private static void Initialize()
         {
-        /*     currencyDetailsDictionary = new Dictionary<SerializableGuid, CurrencyDetail>();
+            _currencyDetailsDictionary = new Dictionary<SerializableGuid, CurrencyDataSO>();
 
-            CurrencyDetail[] itemDetails = Resources.LoadAll<CurrencyDetail>("");
-            foreach (CurrencyDetail itemDetail in itemDetails)
+            var currencyDataSos = Resources.LoadAll<CurrencyDataSO>("");
+            foreach (var currencyDataSo in currencyDataSos)
             {
-                currencyDetailsDictionary.Add(itemDetail.Id, itemDetail);
-            } */
+                _currencyDetailsDictionary.Add(currencyDataSo.Id, currencyDataSo);
+            }
         }
 
-        public static CurrencyDetail GetDetailsById(SerializableGuid id)
+        public static CurrencyDataSO GetCurrencyDataById(SerializableGuid id)
         {
             try
             {
-                return currencyDetailsDictionary[id];
+                return _currencyDetailsDictionary[id];
             }
             catch
             {

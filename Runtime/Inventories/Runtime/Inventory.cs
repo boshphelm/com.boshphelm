@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Boshphelm.Items;
 using Boshphelm.Save;
 using Boshphelm.Utility;
@@ -12,90 +13,119 @@ namespace Boshphelm.Inventories
     {
         [SerializeField] private ItemDetailQuantity[] _startingItems;
 
-        [Header("Listening To...")] [SerializeField] private ItemDetailIntEventChannel _onItemAdd;
-        [SerializeField] private ItemDetailIntEventChannel _onItemRemove;
-        [SerializeField] private ItemReturnItemDetailEventChannel _onItemRequestedByItemDetail;
-        [SerializeField] private ItemReturnSerializableGuidEventChannel _onItemRequestedByItemDetailSerializableGuid;
-        [SerializeField] private BoolReturnItemDetailIntEventChannel _hasEnoughItem;
-        [SerializeField] private IntReturnItemDetailEventChannel _itemCountRequested;
-        [SerializeField] private VoidEventChannel _onNewGameStarted;
+        private readonly List<Item> _items = new List<Item>();
 
-        private InventoryController _inventoryController;
+        public Action<ItemDetail, int> OnItemAdd = (_, _) => { };
+        public Action<ItemDetail, int> OnItemRemove = (_, _) => { };
 
-        private void OnEnable()
+        private bool _isRestored;
+
+        public void Initialize()
         {
-            _onItemAdd.OnEventRaise += OnItemAdd;
-            _onItemRemove.OnEventRaise += OnItemRemove;
-            _onItemRequestedByItemDetail.OnRaiseEvent += OnItemRequestedByItemDetail;
-            _onItemRequestedByItemDetailSerializableGuid.OnRaiseEvent += OnItemRequestedByItemDetailId;
-            _hasEnoughItem.OnRaiseEvent += HasEnoughItem;
-            _itemCountRequested.OnRaiseEvent += ItemCountRequested;
-            _onNewGameStarted.OnEventRaise += OnNewGameStarted;
-        }
-
-        private void OnDisable()
-        {
-            _onItemAdd.OnEventRaise -= OnItemAdd;
-            _onItemRemove.OnEventRaise -= OnItemRemove;
-            _onItemRequestedByItemDetail.OnRaiseEvent -= OnItemRequestedByItemDetail;
-            _onItemRequestedByItemDetailSerializableGuid.OnRaiseEvent -= OnItemRequestedByItemDetailId;
-            _hasEnoughItem.OnRaiseEvent -= HasEnoughItem;
-            _itemCountRequested.OnRaiseEvent -= ItemCountRequested;
-            _onNewGameStarted.OnEventRaise -= OnNewGameStarted;
-        }
-
-
-        private void OnItemAdd(ItemDetail itemDetail, int quantity) => _inventoryController.AddItem(itemDetail, quantity);
-        private void OnItemRemove(ItemDetail itemDetail, int quantity) => _inventoryController.RemoveItem(itemDetail, quantity);
-        private Item OnItemRequestedByItemDetail(ItemDetail itemDetail) => _inventoryController.GetByItemDetail(itemDetail);
-        private Item OnItemRequestedByItemDetailId(SerializableGuid itemDetailId) => _inventoryController.GetItemByItemDetailId(itemDetailId);
-        private bool HasEnoughItem(ItemDetail itemDetail, int quantity) => _inventoryController.HasEnoughItem(itemDetail, quantity);
-        private int ItemCountRequested(ItemDetail itemDetail) => _inventoryController.GetItemCountByItemDetail(itemDetail);
- 
-
-
-        private void OnNewGameStarted()
-        {
-            Initialize(GenerateStartingItems());
-        }
-
-        private List<Item> GenerateStartingItems()
-        {
-            var startingItems = new List<Item>();
-
-            foreach (ItemDetailQuantity startingItem in _startingItems)
+            if (!_isRestored)
             {
-                Item item = startingItem.ItemDetail.Create(startingItem.Quantity);
-                startingItems.Add(item);
+                GenerateStartingItems();
+            }
+        }
+
+        private void GenerateStartingItems()
+        {
+            foreach (var startingItem in _startingItems)
+            {
+                var item = startingItem.ItemDetail.Create(startingItem.Quantity);
+                _items.Add(item);
+            }
+        }
+
+        public void AddItem(ItemDetail itemDetail, int quantity)
+        {
+            var item = GetItemByItemDetailId(itemDetail.Id);
+            if (item != null && item.ItemDetail.Stackable)
+            {
+                item.Quantity += quantity;
+            }
+            else
+            {
+                item = itemDetail.Create(quantity);
+                _items.Add(item);
             }
 
-            return startingItems;
+            OnItemAdd.Invoke(itemDetail, quantity);
         }
-
-        private void Initialize(List<Item> items)
+        public void RemoveItem(ItemDetail itemDetail, int quantity)
         {
-            _inventoryController = new InventoryController(items);
-        }
+            int totalItemQuantityInInventory = GetItemCountByItemDetail(itemDetail);
+            if (totalItemQuantityInInventory < quantity) return;
 
-        public object CaptureState() => _inventoryController.GenerateSaveData();
+            var foundItems = FindItemsByItemDetailId(itemDetail.Id);
+
+            for (int i = foundItems.Count - 1; i >= 0; i--)
+            {
+                if (quantity == 0) break;
+
+                var item = foundItems[i];
+                if (item.ItemDetail.Stackable)
+                {
+                    if (quantity >= item.Quantity)
+                    {
+                        quantity -= item.Quantity;
+                        _items.Remove(item);
+                    }
+                    else
+                    {
+                        item.Quantity -= quantity;
+                        quantity = 0;
+                    }
+                }
+                else
+                {
+                    quantity -= 1;
+                    _items.Remove(item);
+                }
+            }
+
+            OnItemRemove.Invoke(itemDetail, quantity);
+        }
+        public Item GetItemByItemDetail(ItemDetail itemDetail) => GetItemByItemDetailId(itemDetail.Id);
+        public Item GetItemByItemDetailId(SerializableGuid itemDetailId) => _items.FirstOrDefault(item => item.ItemDetailId == itemDetailId);
+        public bool HasEnoughItem(ItemDetail itemDetail, int quantity) => GetItemCountByItemDetail(itemDetail) >= quantity;
+        public int GetItemCountByItemDetail(ItemDetail itemDetail) => FindItemsByItemDetailId(itemDetail.Id).Sum(item => item.Quantity);
+        private List<Item> FindItemsByItemDetailId(SerializableGuid itemDetailId) => _items.FindAll(item => item.ItemDetailId == itemDetailId);
+
+        public object CaptureState() => GenerateSaveData();
+
+        public List<ItemSaveData> GenerateSaveData()
+        {
+            var itemSaveDatas = new List<ItemSaveData>();
+            foreach (var item in _items)
+            {
+                var itemSaveData = new ItemSaveData
+                {
+                    Quantity = item.Quantity,
+                    ItemDetailIdHex = item.ItemDetailId.ToHexString()
+                };
+                itemSaveDatas.Add(itemSaveData);
+            }
+
+            return itemSaveDatas;
+        }
 
         public void RestoreState(object state)
         {
             if (state == null) return;
 
-            var loadedItems = new List<Item>();
             var itemSaveDataList = (List<ItemSaveData>)state;
 
-            foreach (ItemSaveData itemSaveData in itemSaveDataList)
+            foreach (var itemSaveData in itemSaveDataList)
             {
-                SerializableGuid itemDetailSerializableGuid = SerializableGuid.FromHexString(itemSaveData.ItemDetailIdHex);
-                ItemDetail itemDetail = ItemDatabase.GetItemDetailById(itemDetailSerializableGuid);
+                var itemDetailSerializableGuid = SerializableGuid.FromHexString(itemSaveData.ItemDetailIdHex);
+                var itemDetail = ItemDatabase.GetItemDetailById(itemDetailSerializableGuid);
 
-                Item item = itemDetail.Create(itemSaveData.Quantity);
-                loadedItems.Add(item);
+                var item = itemDetail.Create(itemSaveData.Quantity);
+                _items.Add(item);
             }
 
-            Initialize(loadedItems);
+            _isRestored = true;
         }
 
     }

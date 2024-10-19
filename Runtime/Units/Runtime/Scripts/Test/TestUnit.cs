@@ -6,5 +6,9 @@ namespace Boshphelm.Units
         {
             Initialize();
         }
+        public override void Burn(bool burning)
+        {
+
+        }
     }
 }
