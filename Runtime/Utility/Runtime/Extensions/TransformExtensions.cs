@@ -29,7 +29,7 @@ namespace Boshphelm.Utility
 
         public static IEnumerator DistanceMoveToTarget(this Transform transform, Transform target, Vector3 offset, float speed = 2, Action onComplete = null)
         {
-            Vector3 startPos = transform.position;
+            var startPos = transform.position;
             float timer = 0;
             while (timer < 1f)
             {
@@ -44,7 +44,7 @@ namespace Boshphelm.Utility
 
         public static IEnumerator ScaleTo(this Transform transform, Vector3 targetScale, float speed = 2, Action onComplete = null)
         {
-            Vector3 startScale = transform.localScale;
+            var startScale = transform.localScale;
             float timer = 0;
             while (timer < 1f)
             {
@@ -56,30 +56,35 @@ namespace Boshphelm.Utility
 
             if (onComplete != null) onComplete.Invoke();
         }
-     
+
         public static void DOLocalMoveToTarget(this Transform transform, Transform target, float duration, float delay = 0, Ease ease = Ease.Linear, Action onComplete = null)
         {
             transform.DOLocalMove(Vector3.zero, duration)
-            .SetEase(ease)
-            .SetDelay(delay)
-            .OnComplete(() => onComplete?.Invoke());
+                .SetEase(ease)
+                .SetDelay(delay)
+                .OnComplete(() => onComplete?.Invoke());
         }
         public static void DOMoveToTarget(this Transform transform, Transform target, float duration, float delay = 0, Ease ease = Ease.Linear, Action onComplete = null)
         {
             transform.DOMove(Vector3.zero, duration)
-            .SetEase(ease)
-            .SetDelay(delay)
-            .OnComplete(() => onComplete?.Invoke());
+                .SetEase(ease)
+                .SetDelay(delay)
+                .OnComplete(() => onComplete?.Invoke());
         }
 
         public static void DOTweenScaleTo(this Transform transform, Vector3 targetScale, float duration, Ease ease = Ease.Linear, LoopType loopType = LoopType.Incremental, int loopCount = 0, bool fromZero = false, float delay = 0, Action onComplete = null)
         {
             transform.DOScale(targetScale, duration)
-            .SetEase(ease)
-            .SetDelay(delay)
-            .SetLoops(loopCount, loopType)
-            .From(fromZero ? 0 : transform.localScale.x)
-            .OnComplete(() => onComplete?.Invoke());
+                .SetEase(ease)
+                .SetDelay(delay)
+                .SetLoops(loopCount, loopType)
+                .From(fromZero ? 0 : transform.localScale.x)
+                .OnComplete(() => onComplete?.Invoke());
         }
+
+        public static float MagnitudeDistance(this Transform t1, Transform t2) => (t1.position - t2.position).magnitude;
+        public static float MagnitudeDistanceSquared(this Transform t1, Transform t2) => (t1.position - t2.position).sqrMagnitude;
+        public static float LocalMagnitudeDistance(this Transform t1, Transform t2) => (t1.localPosition - t2.localPosition).magnitude;
+        public static float MagnitudeDistanceToPoint(this Transform t, Vector3 point) => (t.position - point).magnitude;
     }
 }

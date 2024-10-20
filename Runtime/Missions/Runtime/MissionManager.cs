@@ -137,7 +137,7 @@ namespace Boshphelm.Missions
                 mission.CollectReward();
                 foreach (var price in mission.Reward)
                 {
-                    _wallet.AddCurrency(price);
+                    _wallet.AddCurrency(price); 
                 }
             }
         }

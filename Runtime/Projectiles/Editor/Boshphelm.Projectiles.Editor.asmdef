@@ -1,0 +1,18 @@
+{
+    "name": "Boshphelm.Projectiles.Editor",
+    "rootNamespace": "Boshphelm.Projectiles.Editor",
+    "references": [
+        "GUID:90ac52265c4d4c244b57d50e74c93487"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
