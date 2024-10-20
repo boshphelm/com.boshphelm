@@ -5,38 +5,54 @@ namespace OffScreenIndicator
 {
     public class PointerObjectPool : MonoBehaviour
     {
+        [SerializeField] private GameObject _pooledObject;
+        [SerializeField] private int _pooledAmount = 20;
+
         public static PointerObjectPool Instance;
-        [SerializeField] private GameObject pooledObject;
-        [SerializeField] private int pooledAmount = 20;
-        private List<PointerIndicator> pooledObjects;
+
+        private List<PointerIndicator> _pooledObjects;
 
         private void Awake()
         {
-            Instance = this;
-
-            pooledObjects = new List<PointerIndicator>();
-            for (int i = 0; i < pooledAmount; i++)
+            if (Instance == null)
             {
-                GameObject obj = Instantiate(pooledObject, transform);
-                obj.SetActive(false);
-                pooledObjects.Add(obj.GetComponent<PointerIndicator>());
+                Instance = this;
+                InitializePool();
             }
+            else
+            {
+                Destroy(gameObject);
+            }
+        }
+
+        private void InitializePool()
+        {
+            _pooledObjects = new List<PointerIndicator>();
+            for (int i = 0; i < _pooledAmount; i++)
+            {
+                CreatePooledObject();
+            }
+        }
+
+        private void CreatePooledObject()
+        {
+            var obj = Instantiate(_pooledObject, transform);
+            obj.SetActive(false);
+            _pooledObjects.Add(obj.GetComponent<PointerIndicator>());
         }
 
         public PointerIndicator GetPooledObject()
         {
-            for (int i = 0; i < pooledObjects.Count; i++)
+            for (int i = 0; i < _pooledObjects.Count; i++)
             {
-                if (!pooledObjects[i].gameObject.activeInHierarchy)
+                if (!_pooledObjects[i].gameObject.activeInHierarchy)
                 {
-                    return pooledObjects[i];
+                    return _pooledObjects[i];
                 }
             }
 
-            GameObject obj = Instantiate(pooledObject, transform);
-            obj.SetActive(false);
-            pooledObjects.Add(obj.GetComponent<PointerIndicator>());
-            return pooledObjects[pooledObjects.Count - 1];
+            CreatePooledObject();
+            return _pooledObjects[^1];
         }
     }
 }

@@ -7,70 +7,132 @@ namespace OffScreenIndicator
     [DefaultExecutionOrder(-1)]
     public class OffScreenIndicator : MonoBehaviour
     {
-        [SerializeField] private float screenBoundOffset = 0.9f;
+        [SerializeField] private float _screenBoundOffset = 0.9f;
 
         private Camera _mainCamera;
         private Vector3 _screenCenter;
         private Vector3 _screenBounds;
-
-        private HashSet<IndicatorTarget> _targets = new HashSet<IndicatorTarget>();
+        private ScreenPositionCalculator _screenPositionCalculator;
 
         public static event Action<IndicatorTarget, bool> TargetStateChanged;
-        private OffScreenIndicatorCore _offScreenIndicatorCore;
+        private readonly HashSet<IndicatorTarget> _targets = new HashSet<IndicatorTarget>();
 
         private void Awake()
         {
-            _offScreenIndicatorCore = new OffScreenIndicatorCore();
+            InitializeComponents();
         }
 
         private void OnEnable()
         {
-            TargetStateChanged += HandleTargetStateChanged;
-
-            _mainCamera = Camera.main;
-            _screenCenter = new Vector3(Screen.width, Screen.height, 0) / 2;
-            _screenBounds = _screenCenter * screenBoundOffset;
+            SubscribeToEvents();
+            InitializeScreenParameters();
         }
 
         private void OnDisable()
         {
-            TargetStateChanged -= HandleTargetStateChanged;
+            UnsubscribeFromEvents();
         }
 
         private void LateUpdate()
         {
-            DrawIndicators();
+            UpdateIndicators();
         }
 
-        private void DrawIndicators()
+        private void InitializeComponents()
+        {
+            _screenPositionCalculator = new ScreenPositionCalculator();
+        }
+
+        private void SubscribeToEvents()
+        {
+            TargetStateChanged += HandleTargetStateChanged;
+        }
+
+        private void UnsubscribeFromEvents()
+        {
+            TargetStateChanged -= HandleTargetStateChanged;
+        }
+
+        private void InitializeScreenParameters()
+        {
+            _mainCamera = Camera.main;
+            _screenCenter = new Vector3(Screen.width, Screen.height, 0) / 2;
+            _screenBounds = _screenCenter * _screenBoundOffset;
+        }
+
+        private void UpdateIndicators()
         {
             foreach (var target in _targets)
             {
-                Vector3 screenPosition = _offScreenIndicatorCore.GetScreenPosition(_mainCamera, target.transform.position);
-                bool isTargetVisible = _offScreenIndicatorCore.IsTargetVisible(screenPosition);
-                float distanceFromCamera = target.NeedDistanceText ? target.GetDistanceFromCamera(_mainCamera.transform.position) : float.MinValue;
+                UpdateSingleIndicator(target);
+            }
+        }
 
-                var indicator = target.indicator;
+        private void UpdateSingleIndicator(IndicatorTarget target)
+        {
+            if (!target.NeedPointerIndicator) return;
 
-                if (!target.NeedPointerIndicator) continue;
+            var screenPosition = GetScreenPosition(target);
+            bool isTargetVisible = IsTargetVisible(screenPosition);
+            float distanceFromCamera = GetDistanceFromCamera(target);
 
-                if (!isTargetVisible)
-                {
-                    float angle = float.MinValue;
-                    _offScreenIndicatorCore.GetPointerIndicatorPositionAndAngle(ref screenPosition, ref angle, _screenCenter, _screenBounds);
-                    if (indicator == null)
-                    {
-                        indicator = GetIndicator(ref target.indicator);
-                        InitializeIndicator(indicator, target);
-                    }
-                    indicator.RefreshInnerObjectRotations();
-                    UpdateIndicator(indicator, screenPosition, angle, distanceFromCamera);
-                }
-                else if (indicator != null)
-                {
-                    indicator.Activate(false);
-                    target.indicator = null;
-                }
+            if (!isTargetVisible)
+            {
+                UpdateOffScreenIndicator(target, ref screenPosition, distanceFromCamera);
+            }
+            else
+            {
+                DeactivateIndicator(target);
+            }
+        }
+
+        private Vector3 GetScreenPosition(IndicatorTarget target) => _screenPositionCalculator.WorldToScreenPoint(_mainCamera, target.transform.position);
+
+        private bool IsTargetVisible(Vector3 screenPosition) => _screenPositionCalculator.IsPositionWithinScreenBounds(screenPosition);
+
+        private float GetDistanceFromCamera(IndicatorTarget target) => target.NeedDistanceText ? target.GetDistanceFromCamera(_mainCamera.transform.position) : float.MinValue;
+
+        private void UpdateOffScreenIndicator(IndicatorTarget target, ref Vector3 screenPosition, float distanceFromCamera)
+        {
+            float angle = float.MinValue;
+            _screenPositionCalculator.CalculateIndicatorPositionAndAngle(ref screenPosition, ref angle, _screenCenter, _screenBounds);
+
+            var indicator = GetOrCreateIndicator(target);
+            indicator.RefreshInnerObjectRotations();
+            UpdateIndicatorPosition(indicator, screenPosition, angle, distanceFromCamera);
+        }
+
+        private PointerIndicator GetOrCreateIndicator(IndicatorTarget target)
+        {
+            if (target.indicator == null)
+            {
+                target.indicator = PointerObjectPool.Instance.GetPooledObject();
+                InitializeIndicator(target.indicator, target);
+            }
+            return target.indicator;
+        }
+
+        private void InitializeIndicator(PointerIndicator indicator, IndicatorTarget target)
+        {
+            indicator.SetImageColor(target.TargetPointerColor);
+            indicator.SetTargetImageSprite(target.TargetSprite);
+            indicator.SetTargetImageSize(target.TargetSize);
+        }
+
+        private void UpdateIndicatorPosition(PointerIndicator indicator, Vector3 screenPosition, float angle, float distance)
+        {
+            indicator.SetDistanceText(distance);
+            indicator.SetTextRotation(Quaternion.identity);
+            indicator.transform.position = screenPosition;
+            indicator.transform.rotation = Quaternion.Euler(0, 0, angle * Mathf.Rad2Deg);
+        }
+
+        private void DeactivateIndicator(IndicatorTarget target)
+        {
+            if (target.indicator != null)
+            {
+                target.indicator.Activate(false);
+                target.indicator = null;
             }
         }
 
@@ -82,41 +144,9 @@ namespace OffScreenIndicator
             }
             else
             {
-                DeactivateTarget(target);
+                DeactivateIndicator(target);
                 _targets.Remove(target);
             }
-        }
-
-        private PointerIndicator GetIndicator(ref PointerIndicator indicator)
-        {
-            if (indicator == null)
-            {
-                indicator = PointerObjectPool.Instance.GetPooledObject();
-                indicator.Activate(true);
-            }
-
-            return indicator;
-        }
-
-        private void InitializeIndicator(PointerIndicator indicator, IndicatorTarget target)
-        {
-            indicator.SetImageColor(target.TargetPointerColor);
-            indicator.SetTargetImageSprite(target.TargetSprite);
-            indicator.SetTargetImageSize(target.TargetSize);
-        }
-
-        private void UpdateIndicator(PointerIndicator indicator, Vector3 position, float angle, float distance)
-        {
-            indicator.SetDistanceText(distance);
-            indicator.SetTextRotation(Quaternion.identity);
-            indicator.transform.position = position;
-            indicator.transform.rotation = Quaternion.Euler(0, 0, angle * Mathf.Rad2Deg);
-        }
-
-        private void DeactivateTarget(IndicatorTarget target)
-        {
-            target.indicator?.Activate(false);
-            target.indicator = null;
         }
 
         public static void ChangeTargetState(IndicatorTarget target, bool active)
@@ -125,4 +155,3 @@ namespace OffScreenIndicator
         }
     }
 }
-
