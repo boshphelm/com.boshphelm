@@ -1,6 +1,6 @@
 namespace Boshphelm.Panel
 {
-    public class IngamePanelController : PanelControllerABS
-    { 
+    public class IngamePanelController : PanelBase
+    {
     }
 }

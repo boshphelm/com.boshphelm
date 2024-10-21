@@ -1,6 +1,6 @@
 {
     "name": "Boshphelm.Panel",
-    "rootNamespace": "",
+    "rootNamespace": "Boshphelm.Panel",
     "references": [
         "GUID:4c090ae3e51ff6741aed5c09600d6f83",
         "GUID:ea282c6a06248634c8dcb640a8f59ec5",

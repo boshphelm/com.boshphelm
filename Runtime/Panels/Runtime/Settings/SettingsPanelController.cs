@@ -1,6 +1,6 @@
 namespace Boshphelm.Panel
 {
-    public class SettingsPanelController : PanelControllerABS
-    { 
+    public class SettingsPanelController : PanelBase
+    {
     }
 }

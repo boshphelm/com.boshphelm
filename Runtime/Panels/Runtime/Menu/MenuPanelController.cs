@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Boshphelm.Panel
 {
-    public class MenuPanelController : PanelControllerABS
-    { 
+    public class MenuPanelController : PanelBase
+    {
     }
 }
