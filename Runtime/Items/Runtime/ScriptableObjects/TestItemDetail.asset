@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25d83bb47f890e84c9e51158a28b6d92, type: 3}
+  m_Name: TestItemDetail
+  m_EditorClassIdentifier: 
+  Id:
+    Part1: 3273677282
+    Part2: 1239439427
+    Part3: 1768404865
+    Part4: 3871820033
+  DisplayName: NNNN
+  Stackable: 0
+  ShopUI:
+    size: {x: 0, y: 0, z: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    Icon: {fileID: 21300000, guid: d13e73cc915018b40bd34917350c7cec, type: 3}
+  Description: 313169
+  ItemType: {fileID: 11400000, guid: 2a71c5bab0929d640b03ac467caf0dc7, type: 2}
+  ItemStats: []

@@ -37,7 +37,7 @@ namespace Boshphelm.Inventories
             }
         }
 
-        public void AddItem(ItemDetail itemDetail, int quantity)
+        public void AddItem(ItemDetail itemDetail, int quantity, int itemLevel = 0)
         {
             var item = GetItemByItemDetailId(itemDetail.Id);
             if (item != null && item.ItemDetail.Stackable)
@@ -46,7 +46,7 @@ namespace Boshphelm.Inventories
             }
             else
             {
-                item = itemDetail.Create(quantity);
+                item = new Item(itemDetail, quantity, itemLevel);
                 _items.Add(item);
             }
 

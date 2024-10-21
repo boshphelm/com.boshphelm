@@ -28,6 +28,7 @@ namespace Boshphelm.Wallets
             {
                 AddCurrency(startInitialCurrency);
             }
+            Debug.Log("Initial Currency");
         }
 
         public object CaptureState()
