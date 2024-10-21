@@ -8,6 +8,7 @@ namespace Boshphelm.Shops
 {
     public class Shop : MonoBehaviour
     {
+        [SerializeField] private Inventory _inventory;
         [SerializeField] private ShopView _view;
         [SerializeField] private List<ShopItemDetails> _shopItemDetails;
         [SerializeField] private ScrollSnap _scrollSnap;
@@ -15,10 +16,6 @@ namespace Boshphelm.Shops
         [SerializeField] private GameObject _shopGO;
 
         private ShopController _controller;
-
-        [Header("Broadcasting")]
-        [SerializeField] private ItemReturnItemDetailEventChannel _onItemRequestedByItemDetail;
-
 
         public void Init()
         {
@@ -54,7 +51,7 @@ namespace Boshphelm.Shops
 
         private ShopItem GenerateShopItem(ShopItemDetails shopItemDetail)
         {
-            bool bought = _onItemRequestedByItemDetail.RaiseEvent(shopItemDetail.itemDetails) != null;
+            bool bought = _inventory.GetItemByItemDetail(shopItemDetail.itemDetails) != null;
             int itemLevel = 0;
             /*  int itemLevel =bought
                 ? _playerItemLevel.GetItemLevel(shopItemDetail.itemDetails) //TODO
@@ -84,7 +81,7 @@ namespace Boshphelm.Shops
 
         private void UpdateShopItem(ShopItem shopItem)
         {
-            shopItem.bought = _onItemRequestedByItemDetail.RaiseEvent(shopItem.shopItemDetails.itemDetails) != null;
+            shopItem.bought = _inventory.GetItemByItemDetail(shopItem.shopItemDetails.itemDetails) != null;
             shopItem.itemLevel = 0;
             /* shopItem.itemLevel = shopItem.bought
                 ? _playerItemLevel.GetItemLevel(shopItem.shopItemDetails.itemDetails)

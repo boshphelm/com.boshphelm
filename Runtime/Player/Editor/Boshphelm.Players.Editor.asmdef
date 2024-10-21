@@ -1,0 +1,18 @@
+{
+    "name": "Boshphelm.Players.Editor",
+    "rootNamespace": "Boshphelm.Players.Editor",
+    "references": [
+        "GUID:4bca82684f57b2441be9f777a36986e4"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

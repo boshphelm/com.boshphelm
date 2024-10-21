@@ -1,0 +1,21 @@
+{
+    "name": "Boshphelm.Players",
+    "rootNamespace": "Boshphelm.Players",
+    "references": [
+        "GUID:d0ed062bfe2dbbe448b5e0194e7869e9",
+        "GUID:535e39d5f99b3e9478e2878e4add847b",
+        "GUID:c79e69da5bcc7be46a5b5c298343bd4c",
+        "GUID:b2e25c7ed7beff144bf62d9e18d9744e",
+        "GUID:fdac0d44585c58b43949dd0921a090a1",
+        "GUID:d03e81134262af84a92b4d6f315df68b"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
