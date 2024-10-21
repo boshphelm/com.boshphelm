@@ -9,23 +9,20 @@ namespace Boshphelm.Shops
     public class ShopItemView : MonoBehaviour
     {
         [SerializeField] private TextMeshProUGUI _titleText;
-        
-        [SerializeField] private Image _itemIcon; 
-
+        [SerializeField] private Image _itemIcon;
         [SerializeField] private ShopItemUpgradeView _shopItemUpgradeView;
-
         [SerializeField] private ShopItemUpgradeView _shopItemStarView;
-
-        [SerializeField] private ShopItemStatView[] _statsViews; 
-
+        [SerializeField] private ShopItemStatView[] _statsViews;
         [SerializeField] private GameObject _equippedGO;
 
-        public ShopItem ShopItem { get; private set; }
+        private ShopItem _shopItem;
+
+        public ShopItem ShopItem => _shopItem;
 
         public void RefreshView(ShopItem shopItem)
         {
-            ShopItem = shopItem;
-            ItemDetail itemDetail = shopItem.shopItemDetails.itemDetails;
+            _shopItem = shopItem;
+            ItemDetail itemDetail = shopItem.Details.ItemDetail;
             _titleText.text = itemDetail.DisplayName;
             _itemIcon.sprite = itemDetail.ShopUI.Icon;
             _itemIcon.rectTransform.sizeDelta = itemDetail.ShopUI.size;
@@ -34,32 +31,37 @@ namespace Boshphelm.Shops
             SetItemUpgradeAndStarView(shopItem);
             SetItemStatView(shopItem);
 
-            _equippedGO.SetActive(shopItem.equipped);
+            _equippedGO.SetActive(shopItem.IsEquipped);
         }
 
         private void SetItemUpgradeAndStarView(ShopItem shopItem)
         {
-            ShopItemUpgradeDegree shopItemUpgradeDegree = new ShopItemUpgradeDegree(shopItem.itemLevel, 5);
+            ShopItemUpgradeDegree shopItemUpgradeDegree = new ShopItemUpgradeDegree(shopItem.ItemLevel, 5);
             _shopItemUpgradeView?.RefreshView(shopItemUpgradeDegree.upgradeLevel);
             _shopItemStarView?.RefreshView(shopItemUpgradeDegree.starLevel);
         }
 
         private void SetItemStatView(ShopItem shopItem)
         {
-            if(_statsViews.Length == 0) return;
-            for(int i = 0; i < _statsViews.Length; i++)  
-                _statsViews[i].RefreshView(shopItem.shopItemDetails.itemDetails.ItemStats[i], shopItem.itemLevel); 
+            if (_statsViews.Length == 0) return;
+            for (int i = 0; i < _statsViews.Length; i++)
+                _statsViews[i].RefreshView(shopItem.Details.ItemDetail.ItemStats[i], shopItem.ItemLevel);
         }
-        
+
         // TRIGGER BY UI
         public void BuyShopItem()
         {
-            ShopItem.OnBuyRequested.Invoke(ShopItem);
+            _shopItem?.Buy();
         }
 
         public void UpgradeShopItem()
         {
-            ShopItem.OnUpgradeRequested.Invoke(ShopItem);
+            _shopItem?.Upgrade();
+        }
+
+        public void EquipShopItem()
+        {
+            _shopItem?.Equip();
         }
     }
 

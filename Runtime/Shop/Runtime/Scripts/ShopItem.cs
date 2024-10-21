@@ -1,3 +1,4 @@
+using System;
 using Boshphelm.Currencies;
 using UnityEngine;
 
@@ -5,40 +6,71 @@ namespace Boshphelm.Shops
 {
     public class ShopItem
     {
-        public ShopItemDetails shopItemDetails;
-        public bool bought;
-        public int itemLevel;
-        public bool equipped;
-        public bool itemMaxLevel;
-        public ShopItemType ShopItemType;
+        public IShopItemDetails Details { get; }
+        public bool IsBought { get; private set; }
+        public int ItemLevel { get; private set; }
+        public bool IsEquipped { get; private set; }
+        public bool IsMaxLevel => ItemLevel >= Details.MaxLevel;
+        public ShopItemState State { get; private set; }
 
-        public Price PriceToBuy => shopItemDetails.price;
-        public Price PriceToNextUpgrade => shopItemDetails.ShopItemUpgrades[itemLevel].Price;
+        public Price PriceToBuy => Details.BuyPrice;
+        public Price PriceToNextUpgrade => Details.GetUpgradePrice(ItemLevel);
 
-        public System.Action<ShopItem> OnBuyRequested = _ => { };
-        public System.Action<ShopItem> OnUpgradeRequested = _ => { };
-        public System.Action<ShopItem> OnEquipRequested = _ => { };
+        public event Action<ShopItem> OnBuyRequested;
+        public event Action<ShopItem> OnUpgradeRequested;
+        public event Action<ShopItem> OnEquipRequested;
 
-        public ShopItem(ShopItemDetails shopItemDetails, bool equipped, bool bought, int itemLevel = 0)
+        public ShopItem(IShopItemDetails details, bool isEquipped, bool isBought, int itemLevel = 0)
         {
-            this.shopItemDetails = shopItemDetails;
-            this.bought = bought;
-            this.itemLevel = itemLevel;
-            this.equipped = equipped; // TODO : Add Locked Status.
-            UpdateMaxLevelAndType();
+            Details = details;
+            IsEquipped = isEquipped;
+            IsBought = isBought;
+            ItemLevel = itemLevel;
+            UpdateState();
         }
 
-        public void UpdateMaxLevelAndType()
+        public void Buy()
         {
-            itemMaxLevel = itemLevel >= shopItemDetails.itemDetails.MaxItemLevel;
-            ShopItemType = itemMaxLevel ? ShopItemType.MaxLevel : ShopItemType.Available;
+            IsBought = true;
+            UpdateState();
+            OnBuyRequested?.Invoke(this);
+        }
+
+        public void Upgrade()
+        {
+            if (!IsMaxLevel)
+            {
+                ItemLevel++;
+                UpdateState();
+                OnUpgradeRequested?.Invoke(this);
+            }
+        }
+
+        public void Equip()
+        {
+            IsEquipped = true;
+            UpdateState();
+            OnEquipRequested?.Invoke(this);
+        }
+
+        public void Unequip()
+        {
+            IsEquipped = false;
+            UpdateState();
+        }
+
+        private void UpdateState()
+        {
+            State = IsMaxLevel ? ShopItemState.MaxLevel :
+                    !IsBought ? ShopItemState.Available :
+                    ShopItemState.Upgradeable;
         }
     }
 
-    public enum ShopItemType
+    public enum ShopItemState
     {
         Available,
-        Locked,
+        Upgradeable,
         MaxLevel
     }
 }

@@ -1,34 +1,33 @@
 using System;
-using Boshphelm.Inventories;
-using Boshphelm.Utility;
-using UnityEngine;
+using System.Collections.Generic;
 
 namespace Boshphelm.Shops
 {
-    public class ShopModel
+    public class ShopModel : IShopModel
     {
-        public ObservableArray<ShopItem> ShopItems { get; set; }
- 
-        private readonly int _capacity;
+        private List<ShopItem> shopItems;
 
-        public event Action<ShopItem[]> OnModelChanged
+        public event Action<ShopItem[]> OnModelChanged;
+
+        public ShopItem[] Items => shopItems.ToArray();
+
+        public ShopModel(IEnumerable<ShopItem> items)
         {
-            add => ShopItems.AnyValueChanged += value;
-            remove => ShopItems.AnyValueChanged -= value;
+            shopItems = new List<ShopItem>(items);
         }
 
-        public ShopModel(ShopItem[] shopItems)
+        public ShopItem GetItem(int index) => shopItems[index];
+
+        public void BuyItem(int index)
         {
-            ShopItems = new ObservableArray<ShopItem>(shopItems.Length);
-            foreach (var shopItem in shopItems)
-            {
-                var result = ShopItems.TryAdd(shopItem);
-            }
-        } 
+            shopItems[index].Buy();
+            OnModelChanged?.Invoke(Items);
+        }
 
-        public ShopItem Get(int index) => ShopItems[index];
-
-        public void Buy(int index) => ShopItems[index].bought = true;
-        public void Upgrade(int index) => ShopItems[index].itemLevel++;
+        public void UpgradeItem(int index)
+        {
+            shopItems[index].Upgrade();
+            OnModelChanged?.Invoke(Items);
+        }
     }
 }

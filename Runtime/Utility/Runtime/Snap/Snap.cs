@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Boshphelm.Utility
 {
-    public abstract class Snap : MonoBehaviour
+    public abstract class Snap : MonoBehaviour, ISnap
     {
         [SerializeField] protected List<RectTransform> snapItems;
         [SerializeField] protected RectTransform scrollPanel;
@@ -33,7 +33,9 @@ namespace Boshphelm.Utility
         protected SnapPositionCalculator snapPositionCalculator;
 
 
-        public Action<int> OnSnappedIndexUpdated = _ => { };
+        public event Action<int> OnSnappedIndexUpdated = _ => { };
+
+
 
         protected void Initialize()
         {

@@ -1,18 +1,24 @@
-using Boshphelm.Currencies;
-using Boshphelm.Inventories;
-using Boshphelm.Items;
 using UnityEngine;
+using Boshphelm.Currencies;
+using Boshphelm.Items;
 
 namespace Boshphelm.Shops
 {
     [CreateAssetMenu(fileName = "New Shop Item Detail", menuName = "Boshphelm/Shop/ShopItemDetail")]
-    public class ShopItemDetails : ScriptableObject
+    public class ShopItemDetails : ScriptableObject, IShopItemDetails
     {
-        public ItemDetail itemDetails;
-        public Price price;
-        public ShopItemUpgrade[] ShopItemUpgrades;
+        [SerializeField] private ItemDetail itemDetails;
+        [SerializeField] private Price buyPrice;
+        [SerializeField] private ShopItemUpgrade[] upgrades;
 
-        public ShopItem Create(bool equipped, bool bought, int itemLevel = 0) => new ShopItem(this, equipped, bought, itemLevel);
+        public ItemDetail ItemDetail => itemDetails;
+        public Price BuyPrice => buyPrice;
+        public int MaxLevel => upgrades.Length;
+
+        public Price GetUpgradePrice(int level)
+        {
+            return level < upgrades.Length ? upgrades[level].Price : null;
+        }
     }
 
     [System.Serializable]

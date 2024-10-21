@@ -2,15 +2,13 @@ using UnityEngine;
 
 namespace Boshphelm.Shops
 {
-    public class ShopView : MonoBehaviour
+    public class ShopView : MonoBehaviour, IShopView
     {
         [SerializeField] private ShopItemView[] shopItemViews;
 
         public void RefreshView(ShopItem[] shopItems)
         {
-            ShopItemCountCheck(shopItems.Length);
-
-            for (int i = 0; i < shopItems.Length; i++)
+            for (int i = 0; i < shopItems.Length && i < shopItemViews.Length; i++)
             {
                 shopItemViews[i].RefreshView(shopItems[i]);
             }
@@ -18,24 +16,13 @@ namespace Boshphelm.Shops
 
         public void RefreshShopItemView(ShopItem shopItem)
         {
-            for (int i = 0; i < shopItemViews.Length; i++)
+            foreach (var itemView in shopItemViews)
             {
-                if (shopItemViews[i].ShopItem.shopItemDetails.itemDetails.Id != shopItem.shopItemDetails.itemDetails.Id) continue;
-
-                shopItemViews[i].RefreshView(shopItem);
-                return;
-            }
-        }
-
-        private void ShopItemCountCheck(int shopItemCount)
-        {
-            if (shopItemCount < shopItemViews.Length)
-            {
-                Debug.LogError("SHOP ITEM COUNT < SHOP ITEM VIEW COUNT");
-            }
-            else if (shopItemCount > shopItemViews.Length)
-            {
-                Debug.LogError("SHOP ITEM COUNT > SHOP ITEM VIEW COUNT");
+                if (itemView.ShopItem.Details.ItemDetail.Id == shopItem.Details.ItemDetail.Id)
+                {
+                    itemView.RefreshView(shopItem);
+                    break;
+                }
             }
         }
     }

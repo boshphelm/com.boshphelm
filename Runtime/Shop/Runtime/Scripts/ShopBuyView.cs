@@ -1,180 +1,124 @@
-using Boshphelm.Currencies;
-using Boshphelm.Inventories;
-using Boshphelm.Items;
-using Boshphelm.Utility;
-using Boshphelm.Wallets;
 using UnityEngine;
+using Boshphelm.Currencies;
+using Boshphelm.Wallets;
+using Boshphelm.Utility;
+using Boshphelm.Items;
+using System;
 
 namespace Boshphelm.Shops
 {
-    public class ShopBuyView : MonoBehaviour
+    public class ShopBuyView : MonoBehaviour, IShopBuyView
     {
-        [SerializeField] private Wallet _playerWallet;
+        [SerializeField] private Wallet playerWallet;
+        [SerializeField] private GameObject buyGO;
+        [SerializeField] private PriceView buyPriceView;
+        [SerializeField] private GameObject upgradeGO;
+        [SerializeField] private PriceView upgradePriceView;
+        [SerializeField] private GameObject equipGO;
 
-        [Header("Payment & Price")]
-        [SerializeField] private GameObject _buyGO;
-        [SerializeField] private PriceView _buyPriceView;
-        [SerializeField] private GameObject _upgradeGO;
-        [SerializeField] private PriceView _upgradePriceView;
-        [SerializeField] private GameObject _equipGO;
+        [SerializeField] private VoidEventChannel onSave;
+        [SerializeField] private ItemReturnItemDetailEventChannel onItemRequestedByItemDetail;
+        [SerializeField] private ItemDetailIntEventChannel onItemAdd;
 
-        private ShopItem _currentShopItem;
+        private ShopItem currentShopItem;
 
-        public System.Action<ShopItem> OnRefreshRequired = _ => { };
-        public System.Action OnCurrentWeaponUpgraded;
+        public event Action<ShopItem> OnRefreshRequired;
+        public event Action OnCurrentWeaponUpgraded;
 
-        [Header("Broadcasting")]
-        [SerializeField] private VoidEventChannel _onSave;
-        [SerializeField] private ItemReturnItemDetailEventChannel _onItemRequestedByItemDetail;
-        [SerializeField] private ItemDetailIntEventChannel _onItemAdd;
+
 
         public void RefreshView(ShopItem shopItem)
         {
-            //Debug.Log("REFRESHING VIEW FOR SHOP ITEM : " + shopItem.itemLevel, shopItem.shopItemDetails);
-            _currentShopItem = shopItem;
-            SetBuyViewByShopItemType(shopItem);
+            currentShopItem = shopItem;
+            SetBuyViewByShopItemState(shopItem);
         }
 
-        // TRIGGER BY UI -> ShopCanvas - ShopBuyButtons - BuyButton
         public void HandleItemBuy()
         {
-            if (_currentShopItem == null) return;
+            if (currentShopItem == null || IsItemDetailsAlreadyInInventory(currentShopItem.Details.ItemDetail)) return;
+            if (!TryToPayThePrice(currentShopItem.PriceToBuy)) return;
 
-            if (IsItemDetailsAlreadyInInventory(_currentShopItem.shopItemDetails.itemDetails)) return;
-            if (!TryToPayThePrice(_currentShopItem.PriceToBuy)) return;
+            CreateAnItemAndAddInventory(currentShopItem.Details.ItemDetail);
+            currentShopItem.Buy();
+            OnRefreshRequired?.Invoke(currentShopItem);
+            onSave.RaiseEvent();
+        }
 
-            CreateAnItemAndAddInventory(_currentShopItem.shopItemDetails.itemDetails);
+        public void HandleItemUpgrade()
+        {
+            if (currentShopItem == null || !currentShopItem.IsBought || currentShopItem.IsMaxLevel) return;
+            if (!TryToPayThePrice(currentShopItem.PriceToNextUpgrade)) return;
 
-            SetPlayerMainItem(_currentShopItem);
+            currentShopItem.Upgrade();
+            OnRefreshRequired?.Invoke(currentShopItem);
+            OnCurrentWeaponUpgraded?.Invoke();
+            onSave.RaiseEvent();
+        }
 
-            TriggerRefreshRequire(_currentShopItem);
+        public void HandleItemEquip()
+        {
+            if (currentShopItem == null || !currentShopItem.IsBought) return;
 
-            _onSave.RaiseEvent();
+            currentShopItem.Equip();
+            OnRefreshRequired?.Invoke(currentShopItem);
         }
 
         private bool IsItemDetailsAlreadyInInventory(ItemDetail itemDetail)
         {
-            var item = _onItemRequestedByItemDetail.RaiseEvent(itemDetail);
-            bool isItemAlreadyInInventory = item != null;
-
-            return isItemAlreadyInInventory;
+            return onItemRequestedByItemDetail.RaiseEvent(itemDetail) != null;
         }
 
         private bool TryToPayThePrice(Price price)
         {
-            if (!IsPricePayable(price)) return false;
+            if (!playerWallet.HaveEnoughCurrency(price.CurrencyDetails, price.Amount)) return false;
 
-            _playerWallet.RemoveCurrency(price.CurrencyDetails, price.Amount);
+            playerWallet.RemoveCurrency(price.CurrencyDetails, price.Amount);
             return true;
         }
 
         private void CreateAnItemAndAddInventory(ItemDetail itemDetail)
         {
             var newBoughtItem = itemDetail.Create(1);
-            _onItemAdd.RaiseEvent(itemDetail, newBoughtItem.Quantity);
+            onItemAdd.RaiseEvent(itemDetail, newBoughtItem.Quantity);
         }
 
-        private void SetPlayerMainItem(ShopItem shopItem)
+        private void SetBuyViewByShopItemState(ShopItem shopItem)
         {
-            /*
-             _playerItemLevel.UpgradeItemLevel(shopItem.shopItemDetails.itemDetails);
-             _playerMainItem.SetMainItem(shopItem.shopItemDetails.itemDetails);
-             */
-        }
-
-        private bool IsPricePayable(Price price) => _playerWallet.HaveEnoughCurrency(price.CurrencyDetails, price.Amount);
-
-        // TRIGGER BY UI -> ShopCanvas - ShopBuyUpgradeButtons - UpgradeButton
-        public void HandleItemUpgrade()
-        {
-            if (_currentShopItem == null) return;
-
-            if (!IsItemDetailsAlreadyInInventory(_currentShopItem.shopItemDetails.itemDetails)) return;
-            if (!TryToPayThePrice(_currentShopItem.PriceToNextUpgrade)) return;
-
-            //_playerItemLevel.UpgradeItemLevel(_currentShopItem.shopItemDetails.itemDetails);
-            TriggerRefreshRequire(_currentShopItem);
-
-            OnCurrentWeaponUpgraded?.Invoke();
-
-            _onSave.RaiseEvent();
-        }
-
-        // TRIGGER BY UI -> ShopCanvas - ShopEquipButton - EquipButton
-        public void HandleItemEquip()
-        {
-            if (_currentShopItem == null) return;
-
-            _currentShopItem.OnEquipRequested.Invoke(_currentShopItem);
-            TriggerRefreshRequire(_currentShopItem);
-        }
-
-        private void TriggerRefreshRequire(ShopItem shopItem)
-        {
-            OnRefreshRequired.Invoke(shopItem);
-        }
-
-        private void SetBuyViewByShopItemType(ShopItem shopItem)
-        {
-            if (shopItem.ShopItemType == ShopItemType.Locked || shopItem.ShopItemType == ShopItemType.MaxLevel)
+            switch (shopItem.State)
             {
-                DeactivateAllPriceViews();
-            }
-            else
-            {
-                SetAvailableShopItem(shopItem);
+                case ShopItemState.Available:
+                    SetAvailableView(shopItem);
+                    break;
+                case ShopItemState.Upgradeable:
+                    SetUpgradeableView(shopItem);
+                    break;
+                case ShopItemState.MaxLevel:
+                    SetMaxLevelView();
+                    break;
             }
         }
 
-        private void SetAvailableShopItem(ShopItem availableShopItem)
+        private void SetAvailableView(ShopItem shopItem)
         {
-            // Debug.Log("AVAILABLE SHOP ITEM : " + availableShopItem.shopItemDetails.itemDetails.displayName + ", BOUGHT : " + availableShopItem.bought, availableShopItem.shopItemDetails);
-            if (availableShopItem.bought)
-            {
-                if (availableShopItem.equipped)
-                {
-                    ActivateOnlyUpgradePriceView();
-                    _upgradePriceView.SetPrice(availableShopItem.PriceToNextUpgrade);
-                }
-                else
-                {
-                    ActivateOnlyEquipView();
-                }
-            }
-            else
-            {
-                ActivateOnlyBuyPriceView();
-                _buyPriceView.SetPrice(availableShopItem.PriceToBuy);
-            }
+            buyGO.SetActive(true);
+            upgradeGO.SetActive(false);
+            equipGO.SetActive(false);
+            buyPriceView.SetPrice(shopItem.PriceToBuy);
         }
 
-        private void ActivateOnlyEquipView()
+        private void SetUpgradeableView(ShopItem shopItem)
         {
-            _buyGO.SetActive(false);
-            _upgradeGO.SetActive(false);
-            _equipGO.SetActive(true);
+            buyGO.SetActive(false);
+            upgradeGO.SetActive(true);
+            equipGO.SetActive(!shopItem.IsEquipped);
+            upgradePriceView.SetPrice(shopItem.PriceToNextUpgrade);
         }
 
-        private void ActivateOnlyUpgradePriceView()
+        private void SetMaxLevelView()
         {
-            _buyGO.SetActive(false);
-            _upgradeGO.SetActive(true);
-            _equipGO.SetActive(false);
-        }
-
-
-        private void ActivateOnlyBuyPriceView()
-        {
-            _buyGO.SetActive(true);
-            _upgradeGO.SetActive(false);
-            _equipGO.SetActive(false);
-        }
-
-        private void DeactivateAllPriceViews()
-        {
-            _buyGO.SetActive(false);
-            _upgradeGO.SetActive(false);
-            _equipGO.SetActive(false);
+            buyGO.SetActive(false);
+            upgradeGO.SetActive(false);
+            equipGO.SetActive(false);
         }
     }
 }

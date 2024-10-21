@@ -21,7 +21,8 @@ namespace Boshphelm.Utility
             _layoutGroup.CalculateLayoutInputHorizontal();
             _layoutGroup.enabled = false;
         }
-        private void Start() {
+        private void Start()
+        {
             Setup();
         }
         public void Setup()
@@ -65,7 +66,7 @@ namespace Boshphelm.Utility
         public override void MoveToPreviousIndex()
         {
             base.MoveToPreviousIndex();
-            
+
             SetNextPreviousButtonStatus();
             _isDragging = false;
             _active = true;
@@ -107,7 +108,7 @@ namespace Boshphelm.Utility
         #endregion
 
         private void SetNextPreviousButtonStatus()
-        { 
+        {
             if (SnappedIndex == 0)
             {
                 _nextButtonGO?.SetActive(true);
