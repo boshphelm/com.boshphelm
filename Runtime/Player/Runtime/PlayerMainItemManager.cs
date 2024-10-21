@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Boshphelm.Players
 {
-    public class PlayerMainItem : MonoBehaviour
+    public class PlayerMainItemManager : MonoBehaviour
     {
         private readonly Dictionary<SerializableGuid, ItemDetail> _mainItems = new Dictionary<SerializableGuid, ItemDetail>();
 

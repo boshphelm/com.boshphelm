@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Boshphelm.Players
 {
-    public class PlayerItemLevel : MonoBehaviour
+    public class PlayerItemLevelManager : MonoBehaviour
     {
         private readonly Dictionary<SerializableGuid, int> _itemLevels = new Dictionary<SerializableGuid, int>();
 
