@@ -153,7 +153,7 @@ MonoBehaviour:
   _loop: 0
   _prewarm: 0
   _duration: 0.3
-  _playMode: 1
+  _playMode: 0
   _startSize:
     separable: 1
     separated: 0

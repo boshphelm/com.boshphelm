@@ -11,8 +11,8 @@ namespace Boshphelm.InitialLoad
     {
         [SerializeField] private SimpleSceneLoader _initialLoadSceneLoader;
         [SerializeField] private LoadCommand[] _commands;
-
-        [SerializeField] private FadeInOut _fadeInOut;
+/* 
+        [SerializeField] private FadeInOut _fadeInOut; */
         //[SerializeField] private LevelLoadController _levelLoadController;
 
         private int _commandIndex;
@@ -46,7 +46,7 @@ namespace Boshphelm.InitialLoad
 
         private async Task StartInitialLoadingPhase()
         {
-            _fadeInOut.FadeOutDirectly();
+            //_fadeInOut.FadeOutDirectly();
 
             await _initialLoadSceneLoader.LoadScene();
 
@@ -89,6 +89,7 @@ namespace Boshphelm.InitialLoad
             _commandIndex++;
             if (_commandIndex >= CommandCount)
             {
+                print("OnCommandCompleted");
                 FinishInitialLoadingPhase();
             }
             else
@@ -117,9 +118,8 @@ namespace Boshphelm.InitialLoad
 
             yield return _initialLoadSceneLoader.UnloadScene();
 
-            //_levelLoadController.PlayInitialLevel();
-
-            _fadeInOut.FadeIn(_initialLoadFadeOutTime);
+            //_levelLoadController.PlayInitialLevel(); 
+            //_fadeInOut.FadeIn(_initialLoadFadeOutTime);
         }
     }
 }

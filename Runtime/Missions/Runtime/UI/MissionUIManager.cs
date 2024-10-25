@@ -16,9 +16,7 @@ namespace Boshphelm.Missions
         [SerializeField] private Button _mainMissionsButton;
         [SerializeField] private Button _sideMissionsButton;
         private readonly Dictionary<SerializableGuid, MissionCard> _missionCards = new Dictionary<SerializableGuid, MissionCard>();
-        private bool _showingMainMissions = true;
-        [Header("Broadcasting..")]
-        [SerializeField] private VoidEventChannel _playMissionCompleteSound;
+        private bool _showingMainMissions = true; 
         public void Initialize()
         {
             InitializeMissionCards();
@@ -188,7 +186,6 @@ namespace Boshphelm.Missions
         private void CollectReward(IMission mission)
         {
             if (_missionCards.TryGetValue(mission.MissionId, out var card)) SetupParticle(card.GetComponent<RectTransform>().position);
-            _playMissionCompleteSound.RaiseEvent();
             _missionManager.CollectReward(mission);
         }
 
