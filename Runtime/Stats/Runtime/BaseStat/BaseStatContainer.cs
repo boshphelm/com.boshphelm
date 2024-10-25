@@ -6,6 +6,8 @@ namespace Boshphelm.Stats
     public abstract class BaseStatContainer<T> : ScriptableObject where T : StatType
     {
         [SerializeField] private LevelBaseStat<T>[] _levelBaseStats;
+ 
+        public int MaxLevel => _levelBaseStats != null ? _levelBaseStats.Length : 1;
 
         public BaseStat<T> GetBaseStatByLevelAndType(int level, T type)
         {
@@ -14,11 +16,12 @@ namespace Boshphelm.Stats
         }
 
         public LevelBaseStat<T> GetBaseStatsByLevel(int level)
-        {
+        { 
+            level = Mathf.Clamp(level, 1, MaxLevel);
+
             foreach (var levelBaseStat in _levelBaseStats)
             {
                 if (!levelBaseStat.IsSameLevel(level)) continue;
-
                 return levelBaseStat;
             }
 

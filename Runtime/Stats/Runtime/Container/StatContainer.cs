@@ -6,7 +6,8 @@ namespace Boshphelm.Stats
 {
     public abstract class StatContainer<T> : MonoBehaviour, IStatContainer<T> where T : StatType
     {
-        [SerializeField] protected BaseStatContainer<T> baseStatContainer;
+        [SerializeField] private BaseStatContainer<T> baseStatContainer;
+        public BaseStatContainer<T> BaseStatContainer => baseStatContainer;
         private Dictionary<SerializableGuid, Stat<T>> _stats;
         public int Level { get; private set; }
 
@@ -50,9 +51,9 @@ namespace Boshphelm.Stats
 
         private void GenerateOrUpdateAllStats()
         {
-            if (baseStatContainer == null) return;
+            if (BaseStatContainer == null) return;
 
-            var levelBaseStat = baseStatContainer.GetBaseStatsByLevel(Level);
+            var levelBaseStat = BaseStatContainer.GetBaseStatsByLevel(Level);
 
             if (_stats == null) _stats = new Dictionary<SerializableGuid, Stat<T>>();
 
