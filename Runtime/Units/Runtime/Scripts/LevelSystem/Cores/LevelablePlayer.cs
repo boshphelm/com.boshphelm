@@ -1,11 +1,10 @@
-using UnityEngine;
+using UnityEngine; 
 using Boshphelm.Units.Level;
 
 namespace Boshphelm.Units
 {
     public abstract class LevelablePlayer : LevelableEntity
     {
-        [SerializeField] protected LevelData _levelData;
         protected float _currentExperience;
         
         public float CurrentExperience => _currentExperience;
@@ -14,25 +13,16 @@ namespace Boshphelm.Units
         protected override void Awake()
         {
             base.Awake();
-            ValidateLevelData();
             if (!_isRestored)
             {
                 _currentExperience = 0f;
             }
         }
 
-        protected virtual void ValidateLevelData()
-        {
-            if (_levelData == null)
-            {
-                Debug.LogError("LevelData is not assigned!", this);
-            }
-        }
-
         protected virtual float GetExperienceRequiredForNextLevel()
         {
-            if (_levelData == null) return 0;
-            return _levelData.GetRequiredExperience(_currentLevel + 1);
+            if (_statContainer == null || _statContainer.BaseStatContainer == null) return 0;
+            return _statContainer.BaseStatContainer.GetRequiredExperienceForLevel(_currentLevel + 1);
         }
 
         public override void GainExperience(float exp)
@@ -55,6 +45,21 @@ namespace Boshphelm.Units
             }
         }
 
+        public float GetProgressToNextLevel()
+        {
+            float requiredExp = GetExperienceRequiredForNextLevel();
+            if (requiredExp <= 0) return 1f;
+            return _currentExperience / requiredExp;
+        }
+
+        public virtual string GetLevelProgressText()
+        {
+            if (_currentLevel >= MaxLevel)
+                return $"Level {_currentLevel} (MAX)";
+            
+            return $"Level {_currentLevel} ({_currentExperience:F0}/{GetExperienceRequiredForNextLevel():F0} XP)";
+        }
+
         public override object CaptureState()
         {
             return new LevelSaveData
@@ -74,21 +79,6 @@ namespace Boshphelm.Units
             _isRestored = true;
 
             InitializeStats();
-        }
-
-        public float GetProgressToNextLevel()
-        {
-            float requiredExp = GetExperienceRequiredForNextLevel();
-            if (requiredExp <= 0) return 1f;
-            return _currentExperience / requiredExp;
-        }
-
-        public virtual string GetLevelProgressText()
-        {
-            if (_currentLevel >= MaxLevel)
-                return $"Level {_currentLevel} (MAX)";
-            
-            return $"Level {_currentLevel + 1} ({_currentExperience:F0}/{GetExperienceRequiredForNextLevel():F0} XP)";
         }
     }
 }
