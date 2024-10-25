@@ -15,9 +15,11 @@ namespace Boshphelm.Tutorial
 
         private IEnumerator DelayComplete()
         {   
-            yield return new WaitForSeconds(3);
-            CompleteTutorial(); 
+            yield return new WaitForSeconds(3); 
             _tutorialFadeManager.DisableFade();
+            yield return new WaitForSeconds(.5f);
+            CompleteTutorial(); 
         }
+        
     }
 }

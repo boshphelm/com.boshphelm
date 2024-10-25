@@ -330,6 +330,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 80366202572356971, guid: 747683b63c7473d41ab2391afa9811df, type: 3}
   m_PrefabInstance: {fileID: 1489600584475731613}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6058988687683268583 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4663976364076648826, guid: 747683b63c7473d41ab2391afa9811df, type: 3}
+  m_PrefabInstance: {fileID: 1489600584475731613}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bd88505a27eb4c48bd79eda2bfc2c70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &6595017588865293186 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5704418438704217375, guid: 747683b63c7473d41ab2391afa9811df, type: 3}
@@ -1015,6 +1026,10 @@ PrefabInstance:
       propertyPath: _missionUIManager
       value: 
       objectReference: {fileID: 9213892707950407756}
+    - target: {fileID: 6714142128651587177, guid: 55bd0156792698443838832995feaf68, type: 3}
+      propertyPath: _tutorialManager
+      value: 
+      objectReference: {fileID: 6058988687683268583}
     - target: {fileID: 7327029304982677998, guid: 55bd0156792698443838832995feaf68, type: 3}
       propertyPath: _savingWrapper
       value: 
