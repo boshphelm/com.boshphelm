@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41cd9aa8e27d4f844b8fa36520be2ce2, type: 3}
+  m_Name: Player Level Data
+  m_EditorClassIdentifier: 
+  _levelRequirements:
+  - Level: 1
+    RequiredExperience: 10
+  - Level: 2
+    RequiredExperience: 12.5
+  - Level: 3
+    RequiredExperience: 15.625
+  - Level: 4
+    RequiredExperience: 19.53125
+  - Level: 5
+    RequiredExperience: 24.414062
+  - Level: 6
+    RequiredExperience: 30.517578
+  - Level: 7
+    RequiredExperience: 38.146973
+  - Level: 8
+    RequiredExperience: 47.683716
+  - Level: 9
+    RequiredExperience: 59.604645
+  - Level: 10
+    RequiredExperience: 74.505806

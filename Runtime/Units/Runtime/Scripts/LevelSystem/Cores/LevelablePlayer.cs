@@ -5,21 +5,34 @@ namespace Boshphelm.Units
 {
     public abstract class LevelablePlayer : LevelableEntity
     {
-        [SerializeField] protected float _experienceToNextLevel = 100f;
-        [SerializeField] protected float _experienceMultiplier = 1.5f;
-        
+        [SerializeField] protected LevelData _levelData;
         protected float _currentExperience;
         
         public float CurrentExperience => _currentExperience;
-        public float ExperienceToNextLevel => _experienceToNextLevel;
+        public float ExperienceToNextLevel => GetExperienceRequiredForNextLevel();
 
         protected override void Awake()
         {
             base.Awake();
+            ValidateLevelData();
             if (!_isRestored)
             {
                 _currentExperience = 0f;
             }
+        }
+
+        protected virtual void ValidateLevelData()
+        {
+            if (_levelData == null)
+            {
+                Debug.LogError("LevelData is not assigned!", this);
+            }
+        }
+
+        protected virtual float GetExperienceRequiredForNextLevel()
+        {
+            if (_levelData == null) return 0;
+            return _levelData.GetRequiredExperience(_currentLevel + 1);
         }
 
         public override void GainExperience(float exp)
@@ -27,12 +40,18 @@ namespace Boshphelm.Units
             if (_currentLevel >= MaxLevel) return;
 
             _currentExperience += exp;
+            CheckLevelUp();
+        }
+
+        protected virtual void CheckLevelUp()
+        {
+            float requiredExp = GetExperienceRequiredForNextLevel();
             
-            while (_currentExperience >= _experienceToNextLevel && _currentLevel < MaxLevel)
+            while (_currentExperience >= requiredExp && _currentLevel < MaxLevel)
             {
-                _currentExperience -= _experienceToNextLevel;
+                _currentExperience -= requiredExp;
                 LevelUp();
-                _experienceToNextLevel *= _experienceMultiplier;
+                requiredExp = GetExperienceRequiredForNextLevel();
             }
         }
 
@@ -41,8 +60,7 @@ namespace Boshphelm.Units
             return new LevelSaveData
             {
                 CurrentLevel = _currentLevel,
-                CurrentExperience = _currentExperience,
-                ExperienceToNextLevel = _experienceToNextLevel
+                CurrentExperience = _currentExperience
             };
         }
 
@@ -53,10 +71,24 @@ namespace Boshphelm.Units
             var saveData = (LevelSaveData)state;
             _currentLevel = Mathf.Clamp(saveData.CurrentLevel, 1, MaxLevel);
             _currentExperience = saveData.CurrentExperience;
-            _experienceToNextLevel = saveData.ExperienceToNextLevel;
             _isRestored = true;
 
             InitializeStats();
+        }
+
+        public float GetProgressToNextLevel()
+        {
+            float requiredExp = GetExperienceRequiredForNextLevel();
+            if (requiredExp <= 0) return 1f;
+            return _currentExperience / requiredExp;
+        }
+
+        public virtual string GetLevelProgressText()
+        {
+            if (_currentLevel >= MaxLevel)
+                return $"Level {_currentLevel} (MAX)";
+            
+            return $"Level {_currentLevel + 1} ({_currentExperience:F0}/{GetExperienceRequiredForNextLevel():F0} XP)";
         }
     }
 }
