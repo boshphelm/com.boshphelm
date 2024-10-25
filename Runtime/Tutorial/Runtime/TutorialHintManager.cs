@@ -14,15 +14,13 @@ namespace Boshphelm.Tutorial
         public Action onHintTextAnimationComplete;
 
         public void HintText(string hintText)
-        {
-            _hintText.text = "";
-
-            /* _hintTextTween = _hintText.DOText(hintText, 1f)
-                .OnStart(() => onHintTextAnimationStart?.Invoke())
-                .SetDelay(1)
-                .SetUpdate(true)
-                .SetEase(Ease.Linear)
-                .OnComplete(() => onHintTextAnimationComplete?.Invoke()); */
+        { 
+            _hintTextTween = _hintText.DOText(hintText, 1f)
+            .OnStart(() => onHintTextAnimationStart?.Invoke())
+            .SetDelay(1)
+            .SetUpdate(true)
+            .SetEase(Ease.Linear)
+            .OnComplete(() => onHintTextAnimationComplete?.Invoke()); 
         }
 
         public void SkipHintAnimation()
@@ -31,6 +29,7 @@ namespace Boshphelm.Tutorial
 
             _hintTextTween.Complete();
         }
+        
         public void SetHintTextStatus(bool status)
         {
             _hintText.gameObject.SetActive(status);
