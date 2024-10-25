@@ -15,6 +15,8 @@ namespace Boshphelm.Tutorial
 
         public void HintText(string hintText)
         { 
+            _hintText.text = "";
+            
             _hintTextTween = _hintText.DOText(hintText, 1f)
             .OnStart(() => onHintTextAnimationStart?.Invoke())
             .SetDelay(1)

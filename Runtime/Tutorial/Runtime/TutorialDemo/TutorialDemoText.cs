@@ -1,4 +1,4 @@
- 
+using System.Collections;
 using UnityEngine;
 
 namespace Boshphelm.Tutorial
@@ -9,6 +9,15 @@ namespace Boshphelm.Tutorial
         public override void StartTutorial()
         { 
             _tutorialFadeManager.tutorialHintManager.HintText(_hintText);
+            _tutorialFadeManager.EnableFade();
+            StartCoroutine(DelayComplete());
+        }
+
+        private IEnumerator DelayComplete()
+        {   
+            yield return new WaitForSeconds(3);
+            CompleteTutorial(); 
+            _tutorialFadeManager.DisableFade();
         }
     }
 }

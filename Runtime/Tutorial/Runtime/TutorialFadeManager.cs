@@ -1,7 +1,6 @@
 using UnityEngine;
 using System;
-using UnityEngine.UI;
-using DG.Tweening;
+using UnityEngine.UI; 
 
 namespace Boshphelm.Tutorial
 {
@@ -31,8 +30,7 @@ namespace Boshphelm.Tutorial
         }
 
         public void SetFadeColorAlpha(float alpha, float duration)
-        {
-            Debug.Log("SET ALPHA ");
+        { 
             Color _color = _fadeImage.color;
             Color _newColor = new Color(_color.a, _color.g, _color.b, alpha);
 
