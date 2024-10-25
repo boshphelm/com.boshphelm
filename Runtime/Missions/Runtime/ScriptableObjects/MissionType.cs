@@ -24,6 +24,8 @@ namespace Boshphelm.Missions
         public List<Price> reward;
         public List<MissionType> requiredMissions;
 
+        public Vector2 Position;
+
         public abstract IMission CreateMission();
 
         protected MissionInfo CreateMissionInfo()

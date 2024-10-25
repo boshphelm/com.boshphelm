@@ -1,0 +1,17 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <Style src="project://database/Assets/Project/MissionTreeWindow.uss?fileID=7433441132597879392&amp;guid=329a731e22c62164b857318ca7fa04c9&amp;type=3#MissionTreeWindow" />
+    <uie:Toolbar>
+        <uie:ToolbarMenu parse-escape-sequences="true" display-tooltip-when-elided="true" text="Assets" />
+    </uie:Toolbar>
+    <SplitView fixed-pane-initial-dimension="157">
+        <ui:VisualElement name="left-panel" style="flex-grow: 0;">
+            <ui:Label text="Inspector" parse-escape-sequences="true" display-tooltip-when-elided="true" style="background-color: rgb(37, 37, 37); color: rgb(255, 255, 255); margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;" />
+            <InspectorView name="InspectorView" style="flex-grow: 1;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="right-panel" style="flex-grow: 1;">
+            <MissionTreeView name="MissionTreeView" style="flex-grow: 1;">
+                <ui:Label text="Tree View" parse-escape-sequences="true" display-tooltip-when-elided="true" style="color: rgb(241, 241, 241); background-color: rgb(37, 37, 37); margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0;" />
+            </MissionTreeView>
+        </ui:VisualElement>
+    </SplitView>
+</ui:UXML>
