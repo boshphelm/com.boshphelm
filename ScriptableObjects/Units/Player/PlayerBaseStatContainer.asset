@@ -14,4 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _levelBaseStats:
   - Level: 0
+    RequiredExperience: 100
+    BaseStats: []
+  - Level: 1
+    RequiredExperience: 150
+    BaseStats: []
+  - Level: 2
+    RequiredExperience: 225
+    BaseStats: []
+  - Level: 3
+    RequiredExperience: 337.5
     BaseStats: []
