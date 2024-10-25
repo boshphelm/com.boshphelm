@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Boshphelm.GameEvents;
@@ -137,7 +136,7 @@ namespace Boshphelm.Missions
                 mission.CollectReward();
                 foreach (var price in mission.Reward)
                 {
-                    _wallet.AddCurrency(price); 
+                    _wallet.AddCurrency(price);
                 }
             }
         }
@@ -152,24 +151,32 @@ namespace Boshphelm.Missions
         public List<IMission> GetNextMissions()
         {
             var nextMissions = new List<IMission>();
-            var activeMissions = GetActiveMissions();
 
             foreach (var (id, mission) in _allMissions)
             {
-                if (!mission.IsActive) continue;
-
+                bool next = false;
                 foreach (var requiredMissionId in mission.RequiredMissions)
                 {
                     if (!_allMissions.TryGetValue(requiredMissionId, out var requiredMission)) continue;
-                    if (!nextMissions.Contains(requiredMission)) continue;
-                    if (activeMissions.Contains(requiredMission)) continue;
+                    if (!requiredMission.IsActive) continue;
 
-                    nextMissions.Add(requiredMission);
+                    //Debug.Log("NEXT MISSION : " + mission.MissionName + ", CURRENTLY ACTIVE MISSION : " + requiredMission.MissionName);
+                    next = true;
+                    break;
                 }
 
+                if (next && !nextMissions.Contains(mission))
+                {
+                    nextMissions.Add(mission);
+                }
             }
 
             return nextMissions;
+        }
+
+        public int GetUncollectedMissionRewardCount()
+        {
+            return GetActiveMissions().Count(activeMission => activeMission.IsCompleted && !activeMission.IsRewardCollected);
         }
 
         public object CaptureState()

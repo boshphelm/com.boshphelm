@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using Boshphelm.Currencies;
 using Boshphelm.Utility;
@@ -21,8 +20,11 @@ namespace Boshphelm.Missions
         public string missionName;
         [TextArea(3, 10)]
         public string description;
+        public bool main;
         public List<Price> reward;
         public List<MissionType> requiredMissions;
+
+        public Vector2 Position;
 
         public abstract IMission CreateMission();
 
@@ -32,6 +34,7 @@ namespace Boshphelm.Missions
                 missionId,
                 missionName,
                 description,
+                main,
                 reward,
                 requiredMissions?.ConvertAll(m => m.missionId)
                 );

@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using Boshphelm.Currencies;
 using Boshphelm.GameEvents;
 using Boshphelm.Utility;
-using UnityEngine;
 
 namespace Boshphelm.Missions
 {
@@ -11,6 +10,7 @@ namespace Boshphelm.Missions
         public SerializableGuid MissionId { get; protected set; }
         public string MissionName { get; protected set; }
         public string Description { get; protected set; }
+        public bool Main { get; }
         public bool IsCompleted { get; protected set; }
         public bool IsActive { get; protected set; }
         public bool IsFinished { get; protected set; }
@@ -29,6 +29,7 @@ namespace Boshphelm.Missions
             MissionId = info.Id;
             MissionName = info.Name;
             Description = info.Description;
+            Main = info.Main;
             Reward = info.Reward;
             RequiredMissions = info.RequiredMissions;
             IsCompleted = false;

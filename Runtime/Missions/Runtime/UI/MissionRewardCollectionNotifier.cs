@@ -50,7 +50,7 @@ namespace Boshphelm.Missions
 
         private void HandleMissionRewardCollected(IMission mission)
         {
-            _uncollectedMissionRewardsCount--;
+            _uncollectedMissionRewardsCount = Mathf.Clamp(_uncollectedMissionRewardsCount - 1, 0, int.MaxValue);
             UpdateNotificationVisibility();
         }
 
@@ -64,6 +64,9 @@ namespace Boshphelm.Missions
 
         private void OpenMissionPanel()
         {
+            _uncollectedMissionRewardsCount = _missionManager.GetUncollectedMissionRewardCount();
+            UpdateNotificationVisibility();
+
             _missionPanel.SetActive(true);
         }
 
