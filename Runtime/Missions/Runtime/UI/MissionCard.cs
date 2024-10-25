@@ -1,4 +1,5 @@
 using System;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,7 +15,9 @@ namespace Boshphelm.Missions
         [SerializeField] private TextMeshProUGUI _progressText;
         [SerializeField] private TextMeshProUGUI _rewardText;
         [SerializeField] private Button _collectButton;
+        [SerializeField] private GameObject _progressPanel;
         [SerializeField] private GameObject _nextMissionLabel;
+        [SerializeField] private GameObject _mainMissionGO;
         [SerializeField] private GameObject _lockedMissionGO;
 
         private IMission _mission;
@@ -28,6 +31,7 @@ namespace Boshphelm.Missions
             _onCollectReward = onCollectReward;
 
             UpdateCardInfo();
+            UpdateProgress();
             UpdateCardStatus(isActive, isNext);
             SubscribeToMissionEvents();
         }
@@ -40,30 +44,49 @@ namespace Boshphelm.Missions
             UpdateProgress();
             UpdateCollectButton();
         }
-
+        public void UpdateCardStatus(bool visible, bool isActive, bool isNext)
+        {
+            UpdateCardStatus(isActive, isNext);
+            gameObject.SetActive(visible);
+        }
         private void UpdateCardStatus(bool isActive, bool isNext)
         {
             //Debug.Log("IS ACTIVE : " + isActive + ", IS NEXT : " + isNext);
             if (_mission.IsCompleted)
             {
+                gameObject.SetActive(true);
                 _lockedMissionGO.SetActive(false);
             }
             else if (isActive)
             {
+                gameObject.SetActive(true);
                 _lockedMissionGO.SetActive(false);
             }
             else if (isNext)
             {
+                gameObject.SetActive(true);
+                _lockedMissionGO.SetActive(false);
+            }
+            else if (_mission.IsFinished)
+            {
+                gameObject.SetActive(false);
+            }
+            else
+            {
                 _lockedMissionGO.SetActive(true);
+                gameObject.SetActive(true);
             }
 
-            _nextMissionLabel.SetActive(isNext);
+            _mainMissionGO.SetActive(_mission.Main);
+
+            _nextMissionLabel.SetActive(!isActive && isNext);
         }
 
         private void UpdateProgress()
         {
-            _progressFillBar.UpdateFillAmount(_mission.Progress);
-            _progressText.text = $"{_mission.Progress * 100:F0}%";
+            float progress = _mission.Progress;
+            _progressFillBar.UpdateFillAmount(progress);
+            _progressText.text = $"{progress * 100:F0}%";
         }
 
         private void UpdateCollectButton()
@@ -79,8 +102,20 @@ namespace Boshphelm.Missions
 
         private void OnCollectRewardClicked()
         {
-            _onCollectReward?.Invoke(_mission);
-            UpdateCollectButton();
+            var targetScale = transform.localScale;
+            transform.DOScale(targetScale * 1.05f, .2f).SetEase(Ease.Linear)
+                .OnComplete(() =>
+                {
+                    _progressPanel.SetActive(false);
+                    _collectButton.gameObject.SetActive(false);
+                    _descriptionText.text = "";
+                    transform.DOScale(targetScale, .1f).SetEase(Ease.Linear)
+                        .OnComplete(() =>
+                        {
+                            _onCollectReward?.Invoke(_mission);
+                            UpdateCollectButton();
+                        });
+                });
         }
 
         private void SubscribeToMissionEvents()
@@ -107,7 +142,7 @@ namespace Boshphelm.Missions
 
         private void OnMissionCompleted(IMission mission)
         {
-            UpdateCardStatus(false, false);
+            // UpdateCardStatus(false, false);
             UpdateCollectButton();
         }
 

@@ -15,12 +15,14 @@ namespace Boshphelm.Missions
 
         public override object SaveMission() => currentRepetitions;
 
-        public override void LoadProgress(object progress)
+        public override void LoadProgress(object loadedData)
         {
-            if (progress is int loadedRepetitions)
-            {
-                currentRepetitions = loadedRepetitions;
-            }
+            if (loadedData is not int loadedRepetitions) return;
+
+            currentRepetitions = loadedRepetitions;
+
+            float progress = (float)currentRepetitions / requiredRepetitions;
+            UpdateProgress(progress);
         }
 
         public override bool CheckCompletion() => currentRepetitions >= requiredRepetitions;

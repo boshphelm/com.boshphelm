@@ -8,9 +8,10 @@ namespace Boshphelm.Missions
 {
     public abstract class BaseMission : IMission
     {
-        public SerializableGuid MissionId { get; protected set; }
-        public string MissionName { get; protected set; }
-        public string Description { get; protected set; }
+        public SerializableGuid MissionId { get; }
+        public string MissionName { get; }
+        public string Description { get; }
+        public bool Main { get; }
         public bool IsCompleted { get; protected set; }
         public bool IsActive { get; protected set; }
         public bool IsFinished { get; protected set; }
@@ -30,6 +31,7 @@ namespace Boshphelm.Missions
             MissionName = info.Name;
             Description = info.Description;
             Reward = info.Reward;
+            Main = info.Main;
             RequiredMissions = info.RequiredMissions;
             IsCompleted = false;
             IsActive = false;

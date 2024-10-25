@@ -13,6 +13,7 @@ namespace Boshphelm.Missions
         SerializableGuid MissionId { get; }
         string MissionName { get; }
         string Description { get; }
+        bool Main { get; }
         bool IsCompleted { get; }
         bool IsActive { get; }
         bool IsFinished { get; }

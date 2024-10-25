@@ -1,0 +1,123 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1411810430127855273
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7090943904193957816}
+  - component: {fileID: 9122420167995890347}
+  - component: {fileID: 8695871255939255500}
+  - component: {fileID: 2635749005528520187}
+  - component: {fileID: 6555256012158715243}
+  - component: {fileID: 7153287127392287493}
+  m_Layer: 0
+  m_Name: MissionManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7090943904193957816
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1411810430127855273}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9122420167995890347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1411810430127855273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08dbc55e020c56d4789c983938da646b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _wallet: {fileID: 0}
+  _allMissionTypes: []
+  _gameEventManagerBase: {fileID: 0}
+--- !u!114 &8695871255939255500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1411810430127855273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37b5dcd1248b8bf4a90a042b6da89853, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _moneyParticle: {fileID: 0}
+  _missionManager: {fileID: 9122420167995890347}
+  _scrollRect: {fileID: 0}
+  _missionCardPrefab: {fileID: 4493529532487559279, guid: 490633ef99fb913489440bf24d38d64e, type: 3}
+  _missionCardContainer: {fileID: 0}
+  _mainMissionsButton: {fileID: 0}
+  _sideMissionsButton: {fileID: 0}
+  _playMissionCompleteSound: {fileID: 0}
+--- !u!114 &2635749005528520187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1411810430127855273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16fc0023312302549a941f9f099630b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uniqueIdentifier: 83cb5b95-19d8-4b85-b2e3-f354b52c6793
+  _onSaveablesRequested: {fileID: 11400000, guid: 30974261ad806c348b5bb1abfd299591, type: 2}
+--- !u!114 &6555256012158715243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1411810430127855273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 151a16beffb60e6449eacd5ab47e8801, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _missionManager: {fileID: 9122420167995890347}
+  _missionCompletedPopUpNotifier: {fileID: 7153287127392287493}
+  _scrollRect: {fileID: 0}
+  _notificationIcon: {fileID: 0}
+  _mainMissionsNotificationIcon: {fileID: 0}
+  _sideMissionsNotificationIcon: {fileID: 0}
+  _openPanelButton: {fileID: 0}
+  _closePanelButton: {fileID: 0}
+  _missionPanel: {fileID: 0}
+--- !u!114 &7153287127392287493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1411810430127855273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c8b05a82584ae64191dbb6bd571edfc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maskGO: {fileID: 0}
+  _popUp: {fileID: 0}
+  _targetPos: {x: 27, y: 0, z: 0}

@@ -2,7 +2,7 @@
     "name": "Boshphelm.Missions.Editor",
     "rootNamespace": "Boshphelm.Missions.Editor",
     "references": [
-        "GUID:b3e455ce9fbedf440b636eabb3d2dbf7"
+        "GUID:5bfedeccaeca80f44b4dfff4203e6c8d"
     ],
     "includePlatforms": [
         "Editor"

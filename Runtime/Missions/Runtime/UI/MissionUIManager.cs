@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Boshphelm.Utility;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,20 +8,87 @@ namespace Boshphelm.Missions
 {
     public class MissionUIManager : MonoBehaviour
     {
+        [SerializeField] private AssetKits.ParticleImage.ParticleImage _moneyParticle;
         [SerializeField] private MissionManager _missionManager;
+        [SerializeField] private ScrollRect _scrollRect;
         [SerializeField] private GameObject _missionCardPrefab;
         [SerializeField] private Transform _missionCardContainer;
-        [SerializeField] private ScrollRect _scrollRect;
-
+        [SerializeField] private Button _mainMissionsButton;
+        [SerializeField] private Button _sideMissionsButton;
         private readonly Dictionary<SerializableGuid, MissionCard> _missionCards = new Dictionary<SerializableGuid, MissionCard>();
-
+        private bool _showingMainMissions = true;
+        [Header("Broadcasting..")]
+        [SerializeField] private VoidEventChannel _playMissionCompleteSound;
         public void Initialize()
         {
             InitializeMissionCards();
             SubscribeToEvents();
+            SetupMissionTypeButtons();
 
             var missionRewardCollectionNotifier = GetComponent<MissionRewardCollectionNotifier>();
             missionRewardCollectionNotifier.Initialize();
+
+            UpdateScrollRectPositionToTop();
+        }
+
+        private void SubscribeToEvents()
+        {
+            if (_missionManager == null) return;
+
+            _missionManager.OnMissionsUpdated += UpdateMissionCards;
+            _missionManager.OnMissionCompleted += HandleMissionCompleted;
+            _missionManager.OnMissionRewardCollected += HandleMissionRewardCollected;
+            _missionManager.OnMissionProgressUpdated += HandleMissionProgressUpdated;
+            _missionManager.OnMissionFinished += HandleMissionFinished;
+        }
+
+        private void SetupMissionTypeButtons()
+        {
+            _mainMissionsButton.onClick.AddListener(() =>
+            {
+                _showingMainMissions = true;
+                ShowMissionsByType(true);
+                MissionTabsButtonStates();
+                UpdateScrollRectPositionToTop();
+            });
+
+            _sideMissionsButton.onClick.AddListener(() =>
+            {
+                _showingMainMissions = false;
+                ShowMissionsByType(false);
+                MissionTabsButtonStates();
+                UpdateScrollRectPositionToTop();
+            });
+
+            ShowMissionsByType(true);
+            MissionTabsButtonStates();
+        }
+        private void UpdateScrollRectPositionToTop()
+        {
+            Canvas.ForceUpdateCanvases();
+            _scrollRect.normalizedPosition = new Vector2(0, 1);
+        }
+        private void MissionTabsButtonStates()
+        {
+            _mainMissionsButton.interactable = !_showingMainMissions;
+            _sideMissionsButton.interactable = _showingMainMissions;
+        }
+
+        private void ShowMissionsByType(bool showMainMissions)
+        {
+            var activeMissions = _missionManager.GetActiveMissions();
+            var nextMissions = _missionManager.GetNextMissions();
+            foreach (var missionCard in _missionCards.Values)
+            {
+                bool isActive = activeMissions.Contains(missionCard.Mission);
+                bool isNext = nextMissions.Contains(missionCard.Mission);
+
+                bool shouldShow = missionCard.Mission.Main == showMainMissions;
+
+                missionCard.UpdateCardStatus(shouldShow, isActive, isNext);
+            }
+
+            SortMissionCards();
         }
 
         private void InitializeMissionCards()
@@ -29,19 +97,9 @@ namespace Boshphelm.Missions
             foreach (var mission in allMissions)
             {
                 if (mission.IsFinished) continue;
-
                 CreateMissionCard(mission);
             }
             UpdateMissionCards();
-        }
-
-        private void SubscribeToEvents()
-        {
-            _missionManager.OnMissionsUpdated += UpdateMissionCards;
-            _missionManager.OnMissionCompleted += HandleMissionCompleted;
-            _missionManager.OnMissionRewardCollected += HandleMissionRewardCollected;
-            _missionManager.OnMissionProgressUpdated += HandleMissionProgressUpdated;
-            _missionManager.OnMissionFinished += HandleMissionFinished;
         }
 
         private void CreateMissionCard(IMission mission)
@@ -51,9 +109,10 @@ namespace Boshphelm.Missions
 
             if (missionCard != null)
             {
-                //Debug.Log("MISSION : " + mission.MissionName + ", CARD CREATING : " + mission.MissionId.ToHexString());
                 missionCard.SetupCard(mission, mission.IsActive, false, CollectReward);
                 _missionCards[mission.MissionId] = missionCard;
+
+                cardObject.SetActive(mission.Main == _showingMainMissions);
             }
         }
 
@@ -64,68 +123,85 @@ namespace Boshphelm.Missions
 
             foreach (var missionCard in _missionCards.Values)
             {
-                bool isActive = activeMissions.Contains(missionCard.Mission);
-                bool isNext = nextMissions.Contains(missionCard.Mission);
-                missionCard.RefreshCard(isActive, isNext);
+                var mission = missionCard.Mission;
+                if (mission.Main == _showingMainMissions)
+                {
+                    bool isActive = activeMissions.Contains(mission);
+                    bool isNext = nextMissions.Contains(mission);
+                    missionCard.RefreshCard(isActive, isNext);
+                }
             }
 
-            // Optional: Sort cards based on status (active, next, others)
             SortMissionCards();
         }
 
         private void SortMissionCards()
         {
-            var sortedCards = new List<Transform>();
+            var sortedCards = new List<MissionCard>();
+            var currentTypeMissions = new List<IMission>();
 
-            // First, add active missions
-            foreach (var mission in _missionManager.GetActiveMissions())
+            foreach (var card in _missionCards.Values)
             {
-                if (_missionCards.TryGetValue(mission.MissionId, out var card))
+                if (card.Mission.Main == _showingMainMissions)
                 {
-                    sortedCards.Add(card.transform);
+                    currentTypeMissions.Add(card.Mission);
                 }
             }
 
-            // Then, add next missions
+            var activeMissions = _missionManager.GetActiveMissions().OrderByDescending(m => m.IsCompleted && !m.IsRewardCollected).ToList();
+            foreach (var mission in activeMissions)
+            {
+                if (mission.Main == _showingMainMissions && _missionCards.TryGetValue(mission.MissionId, out var card))
+                {
+                    sortedCards.Add(card);
+                }
+            }
+
             foreach (var mission in _missionManager.GetNextMissions())
             {
-                if (_missionCards.TryGetValue(mission.MissionId, out var card))
+                if (mission.Main == _showingMainMissions && _missionCards.TryGetValue(mission.MissionId, out var card))
                 {
-                    if (!sortedCards.Contains(card.transform))
+                    if (!sortedCards.Contains(card))
                     {
-                        sortedCards.Add(card.transform);
+                        sortedCards.Add(card);
                     }
                 }
             }
 
-            // Finally, add remaining missions
-            foreach (var card in _missionCards.Values)
+            foreach (var mission in currentTypeMissions)
             {
-                if (!sortedCards.Contains(card.transform))
+                if (_missionCards.TryGetValue(mission.MissionId, out var card))
                 {
-                    sortedCards.Add(card.transform);
+                    if (!sortedCards.Contains(card))
+                    {
+                        sortedCards.Add(card);
+                    }
                 }
             }
 
-            // Set the sorted order
             for (int i = 0; i < sortedCards.Count; i++)
             {
-                sortedCards[i].SetSiblingIndex(i);
+                sortedCards[i].transform.SetSiblingIndex(i);
             }
-
-            // Scroll to top after sorting
-            Canvas.ForceUpdateCanvases();
-            //_scrollRect.normalizedPosition = new Vector2(0, 1);
         }
 
         private void CollectReward(IMission mission)
         {
+            if (_missionCards.TryGetValue(mission.MissionId, out var card)) SetupParticle(card.GetComponent<RectTransform>().position);
+            _playMissionCompleteSound.RaiseEvent();
             _missionManager.CollectReward(mission);
+        }
+
+        private void SetupParticle(Vector3 originPosition)
+        {
+            _moneyParticle.gameObject.SetActive(false);
+            _moneyParticle.rectTransform.position = originPosition;
+            _moneyParticle.gameObject.SetActive(true);
         }
 
         private void HandleMissionCompleted(IMission mission)
         {
-            if (_missionCards.TryGetValue(mission.MissionId, out var card))
+            if (_missionCards.TryGetValue(mission.MissionId, out var card) && mission.Main == _showingMainMissions)
             {
                 card.RefreshCard(mission.IsActive, false);
             }
@@ -133,18 +209,16 @@ namespace Boshphelm.Missions
 
         private void HandleMissionRewardCollected(IMission mission)
         {
-            if (_missionCards.TryGetValue(mission.MissionId, out var card))
+            if (_missionCards.TryGetValue(mission.MissionId, out var card) && mission.Main == _showingMainMissions)
             {
                 card.RefreshCard(mission.IsActive, false);
-
-                // TODO: Reward Collect UI Animation ?
                 mission.Finish();
             }
         }
 
         private void HandleMissionProgressUpdated(IMission mission, float progress)
         {
-            if (_missionCards.TryGetValue(mission.MissionId, out var card))
+            if (_missionCards.TryGetValue(mission.MissionId, out var card) && mission.Main == _showingMainMissions)
             {
                 card.RefreshCard(mission.IsActive, false);
             }
@@ -153,13 +227,11 @@ namespace Boshphelm.Missions
         private void HandleMissionFinished(IMission mission)
         {
             if (!_missionCards.Remove(mission.MissionId, out var card)) return;
-
             Destroy(card.gameObject);
         }
 
         private void OnDestroy()
         {
-            // Unsubscribe from events to prevent memory leaks
             if (_missionManager != null)
             {
                 _missionManager.OnMissionsUpdated -= UpdateMissionCards;
@@ -168,6 +240,9 @@ namespace Boshphelm.Missions
                 _missionManager.OnMissionProgressUpdated -= HandleMissionProgressUpdated;
                 _missionManager.OnMissionFinished -= HandleMissionFinished;
             }
+
+            _mainMissionsButton.onClick.RemoveAllListeners();
+            _sideMissionsButton.onClick.RemoveAllListeners();
         }
     }
 }

@@ -85,7 +85,7 @@ namespace Boshphelm.Missions
             foreach (var requiredMissionId in mission.RequiredMissions)
             {
                 if (!_allMissions.TryGetValue(requiredMissionId, out var requiredMission)) continue;
-                if (requiredMission.IsFinished) continue;
+                if (requiredMission.IsCompleted) continue;
 
                 return false;
             }
@@ -94,6 +94,7 @@ namespace Boshphelm.Missions
 
         private void HandleMissionCompleted(IMission mission)
         {
+            UpdateAllMissions();
             OnMissionCompleted?.Invoke(mission);
             OnMissionsUpdated?.Invoke();
         }
@@ -116,7 +117,7 @@ namespace Boshphelm.Missions
 
         private void HandleMissionFinished(IMission mission)
         {
-            UpdateAllMissions();
+            //UpdateAllMissions();
             OnMissionFinished.Invoke(mission);
         }
 
@@ -137,7 +138,7 @@ namespace Boshphelm.Missions
                 mission.CollectReward();
                 foreach (var price in mission.Reward)
                 {
-                    _wallet.AddCurrency(price); 
+                    _wallet.AddCurrency(price);
                 }
             }
         }
@@ -146,30 +147,38 @@ namespace Boshphelm.Missions
 
         public List<IMission> GetActiveMissions()
         {
-            return _allMissions.Values.Where(m => m.IsActive).ToList();
+            return _allMissions.Values.Where(m => m.IsActive).OrderByDescending(m => m.Main).ToList();
         }
 
         public List<IMission> GetNextMissions()
         {
             var nextMissions = new List<IMission>();
-            var activeMissions = GetActiveMissions();
 
             foreach (var (id, mission) in _allMissions)
             {
-                if (!mission.IsActive) continue;
-
+                bool next = false;
                 foreach (var requiredMissionId in mission.RequiredMissions)
                 {
                     if (!_allMissions.TryGetValue(requiredMissionId, out var requiredMission)) continue;
-                    if (!nextMissions.Contains(requiredMission)) continue;
-                    if (activeMissions.Contains(requiredMission)) continue;
+                    if (!requiredMission.IsActive) continue;
 
-                    nextMissions.Add(requiredMission);
+                    //Debug.Log("NEXT MISSION : " + mission.MissionName + ", CURRENTLY ACTIVE MISSION : " + requiredMission.MissionName);
+                    next = true;
+                    break;
                 }
 
+                if (next && !nextMissions.Contains(mission))
+                {
+                    nextMissions.Add(mission);
+                }
             }
 
             return nextMissions;
+        }
+
+        public int GetUncollectedMissionRewardCount()
+        {
+            return GetActiveMissions().Count(activeMission => activeMission.IsCompleted && !activeMission.IsRewardCollected);
         }
 
         public object CaptureState()
