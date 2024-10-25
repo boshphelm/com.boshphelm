@@ -3,29 +3,21 @@ using Cinemachine;
 using Boshphelm.StateMachines;
 
 namespace Boshphelm.CameraState
-{ 
+{    
     public class CameraStateManager : StateMachine 
     {
-        [Header("Required Components")]
-        [SerializeField] private CinemachineVirtualCamera _virtualCamera;
-        [SerializeField] private CameraStateConfig _config;
-        
-        [Header("Target Settings")]
-        [SerializeField] private Transform _target;
+        [Header("Cameras")]
+        [SerializeField] private CinemachineVirtualCamera _idleCamera; 
+          
+        private IdleCameraState _idleState; 
 
-        private IdleCameraState _idleState;
+        private void Start() => Init();
 
-        private void Start() => InitializeStates();
-
-        private void InitializeStates()
+        private void Init()
         {
-            IdleCameraState();
-        }
-
-        private void IdleCameraState()
-        {
-            _idleState = new IdleCameraState(this, _virtualCamera, _config, _target);
+            _idleState = new IdleCameraState(this, _idleCamera, null);  
             SwitchState(_idleState);
-        }
+        } 
     }  
 }
+ 
