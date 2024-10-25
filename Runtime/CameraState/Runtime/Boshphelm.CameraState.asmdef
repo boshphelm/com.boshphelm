@@ -1,0 +1,18 @@
+{
+    "name": "Boshphelm.CameraState",
+    "rootNamespace": "Boshphelm.CameraState",
+    "references": [
+        "GUID:fdac0d44585c58b43949dd0921a090a1",
+        "GUID:da7e7b0b983da4e4f8fa708c22c41e07",
+        "GUID:4307f53044263cf4b835bd812fc161a4"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
