@@ -1,0 +1,18 @@
+{
+    "name": "Boshphelm.GameStateSystem",
+    "rootNamespace": "Boshphelm.GameStateSystem",
+    "references": [
+        "GUID:ab331996bb1e6bf4eb3389d29a9d90a2",
+        "GUID:fdac0d44585c58b43949dd0921a090a1",
+        "GUID:ccb71f8a9b597654d9a351b0c3cfcac5"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
