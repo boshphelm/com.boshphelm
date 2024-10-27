@@ -4,8 +4,7 @@ namespace Boshphelm.Panel
     {
         void Open();
         void Close();
-        bool IsOpen { get; }
-        PanelType Type { get; }
+        bool IsOpen { get; } 
     }
 
 }

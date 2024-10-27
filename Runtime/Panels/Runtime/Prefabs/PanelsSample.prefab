@@ -35,6 +35,7 @@ RectTransform:
   - {fileID: 73729789245906593}
   - {fileID: 7038741307841124516}
   - {fileID: 8829747013698631587}
+  - {fileID: 3991778178913642121}
   m_Father: {fileID: 5667861570359783782}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -153,7 +154,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panelObject: {fileID: 4788014478145165902}
-  panelType: 0
   _delayComplete: 0
   _completeCommandHandler: {fileID: 2892456090262447602}
 --- !u!114 &2892456090262447602
@@ -631,6 +631,41 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &2337172966777589139
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3991778178913642121}
+  m_Layer: 5
+  m_Name: SettingsUI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &3991778178913642121
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2337172966777589139}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4903674426693402810}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2523359816116086063
 GameObject:
   m_ObjectHideFlags: 0
@@ -788,7 +823,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panelObject: {fileID: 3325471677323694240}
-  panelType: 2
 --- !u!1 &3066990957607150756
 GameObject:
   m_ObjectHideFlags: 0
@@ -1591,7 +1625,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panelObject: {fileID: 1497058441267985151}
-  panelType: 3
 --- !u!1 &5028692947410246760
 GameObject:
   m_ObjectHideFlags: 0
@@ -1601,8 +1634,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5667861570359783782}
-  - component: {fileID: 7175318262971378992}
-  - component: {fileID: 5773301353540886872}
+  - component: {fileID: 573079032593205981}
   m_Layer: 0
   m_Name: PanelsSample
   m_TagString: Untagged
@@ -1628,9 +1660,10 @@ Transform:
   - {fileID: 1707360268505752248}
   - {fileID: 1633705595174634073}
   - {fileID: 4903674426693402810}
+  - {fileID: 3681612776347481685}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7175318262971378992
+--- !u!114 &573079032593205981
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1639,27 +1672,30 @@ MonoBehaviour:
   m_GameObject: {fileID: 5028692947410246760}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27b957ec6b1fd8e46ba63ce719e2655d, type: 3}
+  m_Script: {fileID: 11500000, guid: 7eaca58d1678f7348902c687d61ff51e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _panelManager: {fileID: 5773301353540886872}
---- !u!114 &5773301353540886872
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5028692947410246760}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c004f57bb744fc4cbe68b26af92ef76, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _panelsInScene:
-  - {fileID: 5412581431345164755}
-  - {fileID: 1272374046698646562}
-  - {fileID: 7565273362214518292}
-  - {fileID: 5047186658926502841}
+  _panelConfigs:
+  - Type: 1
+    Panel: {fileID: 5047186658926502841}
+    LinkedPanels: 
+    IncompatiblePanels: 
+  - Type: 2
+    Panel: {fileID: 7565273362214518292}
+    LinkedPanels: 
+    IncompatiblePanels: 
+  - Type: 3
+    Panel: {fileID: 5412581431345164755}
+    LinkedPanels: 
+    IncompatiblePanels: 
+  - Type: 4
+    Panel: {fileID: 1272374046698646562}
+    LinkedPanels: 
+    IncompatiblePanels: 
+  - Type: 5
+    Panel: {fileID: 6381807661317166438}
+    LinkedPanels: 
+    IncompatiblePanels: 
 --- !u!1 &5635673056730969813
 GameObject:
   m_ObjectHideFlags: 0
@@ -2053,7 +2089,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panelObject: {fileID: 4119546406950061566}
-  panelType: 1
   _failCommandHandler: {fileID: 1701419716336995422}
 --- !u!114 &1701419716336995422
 MonoBehaviour:
@@ -2069,6 +2104,51 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _commands:
   - {fileID: 2640595753370054816}
+--- !u!1 &7064902964862818839
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3681612776347481685}
+  - component: {fileID: 6381807661317166438}
+  m_Layer: 0
+  m_Name: SettingsPanelController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3681612776347481685
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7064902964862818839}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5667861570359783782}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6381807661317166438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7064902964862818839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 664a4c9a054331b4fa547ca96fe4bf77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  panelObject: {fileID: 2337172966777589139}
 --- !u!1 &7843846059675499837
 GameObject:
   m_ObjectHideFlags: 0

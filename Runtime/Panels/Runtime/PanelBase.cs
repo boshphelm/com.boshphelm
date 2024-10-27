@@ -4,12 +4,10 @@ namespace Boshphelm.Panel
 {
     public abstract class PanelBase : MonoBehaviour, IPanel
     {
-        [SerializeField] protected GameObject panelObject;
-        [SerializeField] protected PanelType panelType;
+        [SerializeField] protected GameObject panelObject; 
 
         protected bool isOpen;
-        public bool IsOpen => isOpen;
-        public PanelType Type => panelType;
+        public bool IsOpen => isOpen; 
 
         public virtual void Open()
         {
