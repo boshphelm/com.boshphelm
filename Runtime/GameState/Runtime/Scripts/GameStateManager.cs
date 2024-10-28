@@ -8,10 +8,8 @@ namespace Boshphelm.GameStateSystem
 { 
     public class GameStateManager : StateMachine
     {
-        [SerializeField] private GamePanelService _panelService; 
-
-        private Dictionary<Type, GameState> _states;
-        
+        [SerializeField] private GamePanelService _panelService;  
+        private Dictionary<Type, GameState> _states; 
         public event Action<GameState> OnStateChanged;
 
         private void Awake() => InitializeStates(); 

@@ -1,6 +1,4 @@
-using Boshphelm.Panel;
-using UnityEngine;
-
+using Boshphelm.Panel; 
 namespace Boshphelm.GameStateSystem
 {
     // 1. State tanımları
@@ -15,8 +13,7 @@ namespace Boshphelm.GameStateSystem
         }
 
         public override void Enter()
-        {
-            Time.timeScale = 0f;
+        { 
             _panelService.CloseAllPanels();
             _panelService.OpenPanel(GamePanelType.Menu);
         }

@@ -8,6 +8,7 @@ namespace Boshphelm.CameraState
     {
         [Header("Cameras")]
         [SerializeField] private CinemachineVirtualCamera _idleCamera; 
+        [SerializeField] private CinemachineVirtualCamera _seCamera; 
           
         private IdleCameraState _idleState; 
 
@@ -17,7 +18,7 @@ namespace Boshphelm.CameraState
         {
             _idleState = new IdleCameraState(this, _idleCamera, null);  
             SwitchState(_idleState);
-        } 
+        }  
     }  
 }
  

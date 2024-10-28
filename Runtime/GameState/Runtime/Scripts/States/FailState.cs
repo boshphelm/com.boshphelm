@@ -1,5 +1,4 @@
-using Boshphelm.Panel;
-using UnityEngine;
+using Boshphelm.Panel; 
 
 namespace Boshphelm.GameStateSystem
 {
@@ -14,8 +13,7 @@ namespace Boshphelm.GameStateSystem
         }
 
         public override void Enter()
-        {
-            Time.timeScale = 0f;
+        { 
             _panelService.ClosePanel(GamePanelType.InGame);
             _panelService.OpenPanel(GamePanelType.Fail);
         }

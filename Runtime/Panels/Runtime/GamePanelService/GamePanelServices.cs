@@ -7,12 +7,13 @@ namespace Boshphelm.Panel
 {
     public class GamePanelService : MonoBehaviour, IGamePanelService
     {
-        [SerializeField] private PanelConfig[] _panelConfigs;
+        [SerializeField] private PanelConfig[] _panelConfigs; 
         
         private Dictionary<GamePanelType, PanelBase> _panels;
         private HashSet<GamePanelType> _activePanels;
-        private Dictionary<GamePanelType, List<GamePanelType>> _openingPanels;
-
+        private Dictionary<GamePanelType, List<GamePanelType>> _openingPanels; 
+        public event Action<GamePanelType, bool> OnPanelStateChanged;
+        
         private void Awake()
         {
             InitializePanels();
@@ -169,7 +170,5 @@ namespace Boshphelm.Panel
         {
             return _panelConfigs.FirstOrDefault(c => c.Type == type);
         }
-
-        public event Action<GamePanelType, bool> OnPanelStateChanged;
     }
 }
