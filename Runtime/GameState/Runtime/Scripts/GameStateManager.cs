@@ -1,16 +1,12 @@
 using System;
-using System.Collections.Generic;
-using Boshphelm.Panel;
-using Boshphelm.StateMachines;
-using UnityEngine;
+using System.Collections.Generic; 
+using Boshphelm.StateMachines; 
 
 namespace Boshphelm.GameStateSystem
 { 
     public class GameStateManager : StateMachine
-    {
-        [SerializeField] private GamePanelService _panelService;  
-        private Dictionary<Type, GameState> _states; 
-        public event Action<GameState> OnStateChanged;
+    { 
+        private Dictionary<Type, GameState> _states;  
 
         private void Awake() => InitializeStates(); 
 
@@ -18,25 +14,19 @@ namespace Boshphelm.GameStateSystem
         {
             _states = new Dictionary<Type, GameState>
             {
-                { typeof(MenuState), new MenuState(this, _panelService) },
-                { typeof(PlayState), new PlayState(this, _panelService) },
-                { typeof(FailState), new FailState(this, _panelService) },
-                { typeof(CompleteState), new CompleteState(this, _panelService) }
+                { typeof(MenuState), new MenuState(this) },
+                { typeof(PlayState), new PlayState(this) },
+                { typeof(FailState), new FailState(this) },
+                { typeof(CompleteState), new CompleteState(this) }
             };
  
-            ChangeState(_states[typeof(MenuState)]);
-        }
+            SwitchState(_states[typeof(MenuState)]);
+        } 
 
-        private void ChangeState(GameState gameState)
-        {
-            SwitchState(gameState);
-            OnStateChanged?.Invoke(gameState);
-        }
-
-        public void GoToMenu() => ChangeState(_states[typeof(MenuState)]);
-        public void StartGame() => ChangeState(_states[typeof(PlayState)]);
-        public void GameOver() => ChangeState(_states[typeof(FailState)]);
-        public void Complete() => ChangeState(_states[typeof(CompleteState)]);
+        public void GoToMenu() => SwitchState(_states[typeof(MenuState)]);
+        public void StartGame() => SwitchState(_states[typeof(PlayState)]);
+        public void GameOver() => SwitchState(_states[typeof(FailState)]);
+        public void Complete() => SwitchState(_states[typeof(CompleteState)]);
  
     }
 }

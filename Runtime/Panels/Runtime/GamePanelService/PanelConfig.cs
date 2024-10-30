@@ -1,14 +1,20 @@
-using System; 
+using System;
+using UnityEngine;
 
 namespace Boshphelm.Panel
 {
-    // Her panel için config
     [Serializable]
-    public class PanelConfig 
+    public class PanelConfig
     {
-        public GamePanelType Type;
-        public PanelBase Panel; 
-        public GamePanelType[] LinkedPanels;  // Bu panel açıldığında otomatik açılacak paneller 
-        public GamePanelType[] IncompatiblePanels;  // Bu panel açıkken kapanması gereken paneller
+        [Header("Core Settings")]
+        public GamePanelTypeSO Type;
+        public PanelBase Panel;
+        
+        [Header("Dependencies")]
+        [Tooltip("Panels that will be opened automatically when this panel opens")]
+        public GamePanelTypeSO[] LinkedPanels;
+        
+        [Tooltip("Panels that cannot be open at the same time as this panel")]
+        public GamePanelTypeSO[] IncompatiblePanels;
     }
 }

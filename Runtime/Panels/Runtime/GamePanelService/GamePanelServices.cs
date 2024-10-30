@@ -1,124 +1,149 @@
 using UnityEngine;
 using System;
-using System.Collections.Generic;
-using System.Linq; 
+using System.Linq;
 
 namespace Boshphelm.Panel
 {
-    public class GamePanelService : MonoBehaviour, IGamePanelService
+   public class GamePanelService : MonoBehaviour, IGamePanelService
     {
-        [SerializeField] private PanelConfig[] _panelConfigs; 
+        [SerializeField] private GamePanelTypeDatabase _panelTypeDatabase;
+        [SerializeField] private PanelConfig[] _panelSetups;
+
+        private PanelManager _panelManager;
+        private PanelDependencyChecker _dependencyChecker;
         
-        private Dictionary<GamePanelType, PanelBase> _panels;
-        private HashSet<GamePanelType> _activePanels;
-        private Dictionary<GamePanelType, List<GamePanelType>> _openingPanels; 
-        public event Action<GamePanelType, bool> OnPanelStateChanged;
-        
+        public event Action<GamePanelTypeSO, bool> OnPanelStateChanged;
+
         private void Awake()
         {
-            InitializePanels();
+            InitializeServices();
+            RegisterPanels();
         }
 
-        private void InitializePanels()
+        private void InitializeServices()
         {
-            _panels = new Dictionary<GamePanelType, PanelBase>();
-            _activePanels = new HashSet<GamePanelType>();
-            _openingPanels = new Dictionary<GamePanelType, List<GamePanelType>>();
+            _panelManager = new PanelManager(_panelTypeDatabase);
+            _dependencyChecker = new PanelDependencyChecker();
+        }
 
-            foreach (var config in _panelConfigs)
+        private void RegisterPanels()
+        {
+            foreach (var config in _panelSetups)
             {
-                if (config.Panel != null)
-                {
-                    _panels[config.Type] = config.Panel;
-                }
+                _panelManager.RegisterPanel(config.Type, config.Panel);
             }
         }
 
-        public void OpenPanel(GamePanelType panelType)
+        public void OpenPanel(GamePanelTypeSO panelType)
         {
-            if (!_panels.TryGetValue(panelType, out var panel))
-            {
-                Debug.LogWarning($"Panel not found: {panelType}");
+            if (!_panelManager.TryGetPanel(panelType.Id, out var panel))
                 return;
-            }
 
-            if (IsCircularDependency(panelType))
-            {
-                Debug.LogError($"Circular dependency detected while opening panel: {panelType}");
-                return;
-            }
-
-            var config = GetPanelConfig(panelType);
+            var config = GetConfigSetup(panelType);
             if (config == null) return;
- 
-            else if (config.IncompatiblePanels != null)
-            {
-                foreach (var incompatibleType in config.IncompatiblePanels)
-                {
-                    ClosePanel(incompatibleType);
-                }
-            }
 
-            BeginPanelOpening(panelType);
+            if (_dependencyChecker.HasCircularDependency(panelType.Id, config))
+                return;
 
+            HandleIncompatiblePanels(config);
+            OpenPanelWithDependencies(panelType, config, panel);
+        }
+
+        private void OpenPanelWithDependencies(GamePanelTypeSO panelType, PanelConfig config, PanelBase panel)
+        {
+            _dependencyChecker.BeginPanelOpening(panelType.Id, config);
+
+            OpenSinglePanel(panelType, panel);
+            OpenLinkedPanels(config);
+
+            _dependencyChecker.EndPanelOpening(panelType.Id);
+        }
+
+        private void OpenSinglePanel(GamePanelTypeSO panelType, PanelBase panel)
+        {
             panel.Open();
-            _activePanels.Add(panelType);
+            _panelManager.MarkPanelAsActive(panelType.Id);
             OnPanelStateChanged?.Invoke(panelType, true);
-
-            if (config.LinkedPanels != null)
-            {
-                foreach (var linkedType in config.LinkedPanels)
-                {
-                    if (!_activePanels.Contains(linkedType))
-                    {
-                        OpenPanel(linkedType);
-                    }
-                }
-            }
-
-            EndPanelOpening(panelType);
         }
 
-        public void ClosePanel(GamePanelType panelType)
+        private void OpenLinkedPanels(PanelConfig config)
         {
-            if (!_panels.TryGetValue(panelType, out var panel))
-            {
-                return;
-            }
+            if (config.LinkedPanels == null) return;
 
-            var config = GetPanelConfig(panelType);
-            if (config == null) return;
-
-            if (config.LinkedPanels != null)
+            foreach (var linkedType in config.LinkedPanels)
             {
-                foreach (var linkedType in config.LinkedPanels)
+                if (!_panelManager.IsPanelActive(linkedType.Id))
                 {
-                    if (_activePanels.Contains(linkedType))
-                    {
-                        ClosePanel(linkedType);
-                    }
+                    OpenPanel(linkedType);
                 }
             }
+        }
 
+        private void HandleIncompatiblePanels(PanelConfig config)
+        {
+            if (config.IncompatiblePanels == null) return;
+
+            foreach (var incompatibleType in config.IncompatiblePanels)
+            {
+                ClosePanel(incompatibleType);
+            }
+        }
+
+        public void ClosePanel(GamePanelTypeSO panelType)
+        {
+            if (!_panelManager.TryGetPanel(panelType.Id, out var panel))
+                return;
+
+            var config = GetConfigSetup(panelType);
+            if (config == null) return;
+
+            ClosePanelWithDependencies(panelType, config, panel);
+        }
+
+        private void ClosePanelWithDependencies(GamePanelTypeSO panelType, PanelConfig config, PanelBase panel)
+        {
+            CloseLinkedPanels(config);
+            CloseSinglePanel(panelType, panel);
+        }
+
+        private void CloseSinglePanel(GamePanelTypeSO panelType, PanelBase panel)
+        {
             panel.Close();
-            _activePanels.Remove(panelType);
+            _panelManager.MarkPanelAsInactive(panelType.Id);
             OnPanelStateChanged?.Invoke(panelType, false);
+        }
+
+        private void CloseLinkedPanels(PanelConfig config)
+        {
+            if (config.LinkedPanels == null) return;
+
+            foreach (var linkedType in config.LinkedPanels)
+            {
+                if (_panelManager.IsPanelActive(linkedType.Id))
+                {
+                    ClosePanel(linkedType);
+                }
+            }
         }
 
         public void CloseAllPanels()
         {
-            foreach (var panelType in _activePanels.ToList())
+            foreach (var panelId in _panelManager.GetActivePanels().ToList())
             {
-                ClosePanel(panelType);
+                var panelType = _panelTypeDatabase.GetPanelType(panelId);
+                if (panelType != null)
+                {
+                    ClosePanel(panelType);
+                }
             }
         }
 
-        public bool IsPanelOpen(GamePanelType panelType)
+        public bool IsPanelOpen(GamePanelTypeSO panelType)
         {
-            return _activePanels.Contains(panelType);
+            return _panelManager.IsPanelActive(panelType.Id);
         }
 
-        public void TogglePanel(GamePanelType panelType)
+        public void TogglePanel(GamePanelTypeSO panelType)
         {
             if (IsPanelOpen(panelType))
                 ClosePanel(panelType);
@@ -126,49 +151,9 @@ namespace Boshphelm.Panel
                 OpenPanel(panelType);
         }
 
-        private bool IsCircularDependency(GamePanelType panelType)
+        private PanelConfig GetConfigSetup(GamePanelTypeSO type)
         {
-            if (!_openingPanels.ContainsKey(panelType))
-            {
-                return false;
-            }
-
-            var config = GetPanelConfig(panelType);
-            if (config?.LinkedPanels == null) return false;
-
-            foreach (var linkedType in config.LinkedPanels)
-            {
-                if (_openingPanels[panelType].Contains(linkedType))
-                {
-                    return true;
-                }
-            }
-
-            return false;
-        }
-
-        private void BeginPanelOpening(GamePanelType panelType)
-        {
-            if (!_openingPanels.ContainsKey(panelType))
-            {
-                _openingPanels[panelType] = new List<GamePanelType>();
-            }
-
-            var config = GetPanelConfig(panelType);
-            if (config?.LinkedPanels != null)
-            {
-                _openingPanels[panelType].AddRange(config.LinkedPanels);
-            }
-        }
-
-        private void EndPanelOpening(GamePanelType panelType)
-        {
-            _openingPanels.Remove(panelType);
-        }
-
-        private PanelConfig GetPanelConfig(GamePanelType type)
-        {
-            return _panelConfigs.FirstOrDefault(c => c.Type == type);
+            return _panelSetups.FirstOrDefault(config => config.Type == type);
         }
     }
 }

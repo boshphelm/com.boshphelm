@@ -9,10 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7819713378304181949}
-  - component: {fileID: 1785996212456583279}
+  - component: {fileID: 4197523604200812043}
   - component: {fileID: 4447747592391460996}
   - component: {fileID: 2545546608430947028}
-  - component: {fileID: 8514085828154808420}
   m_Layer: 0
   m_Name: PlayerCharacter
   m_TagString: Untagged
@@ -35,7 +34,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1785996212456583279
+--- !u!114 &4197523604200812043
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -44,12 +43,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 6003641141417994383}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17083316862b6d541a03235016cd9596, type: 3}
+  m_Script: {fileID: 11500000, guid: afac4a44744c5294d8ad4ef622ea1998, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _startingLevel: 1
-  _statContainer: {fileID: 4447747592391460996}
-  _levelData: {fileID: 11400000, guid: 48867b12fdbf2d4469ebeaac07dcd2c7, type: 2}
+  _statContainer: {fileID: 0}
 --- !u!114 &4447747592391460996
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -77,20 +75,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uniqueIdentifier: 5d406083-837a-41b9-9c59-96c7ffae9796
   _onSaveablesRequested: {fileID: 11400000, guid: 30974261ad806c348b5bb1abfd299591, type: 2}
---- !u!114 &8514085828154808420
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6003641141417994383}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d4add875e51ff047a54241f43f5523a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _player: {fileID: 1785996212456583279}
-  _fillImage: {fileID: 0}
-  _levelText: {fileID: 0}
-  _updateDuration: 0.5
-  _updateEase: 9
