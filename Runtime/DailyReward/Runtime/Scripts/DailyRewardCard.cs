@@ -48,9 +48,13 @@ namespace Boshphelm.DailyRewards
         private void SetupUI()
         {
             _dayText.text = $"Day {_dayIndex + 1}";
-  
-            _rewardIcon.sprite = _rewardData.Reward.CurrencyDetails.Icon;
-            _rewardAmountText.text = _rewardData.Reward.Amount.ToString(); 
+
+            if (_rewardData.Rewards.Count > 0)
+            {
+                var reward = _rewardData.Rewards[0];
+                _rewardIcon.sprite = reward.CurrencyDetails.Icon;
+                _rewardAmountText.text = reward.Amount.ToString();
+            }
         }
 
         private void SetupButton()

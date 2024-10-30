@@ -435,6 +435,10 @@ PrefabInstance:
       value: DailyRewards
       objectReference: {fileID: 0}
     - target: {fileID: 2758950458405395809, guid: 7b32345da9f138740a929fe2bd1f390e, type: 3}
+      propertyPath: _onSave
+      value: 
+      objectReference: {fileID: 11400000, guid: f7d565f72bef0a34d8195361c3c14247, type: 2}
+    - target: {fileID: 2758950458405395809, guid: 7b32345da9f138740a929fe2bd1f390e, type: 3}
       propertyPath: _wallet
       value: 
       objectReference: {fileID: 5402523546118210874}
@@ -498,6 +502,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6467970120238076361, guid: 7b32345da9f138740a929fe2bd1f390e, type: 3}
+      propertyPath: _onSaveablesRequested
+      value: 
+      objectReference: {fileID: 11400000, guid: 30974261ad806c348b5bb1abfd299591, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -582,6 +590,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7318485567600540675, guid: 5cd92ab165d558a43b02dd50ab8928a4, type: 3}
+      propertyPath: _onSave
+      value: 
+      objectReference: {fileID: 11400000, guid: f7d565f72bef0a34d8195361c3c14247, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

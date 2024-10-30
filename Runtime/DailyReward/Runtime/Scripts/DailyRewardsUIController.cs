@@ -14,8 +14,7 @@ namespace Boshphelm.DailyRewards
         [SerializeField] private TextMeshProUGUI _timeText;
         [SerializeField] private TextMeshProUGUI _streakText;
         [SerializeField] private DailyRewardCard _rewardCardPrefab;
-        
-        private DailyRewardCard[] _rewardCards;
+        private DailyRewardCard[] _rewardCards; 
         
         private void OnEnable()
         {

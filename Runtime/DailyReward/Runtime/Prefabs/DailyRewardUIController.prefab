@@ -51,6 +51,7 @@ MonoBehaviour:
   _timeText: {fileID: 4419809008416956030}
   _streakText: {fileID: 2237001759339193671}
   _rewardCardPrefab: {fileID: 6436044974793954298, guid: 7355a4fe00005924299d61ba16230ca9, type: 3}
+  _onSave: {fileID: 11400000, guid: f7d565f72bef0a34d8195361c3c14247, type: 2}
 --- !u!1 &1778213423892887624
 GameObject:
   m_ObjectHideFlags: 0

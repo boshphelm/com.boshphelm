@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7900487393477783223}
   - component: {fileID: 7087400391067494575}
+  - component: {fileID: 2148387755024770055}
   m_Layer: 0
   m_Name: DailyRewardManager
   m_TagString: Untagged
@@ -49,11 +50,24 @@ MonoBehaviour:
     Rewards:
     - CurrencyDetails: {fileID: 11400000, guid: 4194275bc8967924883d0e6694e4d5fb, type: 2}
       Amount: 100
-    IsClaimed: 0
   - Day: 1
     Rewards:
     - CurrencyDetails: {fileID: 11400000, guid: 4194275bc8967924883d0e6694e4d5fb, type: 2}
       Amount: 200
-    IsClaimed: 0
   _resetHour: 24
   _wallet: {fileID: 0}
+  _onSave: {fileID: 0}
+--- !u!114 &2148387755024770055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6212302117574767706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16fc0023312302549a941f9f099630b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uniqueIdentifier: 36a35851-bc6a-4379-adda-41a39c8a7de2
+  _onSaveablesRequested: {fileID: 11400000, guid: 7b11b04d49e93a245af9815e9b1f47fb, type: 2}

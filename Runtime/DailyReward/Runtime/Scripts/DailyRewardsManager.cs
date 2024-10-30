@@ -12,12 +12,12 @@ namespace Boshphelm.DailyRewards
     {
         [Header("Reward Settings")]
         [SerializeField] private List<DailyReward> _defaultRewards;
-        [SerializeField] private float _resetHour = 0f;  
+        [SerializeField] private float _resetHour = 0f;
         
         [Header("Dependencies")]
         [SerializeField] private Wallet _wallet;
 
-        private DailyRewardSaveData _saveData;
+        private DailyRewardSaveData _saveData = new DailyRewardSaveData();
         private bool _isInitialized;
 
         public event Action<DailyReward> OnRewardClaimed = delegate { };
@@ -25,50 +25,64 @@ namespace Boshphelm.DailyRewards
         public event Action<int> OnStreakUpdated = delegate { };
 
         [Header("Broadcasting")]
-        [SerializeField] private VoidEventChannel _onSaveablesRequested;
+        [SerializeField] private VoidEventChannel _onSave;  
 
         public void Setup()
         {
-            GenerateDailyRewards();
+            Initialize();
             StartCoroutine(TimeUpdateRoutine());
-        }
+        } 
 
-        private void GenerateDailyRewards()
+        private void Initialize()
         {
             if (_isInitialized) return;
 
+            // Save data yoksa yeni oluştur
             if (_saveData == null)
             {
+                print("null");
                 _saveData = new DailyRewardSaveData
                 {
-                    Rewards = new List<DailyReward>(_defaultRewards),
+                    ClaimedDays = new List<bool>(),
                     LastClaimTime = DateTime.MinValue,
                     CurrentStreak = 0,
                     IsTodaysClaimed = false
                 };
+
+                // Claimed days listesini default rewards sayısına göre ayarla
+                for (int i = 0; i < _defaultRewards.Count; i++)
+                {
+                    _saveData.ClaimedDays.Add(false);
+                }
+            }
+            
+            // Claimed days listesi reward sayısından küçükse tamamla
+            while (_saveData.ClaimedDays.Count < _defaultRewards.Count)
+            {
+                _saveData.ClaimedDays.Add(false);
             }
 
             CheckAndResetDaily();
             _isInitialized = true;
         }
- 
+
         public int GetRewardsCount()
         {
-            return _saveData?.Rewards?.Count ?? _defaultRewards.Count;
+            return _defaultRewards.Count;
         }
 
         public bool IsRewardClaimed(int day)
         {
-            if (day < 0 || day >= GetRewardsCount()) return false;
-            return _saveData.Rewards[day].IsClaimed;
-        } 
+            if (day < 0 || day >= _saveData.ClaimedDays.Count) return false;
+            return _saveData.ClaimedDays[day];
+        }
 
         public DailyReward GetReward(int day)
-        { 
-            if (day < 0 || day >= GetRewardsCount()) return null;
-            return _saveData.Rewards[day];
+        {
+            if (day < 0 || day >= _defaultRewards.Count) return null;
+            return _defaultRewards[day];
         }
- 
+
         public int GetCurrentStreak()
         {
             return _saveData.CurrentStreak;
@@ -78,31 +92,37 @@ namespace Boshphelm.DailyRewards
         {
             if (!CanClaimReward(day)) return;
 
-            var reward = _saveData.Rewards[day];
-             
-             
-            _wallet.AddCurrency(reward.Reward); 
+            var reward = _defaultRewards[day];
+            
+            // Ödülleri ver
+            foreach (var price in reward.Rewards)
+            {
+                _wallet.AddCurrency(price);
+            }
 
-            reward.IsClaimed = true;
+            _saveData.ClaimedDays[day] = true;
             _saveData.IsTodaysClaimed = true;
             _saveData.LastClaimTime = DateTime.Now;
-             
+            
+            // Streak güncelle
             _saveData.CurrentStreak++;
             OnStreakUpdated?.Invoke(_saveData.CurrentStreak);
 
             OnRewardClaimed?.Invoke(reward);
-            _onSaveablesRequested.RaiseEvent();
+            print("Claim");
+            _onSave?.RaiseEvent();
         }
 
         public bool CanClaimReward(int day)
         {
-            if (day < 0 || day >= GetRewardsCount()) return false;
-            if (_saveData.Rewards[day].IsClaimed) return false;
+            if (day < 0 || day >= _saveData.ClaimedDays.Count) return false;
+            if (_saveData.ClaimedDays[day]) return false;
             if (_saveData.IsTodaysClaimed) return false;
-             
+            
+            // Önceki günler claim edilmiş mi kontrol et
             for (int i = 0; i < day; i++)
             {
-                if (!_saveData.Rewards[i].IsClaimed) return false;
+                if (!_saveData.ClaimedDays[i]) return false;
             }
 
             return true;
@@ -113,11 +133,13 @@ namespace Boshphelm.DailyRewards
             var now = DateTime.Now;
             var lastClaimDate = _saveData.LastClaimTime.Date;
             var resetTime = now.Date.AddHours(_resetHour);
- 
+
+            // Eğer son claim'den bu yana reset zamanı geçtiyse
             if (now >= resetTime && lastClaimDate < now.Date)
             {
                 var daysDifference = (now.Date - lastClaimDate).Days;
- 
+
+                // Eğer bir günden fazla geçtiyse streak'i sıfırla
                 if (daysDifference > 1)
                 {
                     ResetStreak();
@@ -131,10 +153,11 @@ namespace Boshphelm.DailyRewards
         {
             _saveData.CurrentStreak = 0;
             OnStreakUpdated?.Invoke(0);
- 
-            foreach (var reward in _saveData.Rewards)
+
+            // Tüm claim durumlarını resetle
+            for (int i = 0; i < _saveData.ClaimedDays.Count; i++)
             {
-                reward.IsClaimed = false;
+                _saveData.ClaimedDays[i] = false;
             }
         }
 
@@ -161,18 +184,15 @@ namespace Boshphelm.DailyRewards
             }
         }
 
-        #region Save System Implementation
         public object CaptureState()
-        {
+        { 
             return _saveData;
         }
 
         public void RestoreState(object state)
         {
-            _saveData = (DailyRewardSaveData)state;
-            _isInitialized = false;
-            GenerateDailyRewards();
-        }
-        #endregion
+            _saveData = (DailyRewardSaveData)state;  
+        }     
+
     }
 }

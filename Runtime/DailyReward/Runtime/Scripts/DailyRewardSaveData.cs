@@ -2,13 +2,13 @@ using System;
 using System.Collections.Generic;
 
 namespace Boshphelm.DailyRewards
-{
+{    
     [Serializable]
     public class DailyRewardSaveData
     {
-        public List<DailyReward> Rewards;
-        public DateTime LastClaimTime;
-        public int CurrentStreak;
-        public bool IsTodaysClaimed;
+        public List<bool> ClaimedDays = new List<bool>();  // Hangi günlerin claim edildiği
+        public DateTime LastClaimTime;                      // Son claim zamanı
+        public int CurrentStreak;                          // Mevcut streak
+        public bool IsTodaysClaimed;                       // Bugün claim yapıldı mı
     }
 }

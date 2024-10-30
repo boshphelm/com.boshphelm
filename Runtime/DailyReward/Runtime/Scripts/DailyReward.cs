@@ -8,7 +8,6 @@ namespace Boshphelm.DailyRewards
     public class DailyReward
     {
         public int Day;
-        public Price Reward;
-        public bool IsClaimed;
+        public List<Price> Rewards;
     }
 }
