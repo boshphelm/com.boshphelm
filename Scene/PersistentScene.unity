@@ -419,10 +419,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 449883500330262658, guid: 25f231b605636a149839023911faf340, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1384847948324588469, guid: 25f231b605636a149839023911faf340, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -463,47 +459,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2781607938385873314, guid: 25f231b605636a149839023911faf340, type: 3}
-      propertyPath: _conditionsByOrder.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2781607938385873314, guid: 25f231b605636a149839023911faf340, type: 3}
-      propertyPath: _tutorialConditions.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2781607938385873314, guid: 25f231b605636a149839023911faf340, type: 3}
-      propertyPath: _conditionsByOrder.Array.data[0]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2781607938385873314, guid: 25f231b605636a149839023911faf340, type: 3}
-      propertyPath: _tutorialConditions.Array.data[0]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3129301672359704900, guid: 25f231b605636a149839023911faf340, type: 3}
-      propertyPath: _panelSetups.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4257842344330870625, guid: 25f231b605636a149839023911faf340, type: 3}
-      propertyPath: _tutorials.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4257842344330870625, guid: 25f231b605636a149839023911faf340, type: 3}
-      propertyPath: _tutorials.Array.data[1]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4497361652098737735, guid: 25f231b605636a149839023911faf340, type: 3}
-      propertyPath: m_Name
-      value: CharacterLevelable
-      objectReference: {fileID: 0}
     - target: {fileID: 7985957255890858518, guid: 25f231b605636a149839023911faf340, type: 3}
       propertyPath: m_Name
       value: BoshphelmSystem
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 1950334222891095724, guid: 25f231b605636a149839023911faf340, type: 3}
-    - {fileID: 8498788654679211687, guid: 25f231b605636a149839023911faf340, type: 3}
-    m_RemovedGameObjects:
-    - {fileID: 5679503803107540849, guid: 25f231b605636a149839023911faf340, type: 3}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 25f231b605636a149839023911faf340, type: 3}

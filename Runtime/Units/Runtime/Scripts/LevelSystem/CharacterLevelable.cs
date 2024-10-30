@@ -28,7 +28,7 @@ namespace Boshphelm.Units
             CheckLevelUp();
         }
 
-        protected void CheckLevelUp()
+        private void CheckLevelUp()
         {
             float requiredExp = GetExperienceRequiredForNextLevel();
             

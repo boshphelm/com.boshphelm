@@ -125,8 +125,8 @@ namespace Boshphelm.Tutorial
                 if (condition.Completed) continue;
 
                 return false;
-            }
-            Debug.Log("_conditionsByOrder:"+_conditionsByOrder.Count);
+            } 
+            
             foreach (TutorialCondition conditionByOrder in _conditionsByOrder)
             {
                 if (conditionByOrder.Completed) continue;
