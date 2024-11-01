@@ -1,9 +1,9 @@
 using System;
+using Boshphelm.Utility;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
-
+using UnityEngine.UI;  
 namespace Boshphelm.Missions
 {
     public class MissionCard : MonoBehaviour
@@ -11,8 +11,7 @@ namespace Boshphelm.Missions
         [Header("UI Components")]
         [SerializeField] private TextMeshProUGUI _titleText;
         [SerializeField] private TextMeshProUGUI _descriptionText;
-        [SerializeField] private ProgressFillBar _progressFillBar;
-        [SerializeField] private TextMeshProUGUI _progressText;
+        [SerializeField] private ProgressBar _progressBar; 
         [SerializeField] private TextMeshProUGUI _rewardText;
         [SerializeField] private Button _collectButton;
         [SerializeField] private GameObject _progressPanel;
@@ -85,8 +84,7 @@ namespace Boshphelm.Missions
         private void UpdateProgress()
         {
             float progress = _mission.Progress;
-            _progressFillBar.UpdateFillAmount(progress);
-            _progressText.text = $"{progress * 100:F0}%";
+            _progressBar.SetValue(progress);  
         }
 
         private void UpdateCollectButton()
