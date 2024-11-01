@@ -86,7 +86,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &7823975009292852956
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -113,9 +113,9 @@ PrefabInstance:
     m_TransformParent: {fileID: 2456855590392626424}
     m_Modifications:
     - target: {fileID: 439631683170164405, guid: aac1d2ee164aa4d44ade68e841a6f8a5, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 158305215810693755}
     - target: {fileID: 2223258912486923448, guid: aac1d2ee164aa4d44ade68e841a6f8a5, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -541,6 +541,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 56cca4dc1848d5f479c35676833360eb, type: 3}
+--- !u!1 &158305215810693755 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8320235238998197921, guid: 56cca4dc1848d5f479c35676833360eb, type: 3}
+  m_PrefabInstance: {fileID: 8161930034002537690}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &2456170996371642178 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6004163194875640728, guid: 56cca4dc1848d5f479c35676833360eb, type: 3}

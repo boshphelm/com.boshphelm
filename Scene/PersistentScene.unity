@@ -487,12 +487,28 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelProgressBar
       objectReference: {fileID: 0}
+    - target: {fileID: 2836403861579083107, guid: 25f231b605636a149839023911faf340, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3397121312184317056, guid: 25f231b605636a149839023911faf340, type: 3}
+      propertyPath: m_BlockingMask.m_Bits
+      value: 55
+      objectReference: {fileID: 0}
     - target: {fileID: 3415124527587432393, guid: 25f231b605636a149839023911faf340, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3415124527587432393, guid: 25f231b605636a149839023911faf340, type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6990172769544029141, guid: 25f231b605636a149839023911faf340, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6990172769544029141, guid: 25f231b605636a149839023911faf340, type: 3}
+      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7549842055719640468, guid: 25f231b605636a149839023911faf340, type: 3}
@@ -503,6 +519,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: BoshphelmSystem
       objectReference: {fileID: 0}
+    - target: {fileID: 8785109465775547947, guid: 25f231b605636a149839023911faf340, type: 3}
+      propertyPath: _allMissionTypes.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8785109465775547947, guid: 25f231b605636a149839023911faf340, type: 3}
+      propertyPath: _allMissionTypes.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: d70e0052bb1abe64a9c205ea3dc6ad5d, type: 2}
+    - target: {fileID: 8785109465775547947, guid: 25f231b605636a149839023911faf340, type: 3}
+      propertyPath: _allMissionTypes.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 2e5092012aeba8a4386e4e8b3c333ed2, type: 2}
+    - target: {fileID: 8785109465775547947, guid: 25f231b605636a149839023911faf340, type: 3}
+      propertyPath: _allMissionTypes.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: c6a38aab525435848b80f02b67a17353, type: 2}
+    - target: {fileID: 8785109465775547947, guid: 25f231b605636a149839023911faf340, type: 3}
+      propertyPath: _allMissionTypes.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: 0e594770f79e04e4186724072dec8a2c, type: 2}
+    - target: {fileID: 8785109465775547947, guid: 25f231b605636a149839023911faf340, type: 3}
+      propertyPath: _allMissionTypes.Array.data[4]
+      value: 
+      objectReference: {fileID: 11400000, guid: e5c1b4c548852b645858a6ec5c9e99f1, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

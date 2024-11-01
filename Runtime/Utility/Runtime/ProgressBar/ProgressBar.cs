@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro; 
 using DG.Tweening;
+using System;
 
 namespace Boshphelm.Utility
 {
@@ -41,10 +42,7 @@ namespace Boshphelm.Utility
         [SerializeField] private float ghostDuration = 1f;
 
         [Tooltip("Ghost bar'in hareket eğrisi")]
-        [SerializeField] private Ease ghostEase = Ease.InOutCubic;
-
-        [Tooltip("Ghost bar'in rengi")]
-        [SerializeField] private Color ghostColor = new Color(1f, 1f, 1f, 0.5f);
+        [SerializeField] private Ease ghostEase = Ease.InOutCubic; 
 
         [Header("Format Settings")]
         [SerializeField] private FormatSettings formatSettings = new FormatSettings();
@@ -73,8 +71,7 @@ namespace Boshphelm.Utility
             if (ghostSlider != null && useGhostBar)
             {
                 ghostSlider.minValue = 0f;
-                ghostSlider.maxValue = 1f;
-                SetGhostColor(ghostColor);
+                ghostSlider.maxValue = 1f; 
             }
 
             formatter = new ProgressFormatter(formatSettings);
@@ -181,13 +178,10 @@ namespace Boshphelm.Utility
             }
         }
 
-        private void OnValidate()
+        public void UpdateFormatSettings(FormatSettings formatSettings)
         {
-            // Inspector'da değerler değiştiğinde ghost bar rengini güncelle
-            if (Application.isPlaying && ghostSlider != null && useGhostBar)
-            {
-                SetGhostColor(ghostColor);
-            }
+            formatter = new ProgressFormatter(formatSettings); 
         }
+
     }
 }

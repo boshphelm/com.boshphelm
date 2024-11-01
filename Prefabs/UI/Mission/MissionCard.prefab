@@ -1301,8 +1301,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _titleText: {fileID: 8500559374493803947}
   _descriptionText: {fileID: 101994860401189988}
-  _progressBar: {fileID: 0}
-  _progressText: {fileID: 3786559728093124388}
+  _progressBar: {fileID: 1634948533267216950}
   _rewardText: {fileID: 6657301622141447940}
   _collectButton: {fileID: 7398697177787059436}
   _progressPanel: {fileID: 682748322168255541}
@@ -1715,16 +1714,8 @@ PrefabInstance:
     m_TransformParent: {fileID: 6812265210537792986}
     m_Modifications:
     - target: {fileID: 1706980934353024631, guid: 6bf34cb850946b34bb8b6a6d05e4cab8, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1706980934353024631, guid: 6bf34cb850946b34bb8b6a6d05e4cab8, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2211164184422742956, guid: 6bf34cb850946b34bb8b6a6d05e4cab8, type: 3}
-      propertyPath: m_Value
-      value: 0.448
       objectReference: {fileID: 0}
     - target: {fileID: 5186030324740669520, guid: 6bf34cb850946b34bb8b6a6d05e4cab8, type: 3}
       propertyPath: m_Pivot.x
@@ -1806,33 +1797,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5829839820649311266, guid: 6bf34cb850946b34bb8b6a6d05e4cab8, type: 3}
-      propertyPath: mainSlider
-      value: 
-      objectReference: {fileID: 6411124168877665720}
-    - target: {fileID: 5829839820649311266, guid: 6bf34cb850946b34bb8b6a6d05e4cab8, type: 3}
-      propertyPath: ghostSlider
-      value: 
-      objectReference: {fileID: 3870098008047704403}
-    - target: {fileID: 7073864189437443500, guid: 6bf34cb850946b34bb8b6a6d05e4cab8, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7073864189437443500, guid: 6bf34cb850946b34bb8b6a6d05e4cab8, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7073864189437443500, guid: 6bf34cb850946b34bb8b6a6d05e4cab8, type: 3}
-      propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7809400964519934198, guid: 6bf34cb850946b34bb8b6a6d05e4cab8, type: 3}
       propertyPath: m_Name
       value: ProgressBar (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 8862469204935656092, guid: 6bf34cb850946b34bb8b6a6d05e4cab8, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8862469204935656092, guid: 6bf34cb850946b34bb8b6a6d05e4cab8, type: 3}
       propertyPath: m_AnchorMax.y
@@ -1848,36 +1819,14 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5186030324740669520, guid: 6bf34cb850946b34bb8b6a6d05e4cab8, type: 3}
   m_PrefabInstance: {fileID: 5068591831303493140}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &3786559728093124388 stripped
+--- !u!114 &1634948533267216950 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8276438985794961712, guid: 6bf34cb850946b34bb8b6a6d05e4cab8, type: 3}
+  m_CorrespondingSourceObject: {fileID: 5829839820649311266, guid: 6bf34cb850946b34bb8b6a6d05e4cab8, type: 3}
   m_PrefabInstance: {fileID: 5068591831303493140}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &3870098008047704403 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8350263909456531271, guid: 6bf34cb850946b34bb8b6a6d05e4cab8, type: 3}
-  m_PrefabInstance: {fileID: 5068591831303493140}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &6411124168877665720 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2211164184422742956, guid: 6bf34cb850946b34bb8b6a6d05e4cab8, type: 3}
-  m_PrefabInstance: {fileID: 5068591831303493140}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Script: {fileID: 11500000, guid: df83db3ad52eaf54496ef6a73c3decbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

@@ -32,7 +32,7 @@ namespace Boshphelm.Missions
             UpdateCardInfo();
             UpdateProgress();
             UpdateCardStatus(isActive, isNext);
-            SubscribeToMissionEvents();
+            SubscribeToMissionEvents(); 
         }
 
         private void UpdateCardInfo()
