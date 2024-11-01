@@ -1,10 +1,12 @@
 using UnityEngine; 
 using Boshphelm.Units.Level; 
+using Boshphelm.Utility;
 
 namespace Boshphelm.Units
 {
     public class CharacterLevelable : LevelableEntity
     {
+        [SerializeField] private ProgressBar _progressBar;
         protected float _currentExperience; 
         public float CurrentExperience => _currentExperience;
         public float ExperienceToNextLevel => GetExperienceRequiredForNextLevel(); 
@@ -12,6 +14,15 @@ namespace Boshphelm.Units
         {
             base.Awake();
             if (!_isRestored) _currentExperience = 0f;
+            
+            _progressBar.SetValue(0);
+            _progressBar.SetMaxValue(ExperienceToNextLevel);
+        }
+        private void Update() {
+            if(Input.GetKeyDown(KeyCode.X))
+            {
+                GainExperience(20);
+            }
         }
 
         protected float GetExperienceRequiredForNextLevel()
@@ -25,6 +36,7 @@ namespace Boshphelm.Units
             if (_currentLevel >= MaxLevel) return;
 
             _currentExperience += exp; 
+            _progressBar.SetValue(_currentExperience);
             CheckLevelUp();
         }
 
@@ -37,6 +49,9 @@ namespace Boshphelm.Units
                 _currentExperience -= requiredExp;
                 LevelUp();
                 requiredExp = GetExperienceRequiredForNextLevel();
+
+                _progressBar.SetValue(0);
+                _progressBar.SetMaxValue(ExperienceToNextLevel);
             }
         }
 

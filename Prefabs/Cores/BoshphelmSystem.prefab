@@ -974,6 +974,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1384847948324588469}
     m_Modifications:
+    - target: {fileID: 2234950511931947229, guid: d80009fd75625264a9641206274f13b6, type: 3}
+      propertyPath: ghostEase
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2234950511931947229, guid: d80009fd75625264a9641206274f13b6, type: 3}
+      propertyPath: useGhostBar
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2234950511931947229, guid: d80009fd75625264a9641206274f13b6, type: 3}
+      propertyPath: useSmoothing
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2234950511931947229, guid: d80009fd75625264a9641206274f13b6, type: 3}
+      propertyPath: mainAnimationEase
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2234950511931947229, guid: d80009fd75625264a9641206274f13b6, type: 3}
+      propertyPath: formatSettings.prefix
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2234950511931947229, guid: d80009fd75625264a9641206274f13b6, type: 3}
+      propertyPath: mainAnimationDuration
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4071489022774690574, guid: d80009fd75625264a9641206274f13b6, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -1149,6 +1173,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3147037321027299321, guid: d80009fd75625264a9641206274f13b6, type: 3}
   m_PrefabInstance: {fileID: 4130254747829756253}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2762324405731498368 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2234950511931947229, guid: d80009fd75625264a9641206274f13b6, type: 3}
+  m_PrefabInstance: {fileID: 4130254747829756253}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df83db3ad52eaf54496ef6a73c3decbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &3581916478847990895 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 640666459677744434, guid: d80009fd75625264a9641206274f13b6, type: 3}
@@ -1476,6 +1511,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1384847948324588469}
     m_Modifications:
+    - target: {fileID: 4197523604200812043, guid: abc687a81236f1946a8de5a77a34f245, type: 3}
+      propertyPath: _progressBar
+      value: 
+      objectReference: {fileID: 2762324405731498368}
     - target: {fileID: 4197523604200812043, guid: abc687a81236f1946a8de5a77a34f245, type: 3}
       propertyPath: _statContainer
       value: 
