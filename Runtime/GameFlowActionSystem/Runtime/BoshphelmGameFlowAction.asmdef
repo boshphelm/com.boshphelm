@@ -1,0 +1,16 @@
+{
+    "name": "BoshphelmGameFlowAction",
+    "rootNamespace": "",
+    "references": [
+        "GUID:e9d6f45d6f04fc04da3d496f735b2031"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
