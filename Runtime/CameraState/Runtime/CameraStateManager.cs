@@ -7,8 +7,7 @@ namespace Boshphelm.CameraState
     public class CameraStateManager : StateMachine 
     {
         [Header("Cameras")]
-        [SerializeField] private CinemachineVirtualCamera _idleCamera; 
-        [SerializeField] private CinemachineVirtualCamera _seCamera; 
+        [SerializeField] private CinemachineVirtualCamera _idleCamera;  
           
         private IdleCameraState _idleState; 
 
