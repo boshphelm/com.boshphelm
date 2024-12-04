@@ -13,6 +13,7 @@ namespace Boshphelm.GameStateSystem
         private void InitializeStates()
         { 
             _states.AddRange(GetComponentsInChildren<GameState>());  
+            if (_states.Count == 0) return;
             SwitchState(_states[0]);
         } 
 
