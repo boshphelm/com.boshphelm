@@ -6,27 +6,17 @@ namespace Boshphelm.GameStateSystem
 { 
     public class GameStateManager : StateMachine
     { 
-        private Dictionary<Type, GameState> _states;  
+        private List<GameState> _states = new List<GameState>();  
 
         private void Awake() => InitializeStates(); 
 
         private void InitializeStates()
-        {
-            _states = new Dictionary<Type, GameState>
-            {
-                { typeof(MenuState), new MenuState(this) },
-                { typeof(PlayState), new PlayState(this) },
-                { typeof(FailState), new FailState(this) },
-                { typeof(CompleteState), new CompleteState(this) }
-            };
- 
-            SwitchState(_states[typeof(MenuState)]);
+        { 
+            _states.AddRange(GetComponentsInChildren<GameState>());  
+            SwitchState(_states[0]);
         } 
 
-        public void GoToMenu() => SwitchState(_states[typeof(MenuState)]);
-        public void StartGame() => SwitchState(_states[typeof(PlayState)]);
-        public void GameOver() => SwitchState(_states[typeof(FailState)]);
-        public void Complete() => SwitchState(_states[typeof(CompleteState)]);
+        public void SwitchState(GameState state) => SwitchState(state);  
  
     }
 }
