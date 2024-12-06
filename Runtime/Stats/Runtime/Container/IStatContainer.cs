@@ -1,9 +1,9 @@
 namespace Boshphelm.Stats
 {
-    public interface IStatContainer<T> where T : StatType
+    public interface IStatContainer
     {
-        Stat<T> GetStatByStatType(T statType);
-        void AddModifierStats(BaseStat<T>[] baseStats, object source);
+        Stat GetStatByStatType(StatType statType);
+        void AddModifierStats(BaseStat[] baseStats, object source);
         void RemoveModifiersFromSource(object source);
     }
 }

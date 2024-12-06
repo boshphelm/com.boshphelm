@@ -2,20 +2,20 @@ using System.Linq;
 using UnityEngine;
 
 namespace Boshphelm.Stats
-{ 
-    public abstract class BaseStatContainer<T> : ScriptableObject where T : StatType
+{
+    public abstract class BaseStatContainer : ScriptableObject
     {
-        [SerializeField] private LevelBaseStat<T>[] _levelBaseStats;
+        [SerializeField] private LevelBaseStat[] _levelBaseStats;
 
         public int MaxLevel => _levelBaseStats != null ? _levelBaseStats.Length : 1;
 
-        public BaseStat<T> GetBaseStatByLevelAndType(int level, T type)
+        public BaseStat GetBaseStatByLevelAndType(int level, StatType type)
         {
             var levelBaseStat = GetBaseStatsByLevel(level);
             return levelBaseStat.GetBaseStat(type);
         }
 
-        public LevelBaseStat<T> GetBaseStatsByLevel(int level)
+        public LevelBaseStat GetBaseStatsByLevel(int level)
         {
             level = Mathf.Clamp(level, 1, MaxLevel);
 
@@ -59,13 +59,13 @@ namespace Boshphelm.Stats
     }
 
     [System.Serializable]
-    public class LevelBaseStat<T> where T : StatType
+    public class LevelBaseStat
     {
         public int Level;
         public float RequiredExperience;
-        public BaseStat<T>[] BaseStats;
+        public BaseStat[] BaseStats;
 
-        public BaseStat<T> GetBaseStat(T statType)
+        public BaseStat GetBaseStat(StatType statType)
         {
             return BaseStats.FirstOrDefault(baseStat => baseStat.HasSameStatType(statType));
         }
@@ -74,11 +74,11 @@ namespace Boshphelm.Stats
     }
 
     [System.Serializable]
-    public class BaseStat<T> where T : StatType
+    public class BaseStat
     {
-        public T StatType;
+        public StatType StatType;
         public float Value;
 
-        public bool HasSameStatType(T statType) => StatType == statType;
+        public bool HasSameStatType(StatType statType) => StatType.Id == statType.Id;
     }
 }

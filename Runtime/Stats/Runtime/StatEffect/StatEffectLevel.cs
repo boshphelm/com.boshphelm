@@ -3,9 +3,9 @@ using System.Collections.Generic;
 namespace Boshphelm.Stats
 {
     [System.Serializable]
-    public class StatEffectLevel<T> where T : StatType
+    public class StatEffectLevel
     {
         public int Level;
-        public List<StatEffect<T>> StatEffects;
+        public List<StatEffect> StatEffects;
     }
 }

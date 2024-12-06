@@ -1,3 +1,4 @@
+using Boshphelm.Stats;
 using DamageNumbersPro;
 using UnityEngine;
 
@@ -9,7 +10,7 @@ namespace Boshphelm.Units
         public string DamageTypeName;
         public Color DamageColor = Color.white;
         public DamageNumberMesh DamageNumberPrefab;
-        public UnitStatType DamageStatType;
-        public UnitStatType ResistanceStatType;
+        public StatType DamageStatType;
+        public StatType ResistanceStatType;
     }
 }

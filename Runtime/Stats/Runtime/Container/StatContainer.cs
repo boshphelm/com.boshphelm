@@ -4,11 +4,11 @@ using UnityEngine;
 
 namespace Boshphelm.Stats
 {
-    public abstract class StatContainer<T> : MonoBehaviour, IStatContainer<T> where T : StatType
+    public abstract class StatContainer : MonoBehaviour, IStatContainer
     {
-        [SerializeField] private BaseStatContainer<T> baseStatContainer;
-        public BaseStatContainer<T> BaseStatContainer => baseStatContainer;
-        private Dictionary<SerializableGuid, Stat<T>> _stats;
+        [SerializeField] private BaseStatContainer _baseStatContainer;
+        public BaseStatContainer BaseStatContainer => _baseStatContainer;
+        private Dictionary<SerializableGuid, Stat> _stats;
         public int Level { get; private set; }
 
         public void Initialize()
@@ -16,7 +16,7 @@ namespace Boshphelm.Stats
             GenerateOrUpdateAllStats();
         }
 
-        public void AddModifierStats(BaseStat<T>[] baseStats, object source)
+        public void AddModifierStats(BaseStat[] baseStats, object source)
         {
             foreach (var baseStat in baseStats)
             {
@@ -28,7 +28,7 @@ namespace Boshphelm.Stats
             }
         }
 
-        public Stat<T> GetStatByStatType(T statType)
+        public Stat GetStatByStatType(StatType statType)
         {
             if (_stats != null && _stats.TryGetValue(statType.Id, out var stat)) return stat;
 
@@ -55,7 +55,7 @@ namespace Boshphelm.Stats
 
             var levelBaseStat = BaseStatContainer.GetBaseStatsByLevel(Level);
 
-            if (_stats == null) _stats = new Dictionary<SerializableGuid, Stat<T>>();
+            if (_stats == null) _stats = new Dictionary<SerializableGuid, Stat>();
 
             foreach (var baseStat in levelBaseStat.BaseStats)
             {
@@ -63,7 +63,7 @@ namespace Boshphelm.Stats
             }
         }
 
-        private void GenerateOrUpdateStat(BaseStat<T> baseStat)
+        private void GenerateOrUpdateStat(BaseStat baseStat)
         {
             if (baseStat == null) return;
 
@@ -73,18 +73,18 @@ namespace Boshphelm.Stats
             }
             else
             {
-                _stats.Add(baseStat.StatType.Id, new Stat<T>(baseStat.Value, baseStat.StatType));
+                _stats.Add(baseStat.StatType.Id, new Stat(baseStat.Value, baseStat.StatType));
             }
         }
 
-        public void RegisterListener(T statType, IStatListener listener)
+        public void RegisterListener(StatType statType, IStatListener listener)
         {
             var stat = GetStatByStatType(statType);
 
             stat?.RegisterValueListener(listener);
         }
 
-        public void UnregisterListener(T statType, IStatListener listener)
+        public void UnregisterListener(StatType statType, IStatListener listener)
         {
             var stat = GetStatByStatType(statType);
 

@@ -4,24 +4,27 @@ using UnityEngine;
 
 namespace Boshphelm.Stats
 {
-    public abstract class StatEffectContainer<T> : MonoBehaviour, ISaveable where T : StatType
+    public abstract class StatEffectContainer : MonoBehaviour, ISaveable
     {
-        public abstract IStatContainer<T> StatContainer { get; }
+        public abstract IStatContainer StatContainer { get; }
 
-        protected List<StatEffectSO<T>> activeEffects = new List<StatEffectSO<T>>();
-        protected StatEffectSO<T>[] reloadedEffects;
+        protected List<StatEffectSO> activeEffects = new List<StatEffectSO>();
+        protected StatEffectSO[] reloadedEffects;
 
         private void Start()
         {
-            if (reloadedEffects != null && reloadedEffects.Length >= 0) AddMultipleEffects(reloadedEffects);
+            if (reloadedEffects != null) AddMultipleEffects(reloadedEffects);
         }
 
-        public void AddMultipleEffects(StatEffectSO<T>[] statEffectsSO)
+        public void AddMultipleEffects(StatEffectSO[] statEffectsSO)
         {
-            for (int i = 0; i < statEffectsSO.Length; i++) AddEffect(statEffectsSO[i]);
+            for (int i = 0; i < statEffectsSO.Length; i++)
+            {
+                AddEffect(statEffectsSO[i]);
+            }
         }
 
-        public void AddEffect(StatEffectSO<T> statEffectSO)
+        public void AddEffect(StatEffectSO statEffectSO)
         {
             Debug.Log(statEffectSO.StatEffects[0].StatType.ToString() + " type : " + statEffectSO.StatEffects[0].StatModifier.Value);
             for (int i = 0; i < statEffectSO.StatEffects.Length; i++)
@@ -35,7 +38,7 @@ namespace Boshphelm.Stats
             activeEffects.Add(statEffectSO);
         }
 
-        public void RemoveEffect(StatEffectSO<T> statEffectSO)
+        public void RemoveEffect(StatEffectSO statEffectSO)
         {
             for (int i = 0; i < statEffectSO.StatEffects.Length; i++)
             {
@@ -52,7 +55,10 @@ namespace Boshphelm.Stats
         public object CaptureState()
         {
             var effectIDs = new List<string>();
-            for (int i = 0; i < activeEffects.Count; i++) effectIDs.Add(activeEffects[i].ID);
+            for (int i = 0; i < activeEffects.Count; i++)
+            {
+                effectIDs.Add(activeEffects[i].ID);
+            }
             return effectIDs;
         }
 
@@ -61,11 +67,11 @@ namespace Boshphelm.Stats
             if (state == null) return;
 
             var effectIDs = (List<string>)state;
-            reloadedEffects = new StatEffectSO<T>[effectIDs.Count];
+            reloadedEffects = new StatEffectSO[effectIDs.Count];
 
             for (int i = 0; i < effectIDs.Count; i++)
             {
-                var effectSO = StatEffectSO<T>.GetFromID(effectIDs[i]);
+                var effectSO = StatEffectSO.GetFromID(effectIDs[i]);
                 if (effectSO == null) continue;
 
                 reloadedEffects[i] = effectSO;

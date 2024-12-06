@@ -4,12 +4,12 @@ using UnityEngine;
 namespace Boshphelm.Stats
 {
     [System.Serializable]
-    public class Stat<T> where T : StatType
+    public class Stat
     {
-        [SerializeField] protected T statType;
-        public T StatType => statType;
-        [SerializeField] protected float _baseValue;
-        private protected float _cachedTotalValue;
+        [SerializeField] protected StatType statType;
+        public StatType StatType => statType;
+        [SerializeField] protected float baseValue;
+        private protected float cachedTotalValue;
 
         public float TotalValue
         {
@@ -17,11 +17,11 @@ namespace Boshphelm.Stats
             {
                 if (_isDirty)
                 {
-                    _cachedTotalValue = CalculateFinalValue();
+                    cachedTotalValue = CalculateFinalValue();
                     _isDirty = false;
                 }
 
-                return _cachedTotalValue;
+                return cachedTotalValue;
             }
         }
 
@@ -30,9 +30,9 @@ namespace Boshphelm.Stats
 
         private List<IStatListener> _valueChangeListeners = new List<IStatListener>();
 
-        public Stat(float baseValue, T statType)
+        public Stat(float baseValue, StatType statType)
         {
-            _baseValue = baseValue;
+            this.baseValue = baseValue;
             this.statType = statType;
             _modifiers.Clear();
             _valueChangeListeners.Clear();
@@ -41,7 +41,7 @@ namespace Boshphelm.Stats
 
         public void UpdateBaseValue(float newBaseValue)
         {
-            _baseValue = newBaseValue;
+            baseValue = newBaseValue;
             _isDirty = true;
             // BroadcastBaseValue();
             BroadcastTotalValue();
@@ -121,7 +121,7 @@ namespace Boshphelm.Stats
 
         private float CalculateFinalValue()
         {
-            float finalValue = _baseValue;
+            float finalValue = baseValue;
             float percentageSum = 0;
 
             foreach (var statModifier in _modifiers)

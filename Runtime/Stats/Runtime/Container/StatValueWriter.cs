@@ -3,23 +3,23 @@ using UnityEngine;
 
 namespace Boshphelm.Stats
 {
-    public abstract class StatValueWriter<T> : MonoBehaviour, IStatListener where T : StatType
+    public abstract class StatValueWriter : MonoBehaviour, IStatListener
     {
-        [SerializeField] private List<StatListenData> statListenDatas;
+        [SerializeField] private List<StatListenData> _statListenDatas;
 
-        private IStatContainer<T> statContainer;
+        private IStatContainer _statContainer;
 
         private void Awake()
         {
-            statContainer = GetComponent<IStatContainer<T>>();
+            _statContainer = GetComponent<IStatContainer>();
         }
 
         private void Start()
         {
-            if (statContainer == null) return;
-            foreach (StatListenData statListenData in statListenDatas)
+            if (_statContainer == null) return;
+            foreach (var statListenData in _statListenDatas)
             {
-                var stat = statContainer.GetStatByStatType(statListenData.StatType);
+                var stat = _statContainer.GetStatByStatType(statListenData.StatType);
                 stat?.RegisterValueListener(this);
             }
         }
@@ -30,17 +30,17 @@ namespace Boshphelm.Stats
 
         public void OnTotalValueChanged(StatType statType, float newTotalValue)
         {
-            int foundIndex = FindStatListenDataIndexByStatType((T)statType);
+            int foundIndex = FindStatListenDataIndexByStatType(statType);
             if (foundIndex == -1) return;
 
-            statListenDatas[foundIndex].Value = newTotalValue;
+            _statListenDatas[foundIndex].Value = newTotalValue;
         }
 
-        private int FindStatListenDataIndexByStatType(T statType)
+        private int FindStatListenDataIndexByStatType(StatType statType)
         {
-            for (int i = 0; i < statListenDatas.Count; i++)
+            for (int i = 0; i < _statListenDatas.Count; i++)
             {
-                if (statListenDatas[i].StatType == statType) return i;
+                if (_statListenDatas[i].StatType.Id == statType.Id) return i;
             }
 
             return -1;
@@ -49,7 +49,7 @@ namespace Boshphelm.Stats
         [System.Serializable]
         public class StatListenData
         {
-            public T StatType;
+            public StatType StatType;
             public float Value;
         }
     }

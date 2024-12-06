@@ -7,7 +7,7 @@ namespace Boshphelm.Units
     [RequireComponent(typeof(UnitStatContainer))]
     public class UnitHealth : Health, IStatListener
     {
-        [SerializeField] private UnitStatType _totalHealthStatType;
+        [SerializeField] private StatType _totalHealthStatType;
 
         public void Initialize()
         {

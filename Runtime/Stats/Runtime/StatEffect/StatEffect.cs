@@ -1,12 +1,12 @@
 namespace Boshphelm.Stats
 {
     [System.Serializable]
-    public class StatEffect<T> where T : StatType
+    public class StatEffect
     {
         public string Description;
-        public T StatType;
+        public StatType StatType;
         public StatModifier StatModifier;
 
-        public StatTypeBonus<T> GetAsBonusData() => new StatTypeBonus<T>(StatType, StatModifier.Value, StatModifier.StatModifierType);
+        public StatTypeBonus<StatType> GetAsBonusData() => new StatTypeBonus<StatType>(StatType, StatModifier.Value, StatModifier.StatModifierType);
     }
 }

@@ -3,8 +3,8 @@
     "rootNamespace": "Boshphelm.Utility",
     "references": [
         "GUID:6055be8ebefd69e48b49212b09b47b2f",
-        "GUID:762e752033329be4cb5296fe012089c5",
-        "GUID:e717ca3489a75564fa4a9452dd55ca9a"
+        "GUID:f3477055d24acaa4db654498772156fa",
+        "GUID:66d847d40e22ccd40a94b54fa8075371"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

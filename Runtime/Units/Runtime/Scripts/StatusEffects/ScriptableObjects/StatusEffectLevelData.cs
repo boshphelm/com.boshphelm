@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using Boshphelm.Stats;
-using UnityEngine;
 
 namespace Boshphelm.Units
 {
@@ -15,7 +14,7 @@ namespace Boshphelm.Units
     [System.Serializable]
     public class StatTypeStatModifier
     {
-        public UnitStatType StatType;
+        public StatType StatType;
         public StatModifier StatModifier;
     }
 }

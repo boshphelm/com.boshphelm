@@ -4,8 +4,8 @@
     "references": [
         "GUID:6055be8ebefd69e48b49212b09b47b2f",
         "GUID:c79e69da5bcc7be46a5b5c298343bd4c",
-        "GUID:762e752033329be4cb5296fe012089c5",
-        "DOTweenPro.Scripts"
+        "GUID:66d847d40e22ccd40a94b54fa8075371",
+        "GUID:f3477055d24acaa4db654498772156fa"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

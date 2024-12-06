@@ -3,17 +3,17 @@ using UnityEngine;
 
 namespace Boshphelm.Stats
 {
-    public abstract class StatEffectSO<T> : ScriptableObject, ISerializationCallbackReceiver where T : StatType
+    public abstract class StatEffectSO : ScriptableObject, ISerializationCallbackReceiver
     {
         [SerializeField] private string _id;
         public string ID => _id;
 
-        [SerializeField] private StatEffect<T>[] _statEffects;
-        public StatEffect<T>[] StatEffects => _statEffects;
+        [SerializeField] private StatEffect[] _statEffects;
+        public StatEffect[] StatEffects => _statEffects;
 
-        private static Dictionary<string, StatEffectSO<T>> _itemLookupCache;
+        private static Dictionary<string, StatEffectSO> _itemLookupCache;
 
-        public static StatEffectSO<T> GetFromID(string id)
+        public static StatEffectSO GetFromID(string id)
         {
             if (_itemLookupCache == null) ReFillTheCache();
 
@@ -23,8 +23,8 @@ namespace Boshphelm.Stats
 
         private static void ReFillTheCache()
         {
-            _itemLookupCache = new Dictionary<string, StatEffectSO<T>>();
-            var itemList = Resources.LoadAll<StatEffectSO<T>>("");
+            _itemLookupCache = new Dictionary<string, StatEffectSO>();
+            var itemList = Resources.LoadAll<StatEffectSO>("");
             foreach (var item in itemList)
             {
                 if (_itemLookupCache.ContainsKey(item.ID))
