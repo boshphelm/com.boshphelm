@@ -1,0 +1,18 @@
+{
+    "name": "Boshphelm.PageNavigation",
+    "rootNamespace": "Boshphelm.PageNavigation",
+    "references": [
+        "GUID:c79e69da5bcc7be46a5b5c298343bd4c",
+        "GUID:7615f9cc44e0771429c7f4990e194459",
+        "GUID:bb7a0553a665f4b4c89442983405ed1e"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
