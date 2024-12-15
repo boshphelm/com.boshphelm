@@ -1,22 +1,21 @@
 using System;
-using Boshphelm.Utility;
 using UnityEngine;
 
-namespace Boshphelm.NavigationBar
+namespace Boshphelm.NavigationBars
 {
     public class NavigationBar : MonoBehaviour
     {
         [SerializeField] private NavigationBarButton[] _buttons;
         [SerializeField] private int _initialSelectedButtonIndex = 0;
-        [SerializeField] private ImageRipple _imageRipple;
 
         private NavigationBarButton _currentButton;
+        public int SelectedButtonIndex => _currentButton != null ? _currentButton.PageIndex : -1;
 
-        public readonly Action<NavigationBarButton, int> OnSelectedButtonChanged = (_, _) => { };
+        public Action<NavigationBarButton, int> OnSelectedButtonChanged = (_, _) => { };
 
         private NavigationBarDynamicButtonAnchorCalculator _dynamicButtonAnchorCalculator;
 
-        private void Start()
+        private void Awake()
         {
             _dynamicButtonAnchorCalculator = new NavigationBarDynamicButtonAnchorCalculator(_buttons);
 
@@ -80,8 +79,6 @@ namespace Boshphelm.NavigationBar
             }
 
             OnSelectedButtonChanged.Invoke(_currentButton, _currentButton.PageIndex);
-
-            if (!setDirectly) _imageRipple.Trigger();
         }
     }
 }

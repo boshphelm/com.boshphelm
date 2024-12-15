@@ -1,11 +1,12 @@
 {
-    "name": "Boshphelm.NavigationBar",
-    "rootNamespace": "Boshphelm.NavigationBars",
+    "name": "Boshphelm.Pages.Editor",
+    "rootNamespace": "Boshphelm.Pages.Editor",
     "references": [
-        "GUID:fdac0d44585c58b43949dd0921a090a1",
-        "GUID:c79e69da5bcc7be46a5b5c298343bd4c"
+        "GUID:bb7a0553a665f4b4c89442983405ed1e"
     ],
-    "includePlatforms": [],
+    "includePlatforms": [
+        "Editor"
+    ],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,

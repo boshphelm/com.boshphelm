@@ -3,7 +3,7 @@ using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Boshphelm.NavigationBar
+namespace Boshphelm.NavigationBars
 {
     [RequireComponent(typeof(NavigationButtonStateMachine))]
     public class NavigationBarButton : MonoBehaviour

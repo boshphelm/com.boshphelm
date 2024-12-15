@@ -1,6 +1,6 @@
 using Boshphelm.StateMachines;
 
-namespace Boshphelm.NavigationBar
+namespace Boshphelm.NavigationBars
 {
     public abstract class NavigationButtonState : State
     {

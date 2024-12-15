@@ -2,7 +2,7 @@ using Boshphelm.StateMachines;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Boshphelm.NavigationBar
+namespace Boshphelm.NavigationBars
 {
     public class NavigationButtonStateMachine : StateMachine
     {

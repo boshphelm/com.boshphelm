@@ -1,4 +1,4 @@
-namespace Boshphelm.NavigationBar
+namespace Boshphelm.NavigationBars
 {
     public class NavigationButtonIdleState : NavigationButtonState
     {

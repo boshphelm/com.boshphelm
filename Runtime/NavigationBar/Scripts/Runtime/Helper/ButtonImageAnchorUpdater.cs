@@ -2,7 +2,7 @@ using Boshphelm.Utility;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace Boshphelm.NavigationBar
+namespace Boshphelm.NavigationBars
 {
     public class ButtonImageAnchorUpdater : MonoBehaviour
     {

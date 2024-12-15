@@ -1,7 +1,7 @@
 using Boshphelm.Utility;
 using UnityEngine;
 using UnityEngine.UI;
-namespace Boshphelm.NavigationBar
+namespace Boshphelm.NavigationBars
 {
     public class NavigationButtonPressedState : NavigationButtonState
     {

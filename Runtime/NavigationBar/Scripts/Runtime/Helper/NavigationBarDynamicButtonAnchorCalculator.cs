@@ -1,5 +1,5 @@
 using UnityEngine;
-namespace Boshphelm.NavigationBar
+namespace Boshphelm.NavigationBars
 {
     public class NavigationBarDynamicButtonAnchorCalculator
     {
