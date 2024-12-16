@@ -2,7 +2,8 @@
     "name": "Boshphelm.Pages",
     "rootNamespace": "Boshphelm.Pages",
     "references": [
-        "GUID:c79e69da5bcc7be46a5b5c298343bd4c"
+        "GUID:c79e69da5bcc7be46a5b5c298343bd4c",
+        "GUID:396257723a08def4c852a9ce37d5d5f0"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
