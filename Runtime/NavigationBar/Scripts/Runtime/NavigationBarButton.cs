@@ -20,7 +20,9 @@ namespace Boshphelm.NavigationBars
         public Action<NavigationBarButton, int> OnButtonClicked = (_, _) => { };
 
         private Vector2 _minAnchor;
+        public Vector2 MinAnchor => _minAnchor;
         private Vector2 _maxAnchor;
+        public Vector2 MaxAnchor => _maxAnchor;
 
         public void Initialize(int pageIndex)
         {

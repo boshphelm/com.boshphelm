@@ -1,4 +1,5 @@
 using System;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Boshphelm.NavigationBars
@@ -8,6 +9,36 @@ namespace Boshphelm.NavigationBars
         [SerializeField] private NavigationBarButton[] _buttons;
         [SerializeField] private int _initialSelectedButtonIndex = 0;
         [SerializeField] private bool _changeSizeYSelectedButton;
+
+        #if UNITY_EDITOR
+        [TitleGroup("Only Editor")]
+        [Button(ButtonSizes.Large, ButtonStyle.Box)] [GUIColor(0.4f, 0.8f, 1)]
+        private void PlaceAllButtonsByDefault()
+        {
+            var dynamicButtonAnchorCalculator = new NavigationBarDynamicButtonAnchorCalculator(_buttons, _changeSizeYSelectedButton);
+            var selectedButton = _buttons[Mathf.Clamp(_initialSelectedButtonIndex, 0, _buttons.Length - 1)];
+            dynamicButtonAnchorCalculator.UpdateButtonAnchors(selectedButton);
+
+            for (int i = 0; i < _buttons.Length; i++)
+            {
+                var navigationButtonStateMachine = _buttons[i].GetComponent<NavigationButtonStateMachine>();
+                if (selectedButton != _buttons[i])
+                {
+
+                    navigationButtonStateMachine.SetNotPressedDirectly(_buttons[i].MinAnchor, _buttons[i].MaxAnchor);
+                }
+                else
+                {
+                    navigationButtonStateMachine.SetPressedDirectly(_buttons[i].MinAnchor, _buttons[i].MaxAnchor);
+                }
+
+                var buttonTransform = _buttons[i].transform as RectTransform;
+                if (buttonTransform == null) continue;
+                buttonTransform.anchoredPosition = Vector2.zero;
+                buttonTransform.sizeDelta = Vector2.zero;
+            }
+        }
+        #endif
 
         private NavigationBarButton _currentButton;
         public int SelectedButtonIndex => _currentButton != null ? _currentButton.PageIndex : -1;

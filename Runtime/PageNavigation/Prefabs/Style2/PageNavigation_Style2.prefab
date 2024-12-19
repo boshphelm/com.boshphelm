@@ -89,9 +89,85 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1565761413574117272}
     m_Modifications:
+    - target: {fileID: 279055766780126150, guid: 46fdbb75bd692f84aa39f4332f27ba92, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 279055766780126150, guid: 46fdbb75bd692f84aa39f4332f27ba92, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 279055766780126150, guid: 46fdbb75bd692f84aa39f4332f27ba92, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 838069338691851249, guid: 46fdbb75bd692f84aa39f4332f27ba92, type: 3}
       propertyPath: m_Name
       value: PageNavigationCanvas_Style2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1580956797196164958, guid: 46fdbb75bd692f84aa39f4332f27ba92, type: 3}
+      propertyPath: m_fontSize
+      value: 29.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2845010916666786281, guid: 46fdbb75bd692f84aa39f4332f27ba92, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.62
+      objectReference: {fileID: 0}
+    - target: {fileID: 2845010916666786281, guid: 46fdbb75bd692f84aa39f4332f27ba92, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.38
+      objectReference: {fileID: 0}
+    - target: {fileID: 3116659713794750079, guid: 46fdbb75bd692f84aa39f4332f27ba92, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.81
+      objectReference: {fileID: 0}
+    - target: {fileID: 3116659713794750079, guid: 46fdbb75bd692f84aa39f4332f27ba92, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.62
+      objectReference: {fileID: 0}
+    - target: {fileID: 3476504792828434466, guid: 46fdbb75bd692f84aa39f4332f27ba92, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3476504792828434466, guid: 46fdbb75bd692f84aa39f4332f27ba92, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3476504792828434466, guid: 46fdbb75bd692f84aa39f4332f27ba92, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4053064272740827369, guid: 46fdbb75bd692f84aa39f4332f27ba92, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4053064272740827369, guid: 46fdbb75bd692f84aa39f4332f27ba92, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4053064272740827369, guid: 46fdbb75bd692f84aa39f4332f27ba92, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4672629551977930863, guid: 46fdbb75bd692f84aa39f4332f27ba92, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4672629551977930863, guid: 46fdbb75bd692f84aa39f4332f27ba92, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4672629551977930863, guid: 46fdbb75bd692f84aa39f4332f27ba92, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6065335205021832119, guid: 46fdbb75bd692f84aa39f4332f27ba92, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1.33
+      objectReference: {fileID: 0}
+    - target: {fileID: 6065335205021832119, guid: 46fdbb75bd692f84aa39f4332f27ba92, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.33
       objectReference: {fileID: 0}
     - target: {fileID: 6233477498905957413, guid: 46fdbb75bd692f84aa39f4332f27ba92, type: 3}
       propertyPath: m_Pivot.x
@@ -172,6 +248,30 @@ PrefabInstance:
     - target: {fileID: 6233477498905957413, guid: 46fdbb75bd692f84aa39f4332f27ba92, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6604278291695783474, guid: 46fdbb75bd692f84aa39f4332f27ba92, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6604278291695783474, guid: 46fdbb75bd692f84aa39f4332f27ba92, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.81
+      objectReference: {fileID: 0}
+    - target: {fileID: 7514112014610249174, guid: 46fdbb75bd692f84aa39f4332f27ba92, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.38
+      objectReference: {fileID: 0}
+    - target: {fileID: 7514112014610249174, guid: 46fdbb75bd692f84aa39f4332f27ba92, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.19
+      objectReference: {fileID: 0}
+    - target: {fileID: 8011066916893494978, guid: 46fdbb75bd692f84aa39f4332f27ba92, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8011066916893494978, guid: 46fdbb75bd692f84aa39f4332f27ba92, type: 3}
+      propertyPath: fallbackSpriteSettings.PrimaryColor.a
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
