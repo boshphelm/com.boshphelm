@@ -13,7 +13,7 @@ namespace Boshphelm.NavigationBars
         private float _timer = 0f;
         private bool _active;
 
-        private const float _timeToChange = .1f;
+        private const float _timeToChange = .25f;
 
         public System.Action OnComplete = () => { };
 

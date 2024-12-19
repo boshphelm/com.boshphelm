@@ -7,6 +7,7 @@ namespace Boshphelm.NavigationBars
     {
         [SerializeField] private NavigationBarButton[] _buttons;
         [SerializeField] private int _initialSelectedButtonIndex = 0;
+        [SerializeField] private bool _changeSizeYSelectedButton;
 
         private NavigationBarButton _currentButton;
         public int SelectedButtonIndex => _currentButton != null ? _currentButton.PageIndex : -1;
@@ -17,7 +18,7 @@ namespace Boshphelm.NavigationBars
 
         private void Awake()
         {
-            _dynamicButtonAnchorCalculator = new NavigationBarDynamicButtonAnchorCalculator(_buttons);
+            _dynamicButtonAnchorCalculator = new NavigationBarDynamicButtonAnchorCalculator(_buttons, _changeSizeYSelectedButton);
 
             InitializeButtons();
         }

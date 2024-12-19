@@ -9,12 +9,13 @@ namespace Boshphelm.NavigationBars
         private const float _additionalAnchorSizeXPressedButton = 0.05f;
 
         private const float _notPressedButtonMaxAnchorSizeY = 1f;
-        private const float _pressedButtonMaxAnchorSizeY = 1.21f;
+        private readonly float _pressedButtonMaxAnchorSizeY = 1.21f;
 
-        public NavigationBarDynamicButtonAnchorCalculator(NavigationBarButton[] buttons)
+        public NavigationBarDynamicButtonAnchorCalculator(NavigationBarButton[] buttons, bool changeSizeYSelectedButton)
         {
             _buttons = buttons;
 
+            _pressedButtonMaxAnchorSizeY = changeSizeYSelectedButton ? _pressedButtonMaxAnchorSizeY : 1f;
             _normalAnchorStepX = (1f - _additionalAnchorSizeXPressedButton) / _buttons.Length;
         }
 

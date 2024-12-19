@@ -148,7 +148,7 @@ GameObject:
   - component: {fileID: 3518202966679844917}
   - component: {fileID: 8845910856167918801}
   m_Layer: 5
-  m_Name: NavigationBar
+  m_Name: NavigationBar_Style1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
