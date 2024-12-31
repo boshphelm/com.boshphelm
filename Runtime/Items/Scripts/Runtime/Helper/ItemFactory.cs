@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Boshphelm.Items;
 
-namespace Boshphelm.Inventories
+namespace Boshphelm.Items
 {
     public abstract class ItemFactory<TItem, TItemDetail, TItemDetailQuantity> where TItem : Item where TItemDetail : ItemDetail where TItemDetailQuantity : ItemDetailQuantity<TItemDetail>
     {

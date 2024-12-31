@@ -2,9 +2,7 @@ using Boshphelm.Items;
 
 namespace Boshphelm.ItemSlot
 {
-    public abstract class ItemSlotBase<TItem, TItemDetail>
-        where TItem : Item
-        where TItemDetail : ItemDetail
+    public abstract class ItemSlotBase<TItem> where TItem : Item
     {
         public TItem Item { get; protected set; }
 
