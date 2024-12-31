@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 965497cf28607b64c88a6768896922a7, type: 3}
+  m_Name: Test_01_SimpleItemDetail
+  m_EditorClassIdentifier: 
+  Id:
+    Part1: 1203810673
+    Part2: 1220836242
+    Part3: 2241735556
+    Part4: 2561124852
+  DisplayName: Sampling
+  Stackable: 1
+  Icon: {fileID: 0}
+  Description: DDD
+  ItemType: {fileID: 11400000, guid: 2a71c5bab0929d640b03ac467caf0dc7, type: 2}

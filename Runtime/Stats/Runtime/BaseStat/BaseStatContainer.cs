@@ -3,7 +3,8 @@ using UnityEngine;
 
 namespace Boshphelm.Stats
 {
-    public abstract class BaseStatContainer : ScriptableObject
+    [CreateAssetMenu(menuName = "Boshphelm/Stat/UnitBaseStatContainer")]
+    public class BaseStatContainer : ScriptableObject
     {
         [SerializeField] private LevelBaseStat[] _levelBaseStats;
 

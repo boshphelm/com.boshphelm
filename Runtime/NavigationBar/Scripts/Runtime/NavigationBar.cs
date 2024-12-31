@@ -34,6 +34,7 @@ namespace Boshphelm.NavigationBars
 
                 var buttonTransform = _buttons[i].transform as RectTransform;
                 if (buttonTransform == null) continue;
+
                 buttonTransform.anchoredPosition = Vector2.zero;
                 buttonTransform.sizeDelta = Vector2.zero;
             }

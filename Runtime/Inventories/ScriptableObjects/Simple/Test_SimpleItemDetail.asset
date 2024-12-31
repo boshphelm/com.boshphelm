@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 965497cf28607b64c88a6768896922a7, type: 3}
+  m_Name: Test_SimpleItemDetail
+  m_EditorClassIdentifier: 
+  Id:
+    Part1: 1783341319
+    Part2: 1194397515
+    Part3: 3916069773
+    Part4: 2002883276
+  DisplayName: Simple 01
+  Stackable: 0
+  Icon: {fileID: 21300000, guid: c82852227c7e54b91bad5c4bd3ed354b, type: 3}
+  Description: 
+  ItemType: {fileID: 11400000, guid: 2a71c5bab0929d640b03ac467caf0dc7, type: 2}

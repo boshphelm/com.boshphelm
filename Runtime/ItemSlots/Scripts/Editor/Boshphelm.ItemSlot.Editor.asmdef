@@ -1,0 +1,18 @@
+{
+    "name": "Boshphelm.ItemSlot.Editor",
+    "rootNamespace": "Boshphelm.ItemSlot.Editor",
+    "references": [
+        "GUID:6946aea2cc374924481efc4eef9640ac"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

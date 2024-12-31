@@ -19,7 +19,7 @@ namespace Boshphelm.Shops
             _onSelectCallback = onSelect;
 
             _nameText.text = item.ItemDetail.DisplayName;
-            _iconImage.sprite = item.ItemDetail.ShopUI.Icon; // Assuming ItemDetail has an icon
+            _iconImage.sprite = item.ItemDetail.Icon; // Assuming ItemDetail has an icon
 
             _selectButton.onClick.AddListener(OnSelectClicked);
         }

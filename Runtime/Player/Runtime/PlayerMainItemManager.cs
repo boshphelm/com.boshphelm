@@ -38,7 +38,7 @@ namespace Boshphelm.Players
             foreach ((string itemTypeHexId, string mainItemDetailHexId) in saveData)
             {
                 var itemDetailId = SerializableGuid.FromHexString(mainItemDetailHexId);
-                var itemDetail = ItemDatabase.GetItemDetailById(itemDetailId);
+                var itemDetail = ItemDatabase.GetItemDetailById<ItemDetail>(itemDetailId);
                 if (itemDetail == null) continue;
 
                 var itemTypeId = SerializableGuid.FromHexString(itemTypeHexId);

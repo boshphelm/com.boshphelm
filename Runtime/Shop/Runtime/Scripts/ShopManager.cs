@@ -8,7 +8,7 @@ namespace Boshphelm.Shops
 {
     public class ShopManager : MonoBehaviour
     {
-        [SerializeField] private Inventory _playerInventory;
+        //[SerializeField] private Inventory _playerInventory;
         [SerializeField] private Wallet _playerWallet;
         [SerializeField] private ShopUIController _uiController;
         [SerializeField] private List<ShopItemDetails> _availableItems;
@@ -35,7 +35,7 @@ namespace Boshphelm.Shops
             {
                 Debug.Log("1");
                 _playerWallet.RemoveCurrency(item.PriceToBuy.CurrencyDetails, item.PriceToBuy.Amount);
-                _playerInventory.AddItem(item.ItemDetail, 1);
+                //_playerInventory.AddItem(item.ItemDetail, 1);
                 item.CompletePurchase();
                 return true;
             }
@@ -49,11 +49,11 @@ namespace Boshphelm.Shops
             {
                 _playerWallet.RemoveCurrency(item.PriceToNextUpgrade.CurrencyDetails, item.PriceToNextUpgrade.Amount);
                 item.CompleteUpgrade();
-                var inventoryItem = _playerInventory.GetItemByItemDetail(item.ItemDetail);
+                /*var inventoryItem = _playerInventory.GetItemByItemDetail(item.ItemDetail);
                 if (inventoryItem != null)
                 {
-                    inventoryItem.ItemLevel = item.ItemLevel;
-                }
+                    //inventoryItem.ItemLevel = item.ItemLevel;
+                }*/
                 return true;
             }
             return false;
@@ -70,11 +70,11 @@ namespace Boshphelm.Shops
         }
         private void CreateInitialShopItems()
         {
-            foreach (ShopItemDetails itemDetails in _availableItems)
+            /*foreach (ShopItemDetails itemDetails in _availableItems)
             {
                 Item existingItem = _playerInventory.GetItemByItemDetail(itemDetails.ItemDetail);
                 bool isBought = existingItem != null;
-                int itemLevel = isBought ? existingItem.ItemLevel : 0;
+                int itemLevel = //isBought ? existingItem.ItemLevel : 0;
                 bool isEquipped = false;
 
                 var shopItem = new ShopItem(itemDetails, isEquipped, isBought, itemLevel);
@@ -82,7 +82,7 @@ namespace Boshphelm.Shops
                 shopItem.OnUpgradeRequested += HandleUpgradeRequest;
                 shopItem.OnEquipRequested += HandleEquipRequest;
                 _shopInventory.AddItem(shopItem);
-            }
+            }*/
         }
 
         private void HandleBuyRequest(ShopItem shopItem)
@@ -92,7 +92,7 @@ namespace Boshphelm.Shops
             {
                 Debug.Log("2");
                 _playerWallet.RemoveCurrency(shopItem.PriceToBuy.CurrencyDetails, shopItem.PriceToBuy.Amount);
-                _playerInventory.AddItem(shopItem.ItemDetail, 1);
+                //_playerInventory.AddItem(shopItem.ItemDetail, 1);
                 UpdateUI();
             }
         }
@@ -103,11 +103,11 @@ namespace Boshphelm.Shops
             {
                 _playerWallet.RemoveCurrency(shopItem.PriceToNextUpgrade.CurrencyDetails, shopItem.PriceToNextUpgrade.Amount);
 
-                var inventoryItem = _playerInventory.GetItemByItemDetail(shopItem.ItemDetail);
+                /*var inventoryItem = _playerInventory.GetItemByItemDetail(shopItem.ItemDetail);
                 if (inventoryItem != null)
                 {
-                    inventoryItem.ItemLevel = shopItem.ItemLevel;
-                }
+                    //inventoryItem.ItemLevel = shopItem.ItemLevel;
+                }*/
                 UpdateUI();
             }
         }
@@ -117,10 +117,7 @@ namespace Boshphelm.Shops
             UpdateUI();
         }
 
-        public IEnumerable<ShopItem> GetAllShopItems()
-        {
-            return _shopInventory.GetAllItems();
-        }
+        public IEnumerable<ShopItem> GetAllShopItems() => _shopInventory.GetAllItems();
 
         private void UpdateUI()
         {
