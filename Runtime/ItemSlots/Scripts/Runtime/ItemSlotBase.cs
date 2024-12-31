@@ -3,7 +3,7 @@ using Boshphelm.Items;
 namespace Boshphelm.ItemSlot
 {
     public abstract class ItemSlotBase<TItem, TItemDetail>
-        where TItem : Item<TItemDetail>
+        where TItem : Item
         where TItemDetail : ItemDetail
     {
         public TItem Item { get; protected set; }

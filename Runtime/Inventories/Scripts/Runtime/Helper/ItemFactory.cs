@@ -3,7 +3,7 @@ using Boshphelm.Items;
 
 namespace Boshphelm.Inventories
 {
-    public abstract class ItemFactory<TItem, TItemDetail, TItemDetailQuantity> where TItem : Item<TItemDetail> where TItemDetail : ItemDetail where TItemDetailQuantity : ItemDetailQuantity<TItemDetail>
+    public abstract class ItemFactory<TItem, TItemDetail, TItemDetailQuantity> where TItem : Item where TItemDetail : ItemDetail where TItemDetailQuantity : ItemDetailQuantity<TItemDetail>
     {
         public abstract TItem CreateItem(TItemDetailQuantity itemDetailQuantity);
         public List<TItem> CreateItems(List<TItemDetailQuantity> itemDetailQuantities)

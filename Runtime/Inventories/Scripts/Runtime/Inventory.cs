@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Boshphelm.Inventories
 {
-    public abstract class Inventory<TItem, TItemDetail, TItemDetailQuantity> where TItem : Item<TItemDetail> where TItemDetail : ItemDetail where TItemDetailQuantity : ItemDetailQuantity<TItemDetail>
+    public abstract class Inventory<TItem, TItemDetail, TItemDetailQuantity> where TItem : Item where TItemDetail : ItemDetail where TItemDetailQuantity : ItemDetailQuantity<TItemDetail>
     {
         private readonly List<TItem> _items = new List<TItem>();
         public List<TItem> Items => _items;
