@@ -1,6 +1,6 @@
 using Boshphelm.Items;
 
-namespace Boshphelm.Inventories
+namespace Boshphelm.Sample.SimpleItemAndSlot
 {
     public class SimpleItemFactory : ItemFactory<SimpleItem, SimpleItemDetail, SimpleItemDetailQuantity>
     {

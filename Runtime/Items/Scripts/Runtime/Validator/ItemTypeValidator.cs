@@ -2,26 +2,26 @@ using System;
 
 namespace Boshphelm.Items
 {
-    public class ItemTypeValidator : IItemValidator<Item>
+    public abstract class ItemTypeValidator<TItem> : IItemValidator<TItem> where TItem : Item
     {
         private readonly ItemType[] _allowedTypes;
 
-        public ItemTypeValidator(ItemType[] allowedTypes)
+        protected ItemTypeValidator(ItemType[] allowedTypes)
         {
             _allowedTypes = allowedTypes;
         }
 
-        public ItemTypeValidator(ItemType allowedType)
+        protected ItemTypeValidator(ItemType allowedType)
         {
             _allowedTypes = new ItemType[] { allowedType };
         }
 
-        public bool Validate(Item item)
+        public bool Validate(TItem item)
         {
             return _allowedTypes == null ||
                 _allowedTypes.Length == 0 ||
                 Array.Exists(_allowedTypes, t => t.Id == item.ItemDetail.ItemType.Id);
         }
-        public string GetValidationErrorMessage(Item item) => $"Invalid item type: {item.ItemDetail.ItemType.DisplayName}, not allowed.";
+        public string GetValidationErrorMessage(TItem item) => $"Invalid item type: {item.ItemDetail.ItemType.DisplayName}, not allowed.";
     }
 }

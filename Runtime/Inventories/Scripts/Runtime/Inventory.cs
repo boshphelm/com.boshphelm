@@ -18,6 +18,28 @@ namespace Boshphelm.Inventories
         public abstract void Initialize(List<TItemDetailQuantity> initialItemDetailQuantities);
         protected abstract TItem GenerateItem(TItemDetailQuantity itemDetailQuantity);
 
+        public virtual void AddItem(TItem item)
+        {
+            if (item == null) return;
+
+            if (item.ItemDetail.Stackable && Contains(item.ItemDetail))
+            {
+                AddToStackableItem(item.ItemDetail, item.Quantity);
+            }
+            else
+            {
+                CreateItem(item);
+            }
+
+            var itemDetail = item.ItemDetail as TItemDetail;
+            if (itemDetail == null)
+            {
+                Debug.LogError($"Item {item.ItemDetail} is not a TItemDetail");
+                return;
+            }
+            OnItemAdd.Invoke(itemDetail, item.Quantity);
+        }
+
         public virtual void AddItem(TItemDetailQuantity itemDetailQuantity)
         {
             if (itemDetailQuantity == null) return;
@@ -35,16 +57,30 @@ namespace Boshphelm.Inventories
         }
         private void AddToStackableItem(TItemDetailQuantity itemDetailQuantity)
         {
-            var similarItem = GetItemByItemDetailId(itemDetailQuantity.ItemDetail.Id);
-            similarItem.Quantity += itemDetailQuantity.Quantity;
+            AddToStackableItem(itemDetailQuantity.ItemDetail, itemDetailQuantity.Quantity);
+        }
+        private void AddToStackableItem(ItemDetail itemDetail, int quantity)
+        {
+            var similarItem = GetItemByItemDetailId(itemDetail.Id);
+            similarItem.Quantity += quantity;
         }
         private void CreateItem(TItemDetailQuantity itemDetailQuantity)
         {
             var generatedItem = GenerateItem(itemDetailQuantity);
-            _items.Add(generatedItem);
-            Debug.Log("CREATED ITEM : " + generatedItem.ItemDetail.DisplayName + ", QUANTITY : " + generatedItem.Quantity);
+            CreateItem(generatedItem);
         }
+        private void CreateItem(TItem item)
+        {
+            _items.Add(item);
+            Debug.Log("CREATED ITEM : " + item.ItemDetail.DisplayName + ", QUANTITY : " + item.Quantity);
+        }
+        public void RemoveItem(TItem item)
+        {
+            bool contains = _items.Contains(item);
+            if (!contains) return;
 
+            bool removed = _items.Remove(item);
+        }
         public void RemoveItem(TItemDetail itemDetail, int quantity)
         {
             int totalItemQuantityInInventory = GetItemCountByItemDetail(itemDetail);

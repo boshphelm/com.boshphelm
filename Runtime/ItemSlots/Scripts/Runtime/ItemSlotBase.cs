@@ -6,8 +6,8 @@ namespace Boshphelm.ItemSlot
     {
         public TItem Item { get; protected set; }
 
-        public System.Action<TItem> OnItemChanged = _ => { };
-        public System.Action<TItem> OnItemRemoved = _ => { };
+        public System.Action<ItemSlotBase<TItem>, TItem> OnItemChanged = (_, _) => { };
+        public System.Action<ItemSlotBase<TItem>, TItem> OnItemRemoved = (_, _) => { };
 
         public virtual void SetItem(TItem item)
         {
@@ -15,7 +15,7 @@ namespace Boshphelm.ItemSlot
             if (!CanAcceptItem(item)) return;
 
             Item = item;
-            OnItemChanged.Invoke(item);
+            OnItemChanged.Invoke(this, item);
         }
 
         public virtual TItem RemoveItem()
@@ -23,7 +23,7 @@ namespace Boshphelm.ItemSlot
             var item = Item;
             Item = null;
 
-            OnItemRemoved.Invoke(item);
+            OnItemRemoved.Invoke(this, item);
             return item;
         }
 

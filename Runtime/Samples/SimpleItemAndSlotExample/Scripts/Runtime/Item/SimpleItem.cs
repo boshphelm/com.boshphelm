@@ -1,4 +1,5 @@
-namespace Boshphelm.Items
+using Boshphelm.Items;
+namespace Boshphelm.Sample.SimpleItemAndSlot
 {
     public class SimpleItem : Item
     {

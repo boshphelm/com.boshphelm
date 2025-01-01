@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Boshphelm.Items;
+using UnityEngine;
 
 namespace Boshphelm.ItemSlot
 {
@@ -15,7 +16,13 @@ namespace Boshphelm.ItemSlot
 
         public override bool CanAcceptItem(TItem item)
         {
-            return validators.All(validator => validator.Validate(item));
+            bool canAccept = validators.All(validator => validator.Validate(item));
+            if (!canAccept)
+            {
+                Debug.LogError($"Cannot Set Item : {GetValidationsErrorMessage(item)}");
+            }
+
+            return canAccept;
         }
 
         public string GetValidationsErrorMessage(TItem item)

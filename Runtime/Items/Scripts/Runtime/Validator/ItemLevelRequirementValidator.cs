@@ -1,6 +1,6 @@
 namespace Boshphelm.Items
 {
-    public class ItemLevelRequirementValidator : IItemValidator<Item>
+    public class ItemLevelRequirementValidator<TItem> : IItemValidator<TItem> where TItem : Item
     {
         private readonly int _userLevel;
         private readonly int _requiredLevel;
@@ -11,7 +11,7 @@ namespace Boshphelm.Items
             _requiredLevel = requiredLevel;
         }
 
-        public bool Validate(Item item) => _userLevel >= _requiredLevel;
-        public string GetValidationErrorMessage(Item item) => $"Requires level {_requiredLevel} (Current level: {_userLevel})";
+        public bool Validate(TItem item) => _userLevel >= _requiredLevel;
+        public string GetValidationErrorMessage(TItem item) => $"Requires level {_requiredLevel} (Current level: {_userLevel})";
     }
 }

@@ -1,7 +1,8 @@
 using System.Collections.Generic;
+using Boshphelm.Inventories;
 using Boshphelm.Items;
 
-namespace Boshphelm.Inventories
+namespace Boshphelm.Sample.SimpleItemAndSlot
 {
     public class SimpleInventory : Inventory<SimpleItem, SimpleItemDetail, SimpleItemDetailQuantity>
     {

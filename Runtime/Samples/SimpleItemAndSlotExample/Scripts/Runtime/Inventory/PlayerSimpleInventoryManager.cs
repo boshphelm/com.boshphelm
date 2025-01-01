@@ -1,24 +1,22 @@
 using System;
 using System.Collections.Generic;
+using Boshphelm.Inventories;
 using Boshphelm.Items;
 using Boshphelm.Save;
 using Boshphelm.Utility;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace Boshphelm.Inventories
+namespace Boshphelm.Sample.SimpleItemAndSlot
 {
-    public class PlayerSimpleInventoryManager : MonoBehaviour, ISaveable
+    public class PlayerSimpleInventoryManager : InventoryManagerBase<SimpleItem, SimpleItemDetail, SimpleItemDetailQuantity>, ISaveable
     {
         [SerializeField] private List<SimpleItemDetailQuantity> _initialItems;
 
         private SimpleInventory _inventory;
+        protected override Inventory<SimpleItem, SimpleItemDetail, SimpleItemDetailQuantity> Inventory => _inventory;
 
-        private void Awake()
-        {
-            Initialize();
-        }
-
-        public void Initialize()
+        public override void Initialize()
         {
             _inventory = new SimpleInventory();
             _inventory.Initialize(_initialItems);
@@ -48,9 +46,12 @@ namespace Boshphelm.Inventories
         {
             if (state == null) return;
 
-            _initialItems.Clear();
+            LoadTheInventory((List<ItemSaveData>)state);
+        }
 
-            var itemSaveDataList = (List<ItemSaveData>)state;
+        private void LoadTheInventory(List<ItemSaveData> itemSaveDataList)
+        {
+            _initialItems.Clear();
 
             foreach (var itemSaveData in itemSaveDataList)
             {

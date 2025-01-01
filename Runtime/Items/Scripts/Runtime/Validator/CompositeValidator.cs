@@ -3,11 +3,11 @@ using System.Linq;
 
 namespace Boshphelm.Items
 {
-    public class CompositeValidator<TItem> : IItemValidator<TItem> where TItem : Item
+    public abstract class CompositeValidator<TItem> : IItemValidator<TItem> where TItem : Item
     {
         private readonly List<IItemValidator<TItem>> _validators;
 
-        public CompositeValidator(params IItemValidator<TItem>[] validators)
+        protected CompositeValidator(params IItemValidator<TItem>[] validators)
         {
             _validators = new List<IItemValidator<TItem>>(validators);
         }
