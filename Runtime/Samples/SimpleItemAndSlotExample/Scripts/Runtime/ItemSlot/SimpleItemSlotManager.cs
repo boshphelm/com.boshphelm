@@ -1,38 +1,21 @@
 using System;
-using System.Collections.Generic;
 using Boshphelm.Items;
 using Boshphelm.ItemSlot;
-using Sirenix.OdinInspector;
-using UnityEngine;
+
 namespace Boshphelm.Sample.SimpleItemAndSlot
 {
     public class SimpleItemSlotManager : ItemSlotManagerBase<SimpleItem, SimpleItemSlot>
     {
-        [SerializeField] private PlayerSimpleInventoryManager _inventoryManager;
-        [SerializeField] private SimpleItemSlotData[] _itemSlotDatas;
-
-        [Title("UIView Properties")]
-        [SerializeField] private Transform _uiViewSlotParent;
-        [SerializeField] private GameObject _itemSlotUIViewPrefab;
-
-        private SimpleItemSlotUIViewManager _simpleItemSlotUIViewManager;
-
-        public void Initialize()
+        private readonly SimpleItemSlotPool _simpleItemSlotPool;
+        public SimpleItemSlotManager(int initialSlotCapacity, int maxSlotCapacity)
         {
-            var newItemSlots = new List<SimpleItemSlot>();
-            for (int i = 0; i < _itemSlotDatas.Length; i++)
-            {
-                var itemSlot = new SimpleItemSlot(_itemSlotDatas[i].AllowedItemTypes);
-                newItemSlots.Add(itemSlot);
-            }
-
-            GenerateSlots(newItemSlots);
-
-            _simpleItemSlotUIViewManager = new SimpleItemSlotUIViewManager(_uiViewSlotParent, _itemSlotUIViewPrefab);
-            _simpleItemSlotUIViewManager.Initialize(itemSlots);
+            _simpleItemSlotPool = new SimpleItemSlotPool(initialSlotCapacity, maxSlotCapacity);
         }
 
-        public void MoveItemInsideSlotToInventory(SimpleItemSlot itemSlot)
+        public SimpleItemSlot CreateSlot() => _simpleItemSlotPool.GetFromPool();
+        public void RemoveSlot(SimpleItemSlot slot) => _simpleItemSlotPool.ReturnToPool(slot);
+
+        /*public void MoveItemFromSlotToInventory(SimpleItemSlot itemSlot)
         {
             if (itemSlot.IsEmpty) return;
 
@@ -41,7 +24,7 @@ namespace Boshphelm.Sample.SimpleItemAndSlot
             {
                 ItemDetail = item.ItemDetail as SimpleItemDetail,
                 Quantity = item.Quantity
-            };*/
+            };#1#
             _inventoryManager.AddItem(item);
             itemSlot.RemoveItem();
         }
@@ -58,7 +41,9 @@ namespace Boshphelm.Sample.SimpleItemAndSlot
 
             var newItem = new SimpleItem(simpleItemDetail, quantity);
             _inventoryManager.AddItem(newItem);
-        }
+        }*/
+        protected override void OnSlotItemChanged(ItemSlotBase<SimpleItem> itemSlot, SimpleItem newItem) { }
+        protected override void OnSlotItemRemoved(ItemSlotBase<SimpleItem> itemSlot, SimpleItem removedItem) { }
     }
 
     [Serializable]

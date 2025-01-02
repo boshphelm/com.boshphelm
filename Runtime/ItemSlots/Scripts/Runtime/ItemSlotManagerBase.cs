@@ -5,25 +5,13 @@ using UnityEngine;
 
 namespace Boshphelm.ItemSlot
 {
-    public abstract class ItemSlotManagerBase<TItem, TItemSlot> : MonoBehaviour
+    public abstract class ItemSlotManagerBase<TItem, TItemSlot>
         where TItem : Item
         where TItemSlot : ItemSlotBase<TItem>
     {
         protected readonly List<TItemSlot> itemSlots = new List<TItemSlot>();
 
         public int SlotCount => itemSlots.Count;
-
-        protected virtual void GenerateSlots(List<TItemSlot> initialItemSlots)
-        {
-            itemSlots.Clear();
-
-            for (int i = 0; i < initialItemSlots.Count; i++)
-            {
-                var initialItemSlot = initialItemSlots[i];
-                RegisterSlotEvents(initialItemSlot);
-                itemSlots.Add(initialItemSlot);
-            }
-        }
 
         protected virtual void RegisterSlotEvents(TItemSlot itemSlot)
         {
@@ -46,15 +34,8 @@ namespace Boshphelm.ItemSlot
             itemSlot.OnItemRemoved -= OnSlotItemRemoved;
         }
 
-        protected virtual void OnSlotItemChanged(ItemSlotBase<TItem> itemSlot, TItem newItem)
-        {
-
-        }
-
-        protected virtual void OnSlotItemRemoved(ItemSlotBase<TItem> itemSlot, TItem removedItem)
-        {
-
-        }
+        protected abstract void OnSlotItemChanged(ItemSlotBase<TItem> itemSlot, TItem newItem);
+        protected abstract void OnSlotItemRemoved(ItemSlotBase<TItem> itemSlot, TItem removedItem);
 
         public virtual bool HasEmptySlot()
         {

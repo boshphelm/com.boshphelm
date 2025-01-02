@@ -7,13 +7,19 @@ using UnityEngine;
 
 namespace Boshphelm.Inventories
 {
-    public abstract class Inventory<TItem, TItemDetail, TItemDetailQuantity> where TItem : Item where TItemDetail : ItemDetail where TItemDetailQuantity : ItemDetailQuantity<TItemDetail>
+    public abstract class Inventory<TItem, TItemDetail, TItemDetailQuantity>
+        where TItem : Item
+        where TItemDetail : ItemDetail
+        where TItemDetailQuantity : ItemDetailQuantity<TItemDetail>
     {
         private readonly List<TItem> _items = new List<TItem>();
         public List<TItem> Items => _items;
 
-        public Action<TItemDetail, int> OnItemAdd = (_, _) => { };
-        public Action<TItemDetail, int> OnItemRemove = (_, _) => { };
+        public Action<TItem> OnItemAdd = _ => { };
+        public Action<TItem> OnItemRemove = _ => { };
+
+        public Action<TItem, int> OnAddToItemStack = (_, _) => { };
+        public Action<TItem, int> OnRemoveFromItemStack = (_, _) => { };
 
         public abstract void Initialize(List<TItemDetailQuantity> initialItemDetailQuantities);
         protected abstract TItem GenerateItem(TItemDetailQuantity itemDetailQuantity);
@@ -37,7 +43,6 @@ namespace Boshphelm.Inventories
                 Debug.LogError($"Item {item.ItemDetail} is not a TItemDetail");
                 return;
             }
-            OnItemAdd.Invoke(itemDetail, item.Quantity);
         }
 
         public virtual void AddItem(TItemDetailQuantity itemDetailQuantity)
@@ -52,8 +57,6 @@ namespace Boshphelm.Inventories
             {
                 CreateItem(itemDetailQuantity);
             }
-
-            OnItemAdd.Invoke(itemDetailQuantity.ItemDetail, itemDetailQuantity.Quantity);
         }
         private void AddToStackableItem(TItemDetailQuantity itemDetailQuantity)
         {
@@ -63,6 +66,7 @@ namespace Boshphelm.Inventories
         {
             var similarItem = GetItemByItemDetailId(itemDetail.Id);
             similarItem.Quantity += quantity;
+            OnAddToItemStack.Invoke(similarItem, similarItem.Quantity);
         }
         private void CreateItem(TItemDetailQuantity itemDetailQuantity)
         {
@@ -72,6 +76,7 @@ namespace Boshphelm.Inventories
         private void CreateItem(TItem item)
         {
             _items.Add(item);
+            OnItemAdd.Invoke(item);
             Debug.Log("CREATED ITEM : " + item.ItemDetail.DisplayName + ", QUANTITY : " + item.Quantity);
         }
         public void RemoveItem(TItem item)
@@ -88,8 +93,6 @@ namespace Boshphelm.Inventories
 
             var foundItems = FindItemsByItemDetailId(itemDetail.Id);
             RemoveFromItems(foundItems, quantity);
-
-            OnItemRemove.Invoke(itemDetail, quantity);
         }
         private void RemoveFromItems(List<TItem> items, int quantity)
         {
@@ -118,18 +121,22 @@ namespace Boshphelm.Inventories
             if (quantity >= item.Quantity)
             {
                 quantity -= item.Quantity;
+                OnRemoveFromItemStack.Invoke(item, item.Quantity);
                 _items.Remove(item);
+                OnItemRemove.Invoke(item);
             }
             else
             {
                 item.Quantity -= quantity;
                 quantity = 0;
+                OnRemoveFromItemStack.Invoke(item, quantity);
             }
         }
         private void RemoveFromNotStackableItem(TItem item, ref int quantity)
         {
             quantity -= 1;
             _items.Remove(item);
+            OnItemRemove.Invoke(item);
         }
         public bool Contains(ItemDetail itemDetail) => GetItemByItemDetailId(itemDetail.Id) != null;
         public TItem GetItemByItemDetailId(SerializableGuid itemDetailId) => _items.FirstOrDefault(item => item.ItemDetailId == itemDetailId);

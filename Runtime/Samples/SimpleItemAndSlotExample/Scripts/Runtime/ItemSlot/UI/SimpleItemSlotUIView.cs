@@ -11,6 +11,8 @@ namespace Boshphelm.Sample.SimpleItemAndSlot
         [SerializeField] private TextMeshProUGUI _itemQuantityText;
         [SerializeField] private Image _itemIcon;
 
+        public System.Action<SimpleItemSlotUIView> OnItemSlotSelected = _ => { };
+
         protected override void UpdateUI(ItemSlotBase<SimpleItem> slot, SimpleItem item)
         {
             if (item == null)
@@ -33,6 +35,13 @@ namespace Boshphelm.Sample.SimpleItemAndSlot
 
             _itemIcon.sprite = null;
             _itemIcon.enabled = false;
+        }
+
+        public override void OnSelected()
+        {
+            OnItemSlotSelected.Invoke(this);
+
+            Debug.Log("THIS ITEM SLOT IS SELECTED : " + gameObject, gameObject);
         }
     }
 }

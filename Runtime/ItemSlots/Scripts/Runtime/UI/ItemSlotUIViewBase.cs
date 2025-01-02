@@ -7,7 +7,6 @@ namespace Boshphelm.ItemSlot
         where TItem : Item
         where TItemSlot : ItemSlotBase<TItem>
     {
-
         protected TItemSlot itemSlot;
 
         public virtual void Initialize(TItemSlot slot)
@@ -35,5 +34,7 @@ namespace Boshphelm.ItemSlot
                 itemSlot.OnItemRemoved -= HandleItemRemoved;
             }
         }
+
+        public abstract void OnSelected();
     }
 }

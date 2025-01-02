@@ -27,6 +27,13 @@ namespace Boshphelm.ItemSlot
             return item;
         }
 
+        public virtual void ClearSlot()
+        {
+            RemoveItem();
+            OnItemChanged = (_, _) => { };
+            OnItemRemoved = (_, _) => { };
+        }
+
         public bool IsEmpty => Item == null;
 
         public abstract bool CanAcceptItem(TItem item);

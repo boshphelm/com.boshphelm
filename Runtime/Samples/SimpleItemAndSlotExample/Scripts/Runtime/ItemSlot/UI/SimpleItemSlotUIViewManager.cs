@@ -8,7 +8,7 @@ namespace Boshphelm.Sample.SimpleItemAndSlot
         private readonly Transform _slotParent;
         private readonly GameObject _simpleItemSlotPrefab;
 
-        private readonly List<SimpleItemSlotUIView> _slotViews = new List<SimpleItemSlotUIView>();
+        private readonly Dictionary<SimpleItemSlot, SimpleItemSlotUIView> _simpleItemSlots = new Dictionary<SimpleItemSlot, SimpleItemSlotUIView>();
 
         public SimpleItemSlotUIViewManager(Transform slotParent, GameObject simpleItemSlotPrefab)
         {
@@ -16,34 +16,33 @@ namespace Boshphelm.Sample.SimpleItemAndSlot
             _simpleItemSlotPrefab = simpleItemSlotPrefab;
         }
 
-        public void Initialize(List<SimpleItemSlot> itemSlots)
+        public void CreateSlotUI(SimpleItemSlot slot)
         {
-            ClearExistingSlots();
+            var newSlotUI = Object.Instantiate(_simpleItemSlotPrefab, _slotParent); // TODO: Make Pool For It.
 
-            for (int i = 0; i < itemSlots.Count; i++)
-            {
-                CreateSlotUI(itemSlots[i]);
-            }
-        }
-
-        private void CreateSlotUI(SimpleItemSlot slot)
-        {
-            var newSlotUI = Object.Instantiate(_simpleItemSlotPrefab, _slotParent);
             var simpleItemSlotUIView = newSlotUI.GetComponent<SimpleItemSlotUIView>();
             simpleItemSlotUIView.Initialize(slot);
-            _slotViews.Add(simpleItemSlotUIView);
+
+            _simpleItemSlots.Add(slot, simpleItemSlotUIView);
+        }
+
+        public void RemoveSlotUIBySlot(SimpleItemSlot slot)
+        {
+            if (!_simpleItemSlots.TryGetValue(slot, out var simpleItemSlotUIView)) return;
+
+            Object.Destroy(simpleItemSlotUIView.gameObject); // TODO: Release To Pool
+            _simpleItemSlots.Remove(slot);
         }
 
         private void ClearExistingSlots()
         {
-            for (int i = _slotViews.Count - 1; i >= 0; i--)
+            foreach (var simpleItemSlot in _simpleItemSlots)
             {
-                var slotView = _slotViews[i];
+                var slotView = simpleItemSlot.Value;
                 Object.Destroy(slotView.gameObject);
-                _slotViews.RemoveAt(i);
             }
 
-            _slotViews.Clear();
+            _simpleItemSlots.Clear();
         }
     }
 }
